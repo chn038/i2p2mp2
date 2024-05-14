@@ -21,13 +21,13 @@ Scene/PlayScene.cpp:
     ** TODO: [HACKATHON-3-BUG] (2/5): It should generate a Plane, and add 10000 to the money, but it doesn't work now.
     ** TODO: [HACKATHON-3-BUG] (3/5): Trace the code to know how the enemies are created.
     ** TODO: [HACKATHON-3-BUG] (3/5): There is a bug in these files, which let the game only spawn the first enemy, try to fix it.
+    ** TODO: [BFS PathFinding] (1/1): Implement a BFS starting from the most right-bottom block in the map.
     // TODO: [CUSTOM-ENEMY]: You need to modify 'Resource/enemy1.txt', or 'Resource/enemy2.txt' to spawn the 4th enemy.
     [Reminder] after modifying the Resource, one has to run cmake again
     // TODO: [CUSTOM-ENEMY]: Enable the creation of the enemy.
     // TODO: [CUSTOM-TURRET]: Make specific key to create the turret.
     // TODO: [CUSTOM-TURRET]: Create a button to support constructing the turret.
     // TODO: [CUSTOM-TURRET]: On callback, create the turret.
-    // TODO: [BFS PathFinding] (1/1): Implement a BFS starting from the most right-bottom block in the map.
 
 Scene/LoseScene.cpp:
     ** TODO: [HACKATHON-1-SCENE] (1/4): You can imitate the 2 files: 'LoseScene.hpp', 'LoseScene.cpp' to implement your start scene.
