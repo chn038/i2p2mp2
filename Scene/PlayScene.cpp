@@ -222,8 +222,10 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 	const int y = my / BlockSize;
 	if (button & 1) {
 		if (mapState[y][x] != TILE_OCCUPIED) {
-			if (!preview)
+			if (!preview) {
+                Engine::LOG(Engine::INFO) << "No turret selected";
 				return;
+            }
 			// Check if valid.
 			if (!CheckSpaceValid(x, y)) {
 				Engine::Sprite* sprite;
@@ -250,7 +252,9 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 
 			mapState[y][x] = TILE_OCCUPIED;
 			OnMouseMove(mx, my);
-		}
+		} else {
+            Engine::LOG(Engine::INFO) << "Place Occupied";
+        }
 	}
 }
 void PlayScene::OnKeyDown(int keyCode) {
