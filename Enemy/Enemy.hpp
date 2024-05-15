@@ -23,10 +23,20 @@ public:
 	float reachEndTime;
 	std::list<Turret*> lockedTurrets;
 	std::list<Bullet*> lockedBullets;
+    // <summary>
+    // create a new Enemy with given x, y, radius, speed, hp, money
+    // </summary>
+    // <param name = x>: new enemy x pos</param>
+    // <param name = y>: new enemy y pos</param>
+    // <param name = radius>: radius is used to detect collision</param>
+    // <param name = speed>: movement speed of the enemy</param>
+    // <param name = hp>: hp of the enemy </param>
+    // <param name = money>: the money drop after the enemy was killed</param>
 	Enemy(std::string img, float x, float y, float radius, float speed, float hp, int money);
  	void Hit(float damage);
 	void UpdatePath(const std::vector<std::vector<int>>& mapDistance);
 	void Update(float deltaTime) override;
 	void Draw() const override;
+    virtual void ModifySpeed(float value);
 };
 #endif // ENEMY_HPP

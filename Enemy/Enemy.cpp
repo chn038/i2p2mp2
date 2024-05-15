@@ -123,3 +123,7 @@ void Enemy::Draw() const {
 		al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(255, 0, 0), 2);
 	}
 }
+
+void Enemy::ModifySpeed(float value) {
+    this->speed += value;
+}
