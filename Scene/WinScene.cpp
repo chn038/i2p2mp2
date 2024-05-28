@@ -6,7 +6,7 @@
 #include "UI/Component/Image.hpp"
 #include "UI/Component/ImageButton.hpp"
 #include "UI/Component/Label.hpp"
-#include "PlayScene.hpp"
+#include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
 #include "WinScene.hpp"
 
@@ -39,5 +39,6 @@ void WinScene::Update(float deltaTime) {
 }
 void WinScene::BackOnClick(int stage) {
 	// Change to select scene.
-	Engine::GameEngine::GetInstance().ChangeScene("stage-select");
+    Engine::GameEngine::GetInstance().GetAssignNew() = true;
+	Engine::GameEngine::GetInstance().ChangeScene("scoreboard-scene");
 }

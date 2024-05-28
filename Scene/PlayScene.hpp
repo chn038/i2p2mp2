@@ -8,6 +8,7 @@
 
 #include "Engine/IScene.hpp"
 #include "Engine/Point.hpp"
+#include "Turret/TurretButton.hpp"
 
 class Turret;
 namespace Engine {
@@ -27,6 +28,7 @@ private:
 	ALLEGRO_SAMPLE_ID bgmId;
 	std::shared_ptr<ALLEGRO_SAMPLE_INSTANCE> deathBGMInstance;
 protected:
+    int damageOffset;
 	int lives;
 	int money;
 	int SpeedMult;
@@ -53,10 +55,13 @@ public:
 	Group* UIGroup;
 	Engine::Label* UIMoney;
 	Engine::Label* UILives;
+	Engine::Label* UIDamage;
 	Engine::Image* imgTarget;
+    TurretButton* updateButton;
 	Engine::Sprite* dangerIndicator;
 	Turret* preview;
 	std::vector<std::vector<TileType>> mapState;
+    std::vector<std::vector<TileType>> originMap;
 	std::vector<std::vector<int>> mapDistance;
 	std::list<std::pair<int, float>> enemyWaveData;
 	std::list<int> keyStrokes;

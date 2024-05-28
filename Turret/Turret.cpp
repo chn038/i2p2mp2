@@ -15,8 +15,8 @@
 PlayScene* Turret::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
-Turret::Turret(std::string imgBase, std::string imgTurret, float x, float y, float radius, int price, float coolDown) :
-	Sprite(imgTurret, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y) {
+Turret::Turret(std::string imgBase, std::string imgTurret, float x, float y, float radius, int price, float coolDown, int damageOffset) :
+	Sprite(imgTurret, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y), damageOffset(damageOffset) {
 	CollisionRadius = radius;
 }
 void Turret::Update(float deltaTime) {
@@ -86,4 +86,7 @@ void Turret::Draw() const {
 }
 int Turret::GetPrice() const {
 	return price;
+}
+void Turret::UpgradeDamage(int toDamage) {
+    this->damageOffset = toDamage;
 }

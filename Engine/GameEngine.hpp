@@ -18,6 +18,8 @@ namespace Engine {
 	private:
 		// Allegro5 settings, frames per second, screen width, screen height, maximum simultaneous audio samples.
 		int fps{}, screenW{}, screenH{}, reserveSamples{};
+        // An easy way to store score
+        int score{}; bool assignNew{};
 		// Determines whether to free memory between scenes.
 		bool freeMemoryOnSceneChanged{};
 		// Max delta time for update multiplier. If delta time exceeds this threshold, lag occurs.
@@ -154,6 +156,16 @@ namespace Engine {
 		/// </summary>
 		/// <returns>The Singleton instance of GameEngine.</returns>
 		static GameEngine& GetInstance();
+        /// <summary>
+        ///  The way to store the score between the scene.
+        ///  Although I can place it inside main but since we have an Engine that don't change,
+        ///  I might as well use it.
+        ///  </summary>
+        ///  <returns> The game score
+        int& GetScore();
+        /// <summary> This is used to determine whether to add a new record or not.</summary>
+        /// <returns> The state
+        bool& GetAssignNew();
 	};
 }
 #endif // GAMEENGINE_HPP

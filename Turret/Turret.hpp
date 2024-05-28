@@ -20,14 +20,17 @@ protected:
     PlayScene* getPlayScene();
     // Reference: Design Patterns - Factory Method.
     virtual void CreateBullet() = 0;
+    int damageOffset;
 
 public:
     bool Enabled = true;
     bool Preview = false;
+    bool IsTurret = true;
     Enemy* Target = nullptr;
-    Turret(std::string imgBase, std::string imgTurret, float x, float y, float radius, int price, float coolDown);
+    Turret(std::string imgBase, std::string imgTurret, float x, float y, float radius, int price, float coolDown, int damageOffset);
     void Update(float deltaTime) override;
     void Draw() const override;
 	int GetPrice() const;
+    void UpgradeDamage(int toDamage);
 };
 #endif // TURRET_HPP

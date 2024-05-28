@@ -14,7 +14,7 @@ struct Point;
 class Bullet : public Engine::Sprite {
 protected:
 	float speed;
-	float damage;
+	int damage;
 	Turret* parent;
 	PlayScene* getPlayScene();
 	virtual void OnExplode(Enemy* enemy);

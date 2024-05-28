@@ -124,6 +124,3 @@ void Enemy::Draw() const {
 	}
 }
 
-void Enemy::ModifySpeed(float value) {
-    this->speed += value;
-}

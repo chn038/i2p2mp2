@@ -50,4 +50,5 @@
 # FEATURE:
 - a way to delete turret
 - add new turret
+- add scoreboard
 

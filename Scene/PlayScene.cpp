@@ -18,12 +18,15 @@
 #include "Turret/LaserTurret.hpp"
 #include "Turret/MachineGunTurret.hpp"
 #include "Turret/MissileTurret.hpp"
+#include "Turret/EmptyTurret.hpp"
+#include "Turret/DeleteTurret.hpp"
 #include "UI/Animation/Plane.hpp"
 #include "Enemy/PlaneEnemy.hpp"
 #include "PlayScene.hpp"
 #include "Engine/Resources.hpp"
 #include "Enemy/SoldierEnemy.hpp"
 #include "Enemy/TankEnemy.hpp"
+#include "Enemy/RoadRollerEnemy.hpp"
 #include "Turret/TurretButton.hpp"
 
 bool PlayScene::DebugMode = false;
@@ -36,6 +39,10 @@ const Engine::Point PlayScene::EndGridPoint = Engine::Point(MapWidth, MapHeight 
 const std::vector<int> PlayScene::code = { ALLEGRO_KEY_UP, ALLEGRO_KEY_UP, ALLEGRO_KEY_DOWN, ALLEGRO_KEY_DOWN,
 									ALLEGRO_KEY_LEFT, ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT, ALLEGRO_KEY_RIGHT,
 									ALLEGRO_KEY_B, ALLEGRO_KEY_A, ALLEGRO_KEYMOD_SHIFT, ALLEGRO_KEY_ENTER };
+
+// This doesn't handle the deletion of the turrets, only used to open for Turret interface
+std::vector<Turret*> turrets;
+
 Engine::Point PlayScene::GetClientSize() {
 	return Engine::Point(MapWidth * BlockSize, MapHeight * BlockSize);
 }
@@ -44,12 +51,17 @@ void PlayScene::Initialize() {
 	// TODO: [HACKATHON-3-BUG] (2/5): Find out the cheat code to test.
     // TODO: [HACKATHON-3-BUG] (2/5): It should generate a Plane, and add 10000 to the money, but it doesn't work now.
 	mapState.clear();
+    originMap.clear();
 	keyStrokes.clear();
 	ticks = 0;
 	deathCountDown = -1;
 	lives = 10;
 	money = 150;
 	SpeedMult = 1;
+    damageOffset = 0;
+    turrets.clear();
+    // set the score to 0
+    Engine::GameEngine::GetInstance().GetScore() = 0;
 	// Add groups from bottom to top.
 	AddNewObject(TileMapGroup = new Group());
 	AddNewObject(GroundEffectGroup = new Group());
@@ -141,6 +153,7 @@ void PlayScene::Update(float deltaTime) {
 				delete EffectGroup;
 				delete UIGroup;
 				delete imgTarget;*/
+                Engine::LOG(Engine::INFO) << "Get Score: " << Engine::GameEngine::GetInstance().GetScore();
 				Engine::GameEngine::GetInstance().ChangeScene("win");
 			}
 			continue;
@@ -162,6 +175,9 @@ void PlayScene::Update(float deltaTime) {
 		case 3:
 			EnemyGroup->AddNewObject(enemy = new TankEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
 			break;
+        case 4:
+            EnemyGroup->AddNewObject(enemy = new RoadRollerEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
+            break;
         // TODO: [CUSTOM-ENEMY]: You need to modify 'Resource/enemy1.txt', or 'Resource/enemy2.txt' to spawn the 4th enemy.
         //         The format is "[EnemyId] [TimeDelay] [Repeat]".
         // TODO: [CUSTOM-ENEMY]: Enable the creation of the enemy.
@@ -220,7 +236,42 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 		return;
 	const int x = mx / BlockSize;
 	const int y = my / BlockSize;
+    float objx = x * BlockSize + BlockSize / 2.0;
+    float objy = y * BlockSize + BlockSize / 2.0;
 	if (button & 1) {
+        if (preview->IsTurret == false) { // Deleting a turret
+            if (mapState[y][x] != TILE_OCCUPIED) {
+                Engine::LOG(Engine::INFO) << "Not selecting a turret while trying to delete a turret";
+                Engine::Sprite* sprite;
+                GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png", 1, x * BlockSize + BlockSize / 2.0, y * BlockSize + BlockSize / 2.0));
+                sprite->Rotation = 0;
+                return;
+            }
+            std::cout << "[INFO] Looping through... ";
+            // Remove the dead link && return the money;
+            for (int i = 0; i < turrets.size(); ++i) {
+                if (turrets[i]->Position.x == objx && turrets[i]->Position.y == objy) {
+                    EarnMoney(int(turrets[i]->GetPrice() * 0.6) * 10 / 10);
+                    turrets.erase(turrets.begin() + i);
+                    break;
+                }
+            }
+            // Start the remove process
+            for (auto &it: TowerGroup->GetObjects()) {
+                std::cout << it->Position.x << '/' << it->Position.y << ' ';
+                if (it->Position.x == objx && it->Position.y == objy) {
+                    // Remove preview
+                    TowerGroup->RemoveObject(preview->GetObjectIterator());
+                    preview = nullptr;
+                    mapState[y][x] = originMap[y][x];
+                    // Remove the selected tower
+                    it->GetObjectIterator()->first = false;
+                    TowerGroup->RemoveObject(it->GetObjectIterator());
+                    break;
+                }
+            }
+            return;
+        }
 		if (mapState[y][x] != TILE_OCCUPIED) {
 			if (!preview) {
                 Engine::LOG(Engine::INFO) << "No turret selected";
@@ -239,12 +290,14 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 			preview->GetObjectIterator()->first = false;
 			UIGroup->RemoveObject(preview->GetObjectIterator());
 			// Construct real turret.
-			preview->Position.x = x * BlockSize + BlockSize / 2.0;
-			preview->Position.y = y * BlockSize + BlockSize / 2.0;
+			preview->Position.x = objx;
+			preview->Position.y = objy;
 			preview->Enabled = true;
 			preview->Preview = false;
 			preview->Tint = al_map_rgba(255, 255, 255, 255);
 			TowerGroup->AddNewObject(preview);
+            // link to turrets
+            turrets.push_back(preview);
 			// To keep responding when paused.
 			preview->Update(0);
 			// Remove Preview.
@@ -258,49 +311,58 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 	}
 }
 void PlayScene::OnKeyDown(int keyCode) {
-	IScene::OnKeyDown(keyCode);
-	if (keyCode == ALLEGRO_KEY_TAB) {
-		DebugMode = !DebugMode;
-	}
-	else {
-		keyStrokes.push_back(keyCode);
-		if (keyStrokes.size() > code.size())
-			keyStrokes.pop_front();
-		if (keyCode == ALLEGRO_KEY_ENTER && keyStrokes.size() == code.size()) {
-			auto it = keyStrokes.begin();
-			for (int c : code) {
-				if (!((*it == c) ||
-					(c == ALLEGRO_KEYMOD_SHIFT &&
-					(*it == ALLEGRO_KEY_LSHIFT || *it == ALLEGRO_KEY_RSHIFT))))
-					return;
-				++it;
-			}
-			EffectGroup->AddNewObject(new Plane());
+    IScene::OnKeyDown(keyCode);
+    if (keyCode == ALLEGRO_KEY_TAB) {
+        DebugMode = !DebugMode;
+    }
+    else {
+        keyStrokes.push_back(keyCode);
+        if (keyStrokes.size() > code.size())
+            keyStrokes.pop_front();
+        if (keyCode == ALLEGRO_KEY_ENTER && keyStrokes.size() == code.size()) {
+            auto it = keyStrokes.begin();
+            for (int c : code) {
+                if (!((*it == c) ||
+                    (c == ALLEGRO_KEYMOD_SHIFT &&
+                    (*it == ALLEGRO_KEY_LSHIFT || *it == ALLEGRO_KEY_RSHIFT))))
+                    return;
+                ++it;
+            }
+            EffectGroup->AddNewObject(new Plane());
             EarnMoney(10000);
-		}
-	}
-	if (keyCode == ALLEGRO_KEY_Q) {
-		// Hotkey for MachineGunTurret.
-		UIBtnClicked(0);
-	}
-	else if (keyCode == ALLEGRO_KEY_W) {
-		// Hotkey for LaserTurret.
-		UIBtnClicked(1);
-	}
-	else if (keyCode == ALLEGRO_KEY_E) {
-		// Hotkey for MissileTurret.
-		UIBtnClicked(2);
-	}
-	// TODO: [CUSTOM-TURRET]: Make specific key to create the turret.
-	else if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
-		// Hotkey for Speed up.
-		SpeedMult = keyCode - ALLEGRO_KEY_0;
-	}
+        }
+    }
+    if (keyCode == ALLEGRO_KEY_Q) {
+        // Hotkey for MachineGunTurret.
+        UIBtnClicked(0);
+    }
+    else if (keyCode == ALLEGRO_KEY_W) {
+        // Hotkey for LaserTurret.
+        UIBtnClicked(1);
+    }
+    else if (keyCode == ALLEGRO_KEY_E) {
+        // Hotkey for MissileTurret.
+        UIBtnClicked(2);
+    }
+    else if (keyCode == ALLEGRO_KEY_D) {
+        // Hotkey for deleteing turret (DeleteTurret)
+        UIBtnClicked(3);
+    }
+    else if (keyCode == ALLEGRO_KEY_S) {
+        // Hotkey for EmptyTurret
+        UIBtnClicked(4);
+    }
+    // TODO: [CUSTOM-TURRET]: Make specific key to create the turret.
+    else if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
+        // Hotkey for Speed up.
+        SpeedMult = keyCode - ALLEGRO_KEY_0;
+    }
 }
 void PlayScene::Hit() {
 	lives--;
 	UILives->Text = std::string("Life ") + std::to_string(lives);
 	if (lives <= 0) {
+        Engine::LOG(Engine::INFO) << "Get score: " << Engine::GameEngine::GetInstance().GetScore();
 		Engine::GameEngine::GetInstance().ChangeScene("lose");
 	}
 }
@@ -310,6 +372,10 @@ int PlayScene::GetMoney() const {
 void PlayScene::EarnMoney(int money) {
 	this->money += money;
 	UIMoney->Text = std::string("$") + std::to_string(this->money);
+    if (money >= 0)
+        Engine::GameEngine::GetInstance().GetScore() += money/10;
+    else
+        Engine::GameEngine::GetInstance().GetScore() -= 1;
 }
 void PlayScene::ReadMap() {
 	std::string filename = std::string("Resource/map") + std::to_string(MapId) + ".txt";
@@ -345,6 +411,7 @@ void PlayScene::ReadMap() {
 				TileMapGroup->AddNewObject(new Engine::Image("play/dirt.png", j * BlockSize, i * BlockSize, BlockSize, BlockSize));
 		}
 	}
+    originMap = mapState;
 }
 void PlayScene::ReadEnemyWave() {
     // TODO: [HACKATHON-3-BUG] (3/5): Trace the code to know how the enemies are created.
@@ -361,6 +428,7 @@ void PlayScene::ReadEnemyWave() {
     Engine::LOG(Engine::INFO) << "Total wave size " << enemyWaveData.size();
 	fin.close();
 }
+
 void PlayScene::ConstructUI() {
 	// Background
 	UIGroup->AddNewObject(new Engine::Image("play/sand.png", 1280, 0, 320, 832));
@@ -368,6 +436,7 @@ void PlayScene::ConstructUI() {
 	UIGroup->AddNewObject(new Engine::Label(std::string("Stage ") + std::to_string(MapId), "pirulen.ttf", 32, 1294, 0));
 	UIGroup->AddNewObject(UIMoney = new Engine::Label(std::string("$") + std::to_string(money), "pirulen.ttf", 24, 1294, 48));
 	UIGroup->AddNewObject(UILives = new Engine::Label(std::string("Life ") + std::to_string(lives), "pirulen.ttf", 24, 1294, 88));
+	UIGroup->AddNewObject(UIDamage = new Engine::Label(std::string("Up ") + std::to_string(damageOffset), "pirulen.ttf", 24, 1446, 88));
 	TurretButton* btn;
 	// Button 1
 	btn = new TurretButton("play/floor.png", "play/dirt.png",
@@ -391,6 +460,27 @@ void PlayScene::ConstructUI() {
 		, 1446, 136, MissileTurret::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
 	UIGroup->AddNewControlObject(btn);
+    // Button 4
+    btn = new TurretButton("play/floor.png", "play/dirt.png",
+        Engine::Sprite("play/dirt.png", 1522, 136, 0, 0, 0, 0),
+        Engine::Sprite("play/target-invalid.png", 1522, 136, 0, 0, 0, 0)
+        , 1522, 136, DeleteTurret::Price);
+    btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
+    UIGroup->AddNewControlObject(btn);
+    // Button 5
+    btn = new TurretButton("play/floor.png", "play/dirt.png",
+        Engine::Sprite("play/tower-base.png", 1294, 212, 0, 0, 0, 0),
+        Engine::Sprite("play/turret-6.png", 1294, 212, 0, 0, 0, 0)
+        , 1294, 212, EmptyTurret::Price);
+    btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 4));
+    UIGroup->AddNewControlObject(btn);
+    // Button 6
+    updateButton = new TurretButton("play/target.png", "play/bullet-1.png",
+        Engine::Sprite("play/target.png", 1522, 212, 0, 0, 0, 0),
+        Engine::Sprite("play/bullet-1.png", 1522, 212, 0, 0, 0, 0)
+        , 1522, 212, 200);
+    updateButton->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 5));
+    UIGroup->AddNewControlObject(updateButton);
 	// TODO: [CUSTOM-TURRET]: Create a button to support constructing the turret.
 	int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
 	int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -401,15 +491,51 @@ void PlayScene::ConstructUI() {
 }
 
 void PlayScene::UIBtnClicked(int id) {
-	if (preview)
+	if (preview) {
 		UIGroup->RemoveObject(preview->GetObjectIterator());
+        preview = nullptr;
+    }
     // TODO: [CUSTOM-TURRET]: On callback, create the turret.
-	if (id == 0 && money >= MachineGunTurret::Price)
-		preview = new MachineGunTurret(0, 0);
-	else if (id == 1 && money >= LaserTurret::Price)
-		preview = new LaserTurret(0, 0);
-	else if (id == 2 && money >= MissileTurret::Price)
-		preview = new MissileTurret(0, 0);
+    Engine::LOG(Engine::INFO) << "Hello from UIBtnClicked";
+    switch (id) {
+        case 0:
+            if (money >= MachineGunTurret::Price)
+                preview = new MachineGunTurret(0, 0, damageOffset);
+            break;
+        case 1:
+            if (money >= LaserTurret::Price)
+                preview = new LaserTurret(0, 0, damageOffset);
+            break;
+        case 2:
+            if (money >= MissileTurret::Price)
+                preview = new MissileTurret(0, 0, damageOffset);
+            break;
+        case 3:
+            if (money >= DeleteTurret::Price)
+                preview = new DeleteTurret(0, 0, damageOffset);
+            break;
+        case 4:
+            if (money >= EmptyTurret::Price)
+                preview = new EmptyTurret(0, 0, damageOffset);
+            break;
+        case 5:
+            if (money >= updateButton->money) {
+                EarnMoney(-updateButton->money);
+                damageOffset += 1;
+                if (damageOffset <= 2)
+                    updateButton->money += 100;
+                else 
+                    updateButton->money += 40 * damageOffset;
+                Engine::LOG(Engine::INFO) << "Updating damage: " << damageOffset;
+                UIDamage->Text = std::string("Up ") + std::to_string(damageOffset);
+                // Update damage for existing turret
+                for (auto &it : turrets) {
+                    it->UpgradeDamage(damageOffset);
+                }
+                
+            }
+    }
+
 	if (!preview)
 		return;
 	preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();

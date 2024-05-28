@@ -22,7 +22,7 @@ void ExplosionEffect::Update(float deltaTime) {
 		getPlayScene()->EffectGroup->RemoveObject(objectIterator);
 		return;
 	}
-	int phase = floor(timeTicks / timeSpan * bmps.size());
+	long long int phase = floor(timeTicks / timeSpan * bmps.size());
 	bmp = bmps[phase];
 	Sprite::Update(deltaTime);
 }

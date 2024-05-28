@@ -55,5 +55,6 @@ void StageSelectScene::PlayOnClick(int stage) {
     Engine::GameEngine::GetInstance().ChangeScene("play");
 }
 void StageSelectScene::ScoreboardOnClick() {
+    Engine::GameEngine::GetInstance().GetAssignNew() = false;
     Engine::GameEngine::GetInstance().ChangeScene("scoreboard-scene");
 }

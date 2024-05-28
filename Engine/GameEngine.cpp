@@ -267,4 +267,10 @@ namespace Engine {
 		static GameEngine instance;
 		return instance;
 	}
+    int& GameEngine::GetScore() {
+        return this->score;
+    }
+    bool& GameEngine::GetAssignNew() {
+        return this->assignNew;
+    }
 }

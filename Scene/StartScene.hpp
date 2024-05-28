@@ -2,8 +2,8 @@
 // Created by Hsuan on 2024/4/10.
 //
 
-#ifndef INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_STARTSCENE_H
-#define INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_STARTSCENE_H
+#ifndef INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_STARTSCENE_HPP
+#define INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_STARTSCENE_HPP
 
 #include <allegro5/allegro_audio.h>
 //#include <memory>
@@ -16,4 +16,4 @@ public:
     void PlayOnClick(int stage);
     void SettingsOnClick(int stage);
 };
-#endif //INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_STARTSCENE_H
+#endif //INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_STARTSCENE_HPP
