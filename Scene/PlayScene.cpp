@@ -270,6 +270,8 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
                     break;
                 }
             }
+            // Recalculate the distance
+            mapDistance = CalculateBFSDistance();
             return;
         }
 		if (mapState[y][x] != TILE_OCCUPIED) {

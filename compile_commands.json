@@ -1,236 +1,706 @@
 [
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Allegro5Exception.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/Allegro5Exception.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/Allegro5Exception.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Allegro5Exception.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/AudioHelper.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/AudioHelper.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/AudioHelper.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/AudioHelper.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/Bullet.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Bullet/Bullet.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Bullet/Bullet.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/Bullet.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Collider.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/Collider.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/Collider.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Collider.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/DirtyEffect.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Animation/DirtyEffect.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Animation/DirtyEffect.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/DirtyEffect.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/Enemy.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Enemy/Enemy.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Enemy/Enemy.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/Enemy.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/ExplosionEffect.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Animation/ExplosionEffect.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Animation/ExplosionEffect.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/ExplosionEffect.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/FireBullet.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Bullet/FireBullet.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Bullet/FireBullet.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/FireBullet.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/GameEngine.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/GameEngine.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/GameEngine.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/GameEngine.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Group.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/Group.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/Group.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Group.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IControl.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/IControl.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/IControl.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IControl.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Image.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Component/Image.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Component/Image.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Image.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/ImageButton.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Component/ImageButton.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Component/ImageButton.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/ImageButton.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IObject.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/IObject.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/IObject.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IObject.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/IScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/IScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IScene.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Label.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Component/Label.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Component/Label.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Label.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/LaserBullet.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Bullet/LaserBullet.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Bullet/LaserBullet.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/LaserBullet.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/LaserTurret.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Turret/LaserTurret.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Turret/LaserTurret.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/LaserTurret.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/LOG.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/LOG.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/LOG.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/LOG.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/LoseScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Scene/LoseScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Scene/LoseScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/LoseScene.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MachineGunTurret.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Turret/MachineGunTurret.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Turret/MachineGunTurret.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MachineGunTurret.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/main.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/main.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/main.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/main.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/MissileBullet.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Bullet/MissileBullet.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Bullet/MissileBullet.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/MissileBullet.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MissileTurret.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Turret/MissileTurret.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Turret/MissileTurret.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MissileTurret.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/Plane.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Animation/Plane.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Animation/Plane.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/Plane.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/PlaneEnemy.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Enemy/PlaneEnemy.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Enemy/PlaneEnemy.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/PlaneEnemy.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/PlayScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Scene/PlayScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Scene/PlayScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/PlayScene.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Point.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/Point.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/Point.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Point.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Resources.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/Resources.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/Resources.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Resources.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Slider.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/UI/Component/Slider.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/UI/Component/Slider.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Slider.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/SoldierEnemy.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Enemy/SoldierEnemy.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Enemy/SoldierEnemy.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/SoldierEnemy.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Sprite.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Engine/Sprite.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Engine/Sprite.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Sprite.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StageSelectScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Scene/StageSelectScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Scene/StageSelectScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StageSelectScene.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/TankEnemy.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Enemy/TankEnemy.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Enemy/TankEnemy.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/TankEnemy.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/Turret.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Turret/Turret.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Turret/Turret.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/Turret.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/TurretButton.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Turret/TurretButton.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Turret/TurretButton.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/TurretButton.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/WinScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Scene/WinScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Scene/WinScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/WinScene.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StartScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Scene/StartScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Scene/StartScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StartScene.cpp.o"
-},
-{
-  "directory": "/home/herochen/code/I2P2-TowerDefense-Student/build",
-  "command": "/nix/store/8mjb3ziimfi3rki71q4s0916xkm4cm5p-gcc-wrapper-13.2.0/bin/g++  -I/home/herochen/code/I2P2-TowerDefense-Student/. -I/home/herochen/code/I2P2-TowerDefense-Student/Resource -I/home/herochen/code/I2P2-TowerDefense-Student/lib -std=gnu++14 -o CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/SettingsScene.cpp.o -c /home/herochen/code/I2P2-TowerDefense-Student/Scene/SettingsScene.cpp",
-  "file": "/home/herochen/code/I2P2-TowerDefense-Student/Scene/SettingsScene.cpp",
-  "output": "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/SettingsScene.cpp.o"
-}
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Allegro5Exception.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/Allegro5Exception.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/Allegro5Exception.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Allegro5Exception.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/AudioHelper.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/AudioHelper.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/AudioHelper.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/AudioHelper.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/GameEngine.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/GameEngine.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/GameEngine.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/GameEngine.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Group.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/Group.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/Group.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Group.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IControl.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/IControl.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/IControl.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IControl.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Collider.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/Collider.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/Collider.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Collider.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IObject.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/IObject.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/IObject.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IObject.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/IScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/IScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/IScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/LOG.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/LOG.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/LOG.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/LOG.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Point.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/Point.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/Point.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Point.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Resources.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/Resources.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/Resources.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Resources.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Sprite.cpp.o",
+      "/home/herochen/code/i2p2mp2/Engine/Sprite.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Engine/Sprite.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Engine/Sprite.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/Bullet.cpp.o",
+      "/home/herochen/code/i2p2mp2/Bullet/Bullet.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Bullet/Bullet.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/Bullet.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/FireBullet.cpp.o",
+      "/home/herochen/code/i2p2mp2/Bullet/FireBullet.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Bullet/FireBullet.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/FireBullet.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/LaserBullet.cpp.o",
+      "/home/herochen/code/i2p2mp2/Bullet/LaserBullet.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Bullet/LaserBullet.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/LaserBullet.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/MissileBullet.cpp.o",
+      "/home/herochen/code/i2p2mp2/Bullet/MissileBullet.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Bullet/MissileBullet.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/MissileBullet.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/EmptyBullet.cpp.o",
+      "/home/herochen/code/i2p2mp2/Bullet/EmptyBullet.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Bullet/EmptyBullet.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Bullet/EmptyBullet.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/DirtyEffect.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Animation/DirtyEffect.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Animation/DirtyEffect.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/DirtyEffect.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/ExplosionEffect.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Animation/ExplosionEffect.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Animation/ExplosionEffect.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/ExplosionEffect.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Image.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Component/Image.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Component/Image.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Image.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/ImageButton.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Component/ImageButton.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Component/ImageButton.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/ImageButton.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Label.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Component/Label.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Component/Label.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Label.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/Plane.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Animation/Plane.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Animation/Plane.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Animation/Plane.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Slider.cpp.o",
+      "/home/herochen/code/i2p2mp2/UI/Component/Slider.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/UI/Component/Slider.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/UI/Component/Slider.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/Enemy.cpp.o",
+      "/home/herochen/code/i2p2mp2/Enemy/Enemy.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Enemy/Enemy.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/Enemy.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/SoldierEnemy.cpp.o",
+      "/home/herochen/code/i2p2mp2/Enemy/SoldierEnemy.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Enemy/SoldierEnemy.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/SoldierEnemy.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/PlaneEnemy.cpp.o",
+      "/home/herochen/code/i2p2mp2/Enemy/PlaneEnemy.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Enemy/PlaneEnemy.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/PlaneEnemy.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/TankEnemy.cpp.o",
+      "/home/herochen/code/i2p2mp2/Enemy/TankEnemy.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Enemy/TankEnemy.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/TankEnemy.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/RoadRollerEnemy.cpp.o",
+      "/home/herochen/code/i2p2mp2/Enemy/RoadRollerEnemy.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Enemy/RoadRollerEnemy.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Enemy/RoadRollerEnemy.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/LaserTurret.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/LaserTurret.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/LaserTurret.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/LaserTurret.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MachineGunTurret.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/MachineGunTurret.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/MachineGunTurret.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MachineGunTurret.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MissileTurret.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/MissileTurret.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/MissileTurret.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/MissileTurret.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/DeleteTurret.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/DeleteTurret.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/DeleteTurret.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/DeleteTurret.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/EmptyTurret.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/EmptyTurret.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/EmptyTurret.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/EmptyTurret.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/Turret.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/Turret.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/Turret.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/Turret.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/TurretButton.cpp.o",
+      "/home/herochen/code/i2p2mp2/Turret/TurretButton.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Turret/TurretButton.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Turret/TurretButton.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/LoseScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/LoseScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/LoseScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/LoseScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/PlayScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/PlayScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/PlayScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/PlayScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StageSelectScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/StageSelectScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/StageSelectScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StageSelectScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/WinScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/WinScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/WinScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/WinScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StartScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/StartScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/StartScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/StartScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/SettingsScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/SettingsScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/SettingsScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/SettingsScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/ScoreScene.cpp.o",
+      "/home/herochen/code/i2p2mp2/Scene/ScoreScene.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/Scene/ScoreScene.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/Scene/ScoreScene.cpp.o"
+  },
+  {
+    "arguments": [
+      "/nix/store/9bv7dcvmfcjnmg5mnqwqlq2wxfn8d7yi-gcc-wrapper-13.2.0/bin/g++",
+      "-I/home/herochen/code/i2p2mp2/.",
+      "-I/home/herochen/code/i2p2mp2/Resource",
+      "-I/home/herochen/code/i2p2mp2/lib",
+      "-g",
+      "-c",
+      "-o",
+      "CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/main.cpp.o",
+      "/home/herochen/code/i2p2mp2/main.cpp"
+    ],
+    "directory": "/home/herochen/code/i2p2mp2/build",
+    "file": "/home/herochen/code/i2p2mp2/main.cpp",
+    "output": "/home/herochen/code/i2p2mp2/build/CMakeFiles/2024_I2P2_TowerDefense_with_answer.dir/main.cpp.o"
+  }
 ]
