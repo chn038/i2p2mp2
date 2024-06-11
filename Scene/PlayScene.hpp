@@ -2,7 +2,6 @@
 #define PLAYSCENE_HPP
 #include <allegro5/allegro_audio.h>
 #include <list>
-#include <memory>
 #include <utility>
 #include <vector>
 
@@ -26,7 +25,13 @@ private:
 		TILE_OCCUPIED,
 	};
 	ALLEGRO_SAMPLE_ID bgmId;
-	std::shared_ptr<ALLEGRO_SAMPLE_INSTANCE> deathBGMInstance;
+	void ReadMap();
+	void ReadEnemyWave();
+    void SpawnEnemy();
+    void DeleteTurret(int x, int y);
+    void BuildTurret(int x, int y);
+	bool CheckSpaceValid(int x, int y);
+	std::vector<std::vector<int>> CalculateBFSDistance();
 protected:
     int damageOffset;
 	int lives;
@@ -43,7 +48,6 @@ public:
 	static const std::vector<int> code;
 	int MapId;
 	float ticks;
-	float deathCountDown;
 	// Map tiles.
 	Group* TileMapGroup;
 	Group* GroundEffectGroup;
@@ -58,7 +62,6 @@ public:
 	Engine::Label* UIDamage;
 	Engine::Image* imgTarget;
     TurretButton* updateButton;
-	Engine::Sprite* dangerIndicator;
 	Turret* preview;
 	std::vector<std::vector<TileType>> mapState;
     std::vector<std::vector<TileType>> originMap;
@@ -78,12 +81,8 @@ public:
 	void Hit();
 	int GetMoney() const;
 	void EarnMoney(int money);
-	void ReadMap();
-	void ReadEnemyWave();
 	void ConstructUI();
 	void UIBtnClicked(int id);
-	bool CheckSpaceValid(int x, int y);
-	std::vector<std::vector<int>> CalculateBFSDistance();
 	// void ModifyReadMapTiles();
 };
 #endif // PLAYSCENE_HPP
