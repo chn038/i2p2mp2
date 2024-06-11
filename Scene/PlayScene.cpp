@@ -317,13 +317,13 @@ void PlayScene::DeleteTurret(int x, int y) {
     std::cout << "[INFO] Looping through... ";
     // Start the remove process
     for (auto &it: TowerGroup->GetObjects()) {
-        std::cout << it->Position.x << '/' << it->Position.y << ' ';
-        if (it->Position.x == objx && it->Position.y == objy) {
+        std::cout << it.second->Position.x << '/' << it.second->Position.y << ' ';
+        if (it.second->Position.x == objx && it.second->Position.y == objy) {
             // Remove preview
             TowerGroup->RemoveObject(preview->GetObjectIterator());
             preview = nullptr;
             // Remove the selected tower
-            TowerGroup->RemoveObject(it->GetObjectIterator());
+            TowerGroup->RemoveObject(it.second->GetObjectIterator());
             break;
         }
     }
@@ -464,7 +464,7 @@ void PlayScene::UIBtnClicked(int id) {
                 UIDamage->Text = std::string("Up ") + std::to_string(damageOffset);
                 // Update damage for existing turret
                 for (auto &it : TowerGroup->GetObjects()) {
-                    dynamic_cast<Turret*>(it)->UpgradeDamage(damageOffset);
+                    dynamic_cast<Turret*>(it.second)->UpgradeDamage(damageOffset);
                 }
                 
             }
@@ -491,8 +491,8 @@ bool PlayScene::CheckSpaceValid(int x, int y) {
 		return false;
 	for (auto& it : EnemyGroup->GetObjects()) {
 		Engine::Point pnt;
-		pnt.x = floor(it->Position.x / BlockSize);
-		pnt.y = floor(it->Position.y / BlockSize);
+		pnt.x = floor(it.second->Position.x / BlockSize);
+		pnt.y = floor(it.second->Position.y / BlockSize);
 		if (pnt.x < 0) pnt.x = 0;
 		if (pnt.x >= MapWidth) pnt.x = MapWidth - 1;
 		if (pnt.y < 0) pnt.y = 0;
@@ -504,7 +504,7 @@ bool PlayScene::CheckSpaceValid(int x, int y) {
 	mapState[y][x] = TILE_OCCUPIED;
 	mapDistance = map;
 	for (auto& it : EnemyGroup->GetObjects())
-		dynamic_cast<Enemy*>(it)->UpdatePath(mapDistance);
+		dynamic_cast<Enemy*>(it.second)->UpdatePath(mapDistance);
 	return true;
 }
 std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {

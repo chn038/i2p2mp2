@@ -4,10 +4,31 @@
 #include "Engine/Group.hpp"
 #include "Engine/Point.hpp"
 
+class PlayScene;
+namespace Engine {
+    enum TileType {
+        TILE_DIRT,
+        TILE_FLOOR,
+        TILE_OCCUPIED,
+    };
+};
+
 class Player final : public Engine::Group {
+    PlayScene* getPlayScene();
 public:
+    int damageOffset;
+    int lives;
+    int money;
     Engine::Point startPoint;
     Engine::Point endPoint;
+    Group* TowerGroup;
+    Group* InstanceGroup;
+    int* waveData;
+    void Initialize();
+    void Terminate();
+    void Update(float deltaTime);
+    void Hit();
+    void SpawnInstances();
 };
 
 #endif

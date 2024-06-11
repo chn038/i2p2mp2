@@ -26,7 +26,7 @@ void Bullet::Update(float deltaTime) {
 	// Can be improved by Spatial Hash, Quad Tree, ...
 	// However simply loop through all enemies is enough for this program.
 	for (auto& it : scene->EnemyGroup->GetObjects()) {
-		Enemy* enemy = dynamic_cast<Enemy*>(it);
+		Enemy* enemy = dynamic_cast<Enemy*>(it.second);
 		if (!enemy->Visible)
 			continue;
 		if (Engine::Collider::IsCircleOverlap(Position, CollisionRadius, enemy->Position, enemy->CollisionRadius)) {

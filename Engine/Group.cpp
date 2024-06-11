@@ -122,16 +122,10 @@ namespace Engine {
 		addObject(false, dynamic_cast<IObject*>(&ctrl));
 		addControl(false, &ctrl);
 	}
-	std::list<IObject*> Group::GetObjects() {
-		std::list<IObject*> list;
-		for (auto& it : objects)
-			list.push_back(it.second);
-		return list;
+	std::list<std::pair<bool, IObject*>> Group::GetObjects() {
+        return objects;
 	}
-	std::list<IControl*> Group::GetControls() {
-		std::list<IControl*> list;
-		for (auto& it : controls)
-			list.push_back(it.second);
-		return list;
+	std::list<std::pair<bool, IControl*>> Group::GetControls() {
+        return controls;
 	}
 }

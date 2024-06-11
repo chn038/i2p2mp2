@@ -21,7 +21,7 @@ void MissileBullet::Update(float deltaTime) {
 		float minDistance = INFINITY;
 		Enemy* enemy = nullptr;
 		for (auto& it : getPlayScene()->EnemyGroup->GetObjects()) {
-			Enemy* e = dynamic_cast<Enemy*>(it);
+			Enemy* e = dynamic_cast<Enemy*>(it.second);
 			float distance = (e->Position - Position).Magnitude();
 			if (distance < minDistance) {
 				minDistance = distance;
