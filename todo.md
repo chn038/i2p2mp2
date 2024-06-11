@@ -1,135 +1,106 @@
 [Reminder] after modifying the Resource, one has to run cmake again
+[Reminder] For linux: cmake -S . -B build --fresh -DCMAKE_EXPORT_COMPILE_COMMAND=1 -DCMAKE_BUILD_TYPE=Debug
 
-# CMakeLists.txt:
-- ** TODO: [HACKATHON-1-SCENE] (2/4) Add the new scene source files here
 
-# main.cpp:
-- ** TODO: [HACKATHON-1-SCENE] (3/4): Register Scenes here
-- ** TODO: [HACKATHON-1-SCENE] (4/4): Change the start scene
-- ** TODO: [STARTSCENE] startscene not implement yet
 
-# UI/Component/Slider.cpp:
-- ** TODO: [HACKATHON-3-BUG] (4/5): Draw the nested components here, so they are displayed correctly
-- ** TODO: [HACKATHON-3-BUG] (5/5): Fix the function, so it can set the slider value correctly
-- [Modify] change the constructor of the slider to allow a initial value, which fix the position of the dragbar
+# Player/Player.cpp:
+# Player/Player.hpp:
+- Construct a new Type Player that has
+    1. instance Group
+    2. tower Group
+    3. map distance
+    4. hp record
+    5. resource record
+- Put those in CmakeList.txt (Low Priority)
 
-# Scene/WinScene.cpp:
-- ** TODO: [BUG] The back button won't works due to no instance of startscene
-    - ** set the scene to settings temp
-
-# Scene/PlayScene.cpp:
-- ** TODO: [HACKATHON-3-BUG] (1/5): There's a bug in this file, which crashes the game when you lose. Try to find it.
-- ** TODO: [HACKATHON-3-BUG] (2/5): Find out the cheat code to test. (The cheat code is a vector name code)
-- ** TODO: [HACKATHON-3-BUG] (2/5): It should generate a Plane, and add 10000 to the money, but it doesn't work now.
-- ** TODO: [HACKATHON-3-BUG] (3/5): Trace the code to know how the enemies are created.
-- ** TODO: [HACKATHON-3-BUG] (3/5): There is a bug in these files, which let the game only spawn the first enemy, try to fix it.
-- ** TODO: [BFS PathFinding] (1/1): Implement a BFS starting from the most right-bottom block in the map.
-- // TODO: [CUSTOM-ENEMY]: You need to modify 'Resource/enemy1.txt', or 'Resource/enemy2.txt' to spawn the 4th enemy.
-- // TODO: [CUSTOM-ENEMY]: Enable the creation of the enemy.
-- // TODO: [CUSTOM-TURRET]: Make specific key to create the turret.
-- // TODO: [CUSTOM-TURRET]: Create a button to support constructing the turret.
-- // TODO: [CUSTOM-TURRET]: On callback, create the turret.
-
-# Scene/LoseScene.cpp:
-- ** TODO: [HACKATHON-1-SCENE] (1/4): You can imitate the 2 files: 'LoseScene.hpp', 'LoseScene.cpp' to implement your start scene.
-
-# Turret/MachineGunTurret.cpp:
-- // TODO: [CUSTOM-TOOL] You can imitate the 2 files: 'MachineGunTurret.hpp', 'MachineGunTurret.cpp' to create a new turret.
-
-# Enemy/RoadRollerEnemy.cpp:
-# Enemy/RoadRollerEnemy.hpp:
-- // TODO: [CUSTOM-TOOL] The RoadRollerEnemy should temporarly increase the movement speed of the enemy.
-
-# Bullet/FireBullet.cpp:
-- // TODO: [CUSTOM-TOOL] You can imitate the 2 files: 'FireBullet.hpp', 'FireBullet.cpp' to create a new bullet.
-
+[Reminder] Post found Bugs here
 # BUGS:
 - segmentation fault when pressing too much key at the same time
     - a problem about allegro?
 
+[Reminder] For something that's planning to implement but yet not implemented
 # FEATURE:
-- a way to delete turret
-- add new turret
-- add scoreboard
 
-# TURRET 1:
-- RNG: 1
-- ATK: 2
-- ASD: 1
-- Money: 50
-- Soldier : A*1
+# TURRET DATA
+- TURRET 1:
+    - RNG: 1
+    - ATK: 2
+    - ASD: 1
+    - Money: 50
+    - Soldier : A*1
 
-# TURRET 2:
-- RNG: 2
-- ATK: 1
-- ASD: 1
-- Money: 50
-- Soldier : B*1
+- TURRET 2:
+    - RNG: 2
+    - ATK: 1
+    - ASD: 1
+    - Money: 50
+    - Soldier : B*1
 
-# TURRET 3:
-- RNG: 3
-- ATK: 2
-- ASD: 0.5
-- Money: 100
-- Soldier : A,C*1 
-# TURRET 4:
-- RNG: 3
-- ATK: 6
-- ASD: 2
-- Money: 100
-- Soldier : B,D*1 
+- TURRET 3:
+    - RNG: 3
+    - ATK: 2
+    - ASD: 0.5
+    - Money: 100
+    - Soldier : A,C*1 
+- TURRET 4:
+    - RNG: 3
+    - ATK: 6
+    - ASD: 2
+    - Money: 100
+    - Soldier : B,D*1 
 
-# TURRET 5:
-- RNG: X
-- ATK: X
-- ASD: X
-- Money: 150
-- Soldier : E,F*1
+- TURRET 5:
+    - RNG: X
+    - ATK: X
+    - ASD: X
+    - Money: 150
+    - Soldier : E,F*1
 
-# Soldier A:
-- RNG: 1
-- HP: 20
-- ATK: 1
-- ASD: 1
-- SPD: 1.5
-- Money:5
+# SOLDIER DATA
+- Soldier A:
+    - RNG: 1
+    - HP: 20
+    - ATK: 1
+    - ASD: 1
+    - SPD: 1.5
+    - Money:5
 
-# Soldier B:
-- RNG: 3
-- HP: 10
-- ATK: 2
-- ASD: 0.5
-- SPD: 1
-- Money:5
+- Soldier B:
+    - RNG: 3
+    - HP: 10
+    - ATK: 2
+    - ASD: 0.5
+    - SPD: 1
+    - Money:5
 
-# Soldier C:
-- RNG: 1
-- HP: 50
-- ATK: 3
-- ASD: 0.5
-- SPD: 0.5
-- Money:10
+- Soldier C:
+    - RNG: 1
+    - HP: 50
+    - ATK: 3
+    - ASD: 0.5
+    - SPD: 0.5
+    - Money:10
 
-# Soldier D:
-- RNG: 3
-- HP: 20
-- ATK: 2
-- ASD: 0.25
-- SPD: 1
-- Money:10
+- Soldier D:
+    - RNG: 3
+    - HP: 20
+    - ATK: 2
+    - ASD: 0.25
+    - SPD: 1
+    - Money:10
 
-# Soldier E:
-- RNG: 1
-- HP: 100
-- ATK: 1
-- ASD: 1
-- SPD: 1
-- Money:20
+- Soldier E:
+    - RNG: 1
+    - HP: 100
+    - ATK: 1
+    - ASD: 1
+    - SPD: 1
+    - Money:20
 
-# Soldier F:
-- RNG: 3
-- HP: 30
-- ATK: 10
-- ASD: 2
-- SPD: 0.5
-- Money:20
+- Soldier F:
+    - RNG: 3
+    - HP: 30
+    - ATK: 10
+    - ASD: 2
+    - SPD: 0.5
+    - Money:20
