@@ -2,10 +2,10 @@
 #define __PLAYERHPP__
 
 #include "Engine/Group.hpp"
-#include "Engine/Point.hpp"
 
 class PlayScene;
 namespace Engine {
+    class Point;
     enum TileType {
         TILE_DIRT,
         TILE_FLOOR,
