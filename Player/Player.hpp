@@ -20,6 +20,7 @@ class Player final : public Engine::Group {
     std::vector<std::vector<Engine::TileType>>& getMapState();
 	std::vector<std::vector<int>> mapDistance;
     int spawnCD;
+    void UpdateDistance();
 public:
     static const int instanceTypes = 6;
     static const int spawnPeriod = 10;

@@ -74,3 +74,47 @@ PlayScene* Player::getPlayScene() {
 std::vector<std::vector<Engine::TileType>>& Player::getMapState() {
     return getPlayScene()->mapState;
 }
+
+void Player::UpdateDistance() {
+    PlayScene* scene = getPlayScene();
+    int MapWidth = scene->MapWidth;
+    int MapHeight = scene->MapHeight;
+    static const int directions[8] = {
+        {-1, -1}, { 0, -1}, { 1, -1},
+        {-1,  0},/*{0, 0},*/{ 1,  0},
+        {-1,  1}, { 0,  1}, { 1,  1},
+    };
+    // Reverse BFS to find path.
+    std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
+    std::queue<Engine::Point> que;
+    Engine::Point p, np;
+    // Push end point.
+    // BFS from end point.
+    if (mapState[MapHeight - 1][MapWidth - 1] != Engine::TILE_DIRT)
+        return map;
+    que.push(endPoint);
+    map[endPoint.x][endPoint.y] = 0;
+    while (!que.empty()) {
+        p = que.front();
+        que.pop();
+        for (int i = 0; i < 4; ++i) {
+            np = p + directions[i];
+            if (np.x < 0 || np.x >= MapWidth ||
+                np.y < 0 || np.y >= MapHeight)
+                continue;
+            if (mapState[np.y][np.x] != Engine::TILE_DIRT ||
+                map[np.y][np.x] != -1)
+                continue;
+            map[np.y][np.x] = map[p.y][p.x] + 1;
+            que.push(np);
+        }
+    }
+    Engine::LOG(Engine::INFO) << "Map distance";
+    for (int i = 0; i < MapHeight; ++i) {
+        for (int j = 0; j < MapWidth; ++j) {
+            printf("%2d ", map[i][j]);
+        }
+        std::cout << std::endl;
+    }
+    mapDistance = std::move(map);
+}
