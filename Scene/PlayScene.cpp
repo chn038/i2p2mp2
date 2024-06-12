@@ -148,7 +148,7 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
         if (preview->IsTurret == false) { // Deleting a turret
             DeleteTurret(x, y);
         }
-		if (mapState[y][x] != TILE_OCCUPIED) {
+		if (mapState[y][x] != Engine::TILE_OCCUPIED) {
             BuildTurret(x, y);
             OnMouseMove(mx, my);
 		} else {
@@ -246,11 +246,11 @@ void PlayScene::ReadMap() {
 	if (static_cast<int>(mapData.size()) != MapWidth * MapHeight)
 		throw std::ios_base::failure("Map data is corrupted.");
 	// Store map in 2d array.
-	mapState = std::vector<std::vector<TileType>>(MapHeight, std::vector<TileType>(MapWidth));
+	mapState = std::vector<std::vector<Engine::TileType>>(MapHeight, std::vector<Engine::TileType>(MapWidth));
 	for (int i = 0; i < MapHeight; i++) {
 		for (int j = 0; j < MapWidth; j++) {
 			const int num = mapData[i * MapWidth + j];
-			mapState[i][j] = num ? TILE_FLOOR : TILE_DIRT;
+			mapState[i][j] = num ? Engine::TILE_FLOOR : Engine::TILE_DIRT;
 			if (num)
 				TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", j * BlockSize, i * BlockSize, BlockSize, BlockSize));
 			else
@@ -307,7 +307,7 @@ void PlayScene::SpawnEnemy() {
 void PlayScene::DeleteTurret(int x, int y) {
     float objx = x * BlockSize + BlockSize / 2.0;
     float objy = y * BlockSize + BlockSize / 2.0;
-    if (mapState[y][x] != TILE_OCCUPIED) {
+    if (mapState[y][x] != Engine::TILE_OCCUPIED) {
         Engine::LOG(Engine::INFO) << "Not selecting a turret while trying to delete a turret";
         Engine::Sprite* sprite;
         GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png", 1, x * BlockSize + BlockSize / 2.0, y * BlockSize + BlockSize / 2.0));
@@ -363,7 +363,7 @@ void PlayScene::BuildTurret(int x, int y) {
     preview->Update(0);
     // Remove Preview.
     preview = nullptr;
-    mapState[y][x] = TILE_OCCUPIED;
+    mapState[y][x] = Engine::TILE_OCCUPIED;
 }
 
 void PlayScene::ConstructUI() {
@@ -484,7 +484,7 @@ bool PlayScene::CheckSpaceValid(int x, int y) {
 	if (x < 0 || x >= MapWidth || y < 0 || y >= MapHeight)
 		return false;
 	auto map00 = mapState[y][x];
-	mapState[y][x] = TILE_OCCUPIED;
+	mapState[y][x] = Engine::TILE_OCCUPIED;
 	std::vector<std::vector<int>> map = CalculateBFSDistance();
 	mapState[y][x] = map00;
 	if (map[0][0] == -1)
@@ -501,7 +501,7 @@ bool PlayScene::CheckSpaceValid(int x, int y) {
 			return false;
 	}
 	// All enemy have path to exit.
-	mapState[y][x] = TILE_OCCUPIED;
+	mapState[y][x] = Engine::TILE_OCCUPIED;
 	mapDistance = map;
 	for (auto& it : EnemyGroup->GetObjects())
 		dynamic_cast<Enemy*>(it.second)->UpdatePath(mapDistance);
@@ -514,7 +514,7 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
     Engine::Point p, np;
 	// Push end point.
 	// BFS from end point.
-	if (mapState[MapHeight - 1][MapWidth - 1] != TILE_DIRT)
+	if (mapState[MapHeight - 1][MapWidth - 1] != Engine::TILE_DIRT)
 		return map;
 	que.push(Engine::Point(MapWidth - 1, MapHeight - 1));
 	map[MapHeight - 1][MapWidth - 1] = 0;
@@ -526,7 +526,7 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
             if (np.x < 0 || np.x >= MapWidth ||
                 np.y < 0 || np.y >= MapHeight)
                 continue;
-            if (mapState[np.y][np.x] != TILE_DIRT ||
+            if (mapState[np.y][np.x] != Engine::TILE_DIRT ||
                 map[np.y][np.x] != -1)
                 continue;
             map[np.y][np.x] = map[p.y][p.x] + 1;

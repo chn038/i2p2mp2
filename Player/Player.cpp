@@ -1,3 +1,5 @@
+#include "Engine/GameEngine.hpp"
+#include "Scene/PlayScene.hpp"
 #include "Player/Player.hpp"
 #include "Enemy/Enemy.hpp"
 #include "Turret/Turret.hpp"
@@ -47,11 +49,12 @@ void Player::SpawnInstances() {
     }
 }
 
-void Player::addTower(Turret *turret, int type) {
-    TowerGroup->AddNewObject(dynamic_cast<Engine::IObject*>(turret));
+void Player::addTower(int x, int y, int type) {
+    Turret *newTurret;
     // This should add new things to waveData
     switch(type) {
     }
+    TowerGroup->AddNewObject(static_cast<Engine::IObject*>(newTurret));
 }
 
 bool Player::deleteTower(int x, int y) {
@@ -62,4 +65,12 @@ bool Player::deleteTower(int x, int y) {
         }
     }
     return false;
+}
+
+PlayScene* Player::getPlayScene() {
+    return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
+}
+
+std::vector<std::vector<Engine::TileType>>& Player::getMapState() {
+    return getPlayScene()->mapState;
 }

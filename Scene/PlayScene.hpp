@@ -8,6 +8,7 @@
 #include "Engine/IScene.hpp"
 #include "Engine/Point.hpp"
 #include "Turret/TurretButton.hpp"
+#include "Player/Player.hpp"
 
 class Turret;
 namespace Engine {
@@ -19,11 +20,6 @@ namespace Engine {
 
 class PlayScene final : public Engine::IScene {
 private:
-	enum TileType {
-		TILE_DIRT,
-		TILE_FLOOR,
-		TILE_OCCUPIED,
-	};
 	ALLEGRO_SAMPLE_ID bgmId;
 	void ReadMap();
 	void ReadEnemyWave();
@@ -63,8 +59,8 @@ public:
 	Engine::Image* imgTarget;
     TurretButton* updateButton;
 	Turret* preview;
-	std::vector<std::vector<TileType>> mapState;
-    std::vector<std::vector<TileType>> originMap;
+	std::vector<std::vector<Engine::TileType>> mapState;
+    std::vector<std::vector<Engine::TileType>> originMap;
 	std::vector<std::vector<int>> mapDistance;
 	std::list<std::pair<int, float>> enemyWaveData;
 	std::list<int> keyStrokes;

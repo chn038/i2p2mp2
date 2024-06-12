@@ -8,15 +8,16 @@ class PlayScene;
 class Turret;
 namespace Engine {
     class Point;
-    enum TileType {
-        TILE_DIRT,
-        TILE_FLOOR,
-        TILE_OCCUPIED,
-    };
+	enum TileType {
+		TILE_DIRT,
+		TILE_FLOOR,
+		TILE_OCCUPIED,
+	};
 };
 
 class Player final : public Engine::Group {
     PlayScene* getPlayScene();
+    std::vector<std::vector<Engine::TileType>>& getMapState();
 	std::vector<std::vector<int>> mapDistance;
     int spawnCD;
 public:
@@ -35,10 +36,10 @@ public:
     void Initialize();
     void Terminate();
     void Update(float deltaTime);
-    void Hit();
+    bool Hit();
     void SpawnInstances();
-    void addTower(Turret*, int type);
-    bool deleteTower(int x, int y);
+    void addTower(int objx, int objy, int type);
+    bool deleteTower(int objx, int objy);
     ~Player();
 };
 
