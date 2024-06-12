@@ -97,7 +97,7 @@ void Player::UpdateDistance() {
     while (!que.empty()) {
         p = que.front();
         que.pop();
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 8; ++i) {
             np = p + directions[i];
             if (np.x < 0 || np.x >= MapWidth ||
                 np.y < 0 || np.y >= MapHeight)

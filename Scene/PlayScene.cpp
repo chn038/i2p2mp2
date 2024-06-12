@@ -508,20 +508,20 @@ bool PlayScene::CheckSpaceValid(int x, int y) {
 	return true;
 }
 std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
-	// Reverse BFS to find path.
-	std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
-	std::queue<Engine::Point> que;
+    // Reverse BFS to find path.
+    std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
+    std::queue<Engine::Point> que;
     Engine::Point p, np;
-	// Push end point.
-	// BFS from end point.
-	if (mapState[MapHeight - 1][MapWidth - 1] != Engine::TILE_DIRT)
-		return map;
-	que.push(Engine::Point(MapWidth - 1, MapHeight - 1));
-	map[MapHeight - 1][MapWidth - 1] = 0;
-	while (!que.empty()) {
+    // Push end point.
+    // BFS from end point.
+    if (mapState[MapHeight - 1][MapWidth - 1] != Engine::TILE_DIRT)
+        return map;
+    que.push(Engine::Point(MapWidth - 1, MapHeight - 1));
+    map[MapHeight - 1][MapWidth - 1] = 0;
+    while (!que.empty()) {
         p = que.front();
-		que.pop();
-        for (int i = 0; i < 4; ++i) {
+        que.pop();
+        for (int i = 0; i < 8; ++i) {
             np = p + directions[i];
             if (np.x < 0 || np.x >= MapWidth ||
                 np.y < 0 || np.y >= MapHeight)
@@ -532,7 +532,7 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
             map[np.y][np.x] = map[p.y][p.x] + 1;
             que.push(np);
         }
-	}
+    }
     Engine::LOG(Engine::INFO) << "Map distance";
     for (int i = 0; i < MapHeight; ++i) {
         for (int j = 0; j < MapWidth; ++j) {
@@ -540,5 +540,5 @@ std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
         }
         std::cout << std::endl;
     }
-	return map;
+    return map;
 }
