@@ -1,4 +1,6 @@
 #include "Engine/GameEngine.hpp"
+#include <queue>
+#include "Engine/LOG.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Player/Player.hpp"
 #include "Enemy/Enemy.hpp"
@@ -77,12 +79,13 @@ std::vector<std::vector<Engine::TileType>>& Player::getMapState() {
 
 void Player::UpdateDistance() {
     PlayScene* scene = getPlayScene();
+    std::vector<std::vector<Engine::TileType>>& mapState = getMapState();
     int MapWidth = scene->MapWidth;
     int MapHeight = scene->MapHeight;
-    static const int directions[8] = {
-        {-1, -1}, { 0, -1}, { 1, -1},
-        {-1,  0},/*{0, 0},*/{ 1,  0},
-        {-1,  1}, { 0,  1}, { 1,  1},
+    static const Engine::Point directions[8] = {
+        Engine::Point(-1, -1), Engine::Point(0, -1), Engine::Point(1, -1),
+        Engine::Point(-1, 0), Engine::Point(1, 0),
+        Engine::Point(-1, 1), Engine::Point(0, 1), Engine::Point(1, 1),
     };
     // Reverse BFS to find path.
     std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
@@ -90,8 +93,10 @@ void Player::UpdateDistance() {
     Engine::Point p, np;
     // Push end point.
     // BFS from end point.
-    if (mapState[MapHeight - 1][MapWidth - 1] != Engine::TILE_DIRT)
-        return map;
+    if (mapState[endPoint.x][endPoint.y] != Engine::TILE_DIRT) {
+        mapDistance = std::move(map);
+        return;
+    }
     que.push(endPoint);
     map[endPoint.x][endPoint.y] = 0;
     while (!que.empty()) {
