@@ -8,7 +8,7 @@
 #include "Engine/IScene.hpp"
 #include "Engine/Point.hpp"
 #include "Turret/TurretButton.hpp"
-#include "Player/Player.hpp"
+#include "Team/Team.hpp"
 
 class Turret;
 namespace Engine {

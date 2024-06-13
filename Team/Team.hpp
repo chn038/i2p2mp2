@@ -15,20 +15,21 @@ namespace Engine {
 	};
 };
 
-class Player final : public Engine::Group {
+class Team final : public Engine::Group {
     PlayScene* getPlayScene();
     std::vector<std::vector<Engine::TileType>>& getMapState();
 	std::vector<std::vector<int>> mapDistance;
-    int spawnCD;
+    constexpr static const float shiftSec = 0.2;
+    int startSpawn;
+    float spawnCD;
     void UpdateDistance();
+    Team* opponent;
 public:
     static const int instanceTypes = 6;
-    static const int spawnPeriod = 10;
-    static const int initLives = 10;
-    static const int initMoney = 500;
     int damageOffset;
     int lives;
     int money;
+    int spawnPeriod;
     Engine::Point startPoint;
     Engine::Point endPoint;
     Group* TowerGroup;
@@ -36,12 +37,13 @@ public:
     std::vector<int> waveData;
     void Initialize();
     void Terminate();
-    void Update(float deltaTime);
+    void Update(float deltaTime) override;
     bool Hit();
-    void SpawnInstances();
+    void SpawnInstances(int time);
     void addTower(int objx, int objy, int type);
     bool deleteTower(int objx, int objy);
-    ~Player();
+    Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int initLives = 10, int initMoney = 500, int spawnPeriod = 10);
+    ~Team();
 };
 
 #endif

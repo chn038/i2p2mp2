@@ -2,56 +2,85 @@
 #include <queue>
 #include "Engine/LOG.hpp"
 #include "Scene/PlayScene.hpp"
-#include "Player/Player.hpp"
+#include "Team/Team.hpp"
 #include "Enemy/Enemy.hpp"
 #include "Turret/Turret.hpp"
 
-Player::~Player() {
+Team::~Team() {
     Terminate();
 }
 
-void Player::Initialize() {
+Team::Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int initLives, int initMoney, int spawnPeriod):
+    opponent(opponent),
+    damageOffset(0),
+    lives(initLives),
+    money(initMoney),
+    spawnCD(spawnPeriod),
+    spawnPeriod(spawnPeriod),
+    startPoint(startPoint),
+    endPoint(endPoint) {
+    Initialize();
+}
+
+void Team::Initialize() {
     AddNewObject(TowerGroup = new Group());
     AddNewObject(InstanceGroup = new Group());
     waveData.clear();
     waveData.resize(instanceTypes, 0);
-    damageOffset = 0;
-    money = initMoney;
-    lives = initLives;
+    startSpawn = -1;
 }
 
-void Player::Terminate() {
+void Team::Terminate() {
     Group::Clear();
 }
 
-void Player::SpawnInstances() {
-    Enemy *enemy;
-    for (int i = 0; i < Player::instanceTypes; ++i) {
-        for (int j = 0; j < waveData[i]; ++j) {
-            // This should add new enemy
-            switch (i) {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                default:
-                    break;
-            }
-            enemy->UpdatePath(mapDistance);
-            // Maybe update here
+void Team::Update(float deltaTime) {
+    spawnCD += deltaTime;
+    Group::Update(deltaTime);
+    if (startSpawn == -1) {
+        if (spawnCD < spawnPeriod) {
+            return;
         }
+        spawnCD -= spawnPeriod;
+        startSpawn = 0;
+    }
+    if (spawnCD > shiftSec) {
+        for (int i = 0; i < waveData[startSpawn]; ++i) {
+            SpawnInstances(startSpawn);
+        }
+        spawnCD -= shiftSec;
+        startSpawn += 1;
+        if (startSpawn >= instanceTypes) startSpawn = -1;
     }
 }
 
-void Player::addTower(int x, int y, int type) {
+void Team::SpawnInstances(int type) {
+    if (spawnCD < shiftSec)
+        return;
+    spawnCD -= shiftSec;
+    Enemy *enemy;
+    switch (type) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        default:
+            break;
+    }
+    enemy->UpdatePath(mapDistance);
+    // Maybe update here
+    enemy->Update(spawnCD);
+}
+
+void Team::addTower(int x, int y, int type) {
     Turret *newTurret;
     // This should add new things to waveData
     switch(type) {
@@ -59,7 +88,7 @@ void Player::addTower(int x, int y, int type) {
     TowerGroup->AddNewObject(static_cast<Engine::IObject*>(newTurret));
 }
 
-bool Player::deleteTower(int x, int y) {
+bool Team::deleteTower(int x, int y) {
     for (auto &it: TowerGroup->GetObjects()) {
         if (it.second->Position.x == x && it.second->Position.y == y) {
             TowerGroup->RemoveObject(it.second->GetObjectIterator());
@@ -69,24 +98,25 @@ bool Player::deleteTower(int x, int y) {
     return false;
 }
 
-PlayScene* Player::getPlayScene() {
+PlayScene* Team::getPlayScene() {
     return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
 
-std::vector<std::vector<Engine::TileType>>& Player::getMapState() {
+std::vector<std::vector<Engine::TileType>>& Team::getMapState() {
     return getPlayScene()->mapState;
 }
 
-void Player::UpdateDistance() {
-    PlayScene* scene = getPlayScene();
-    std::vector<std::vector<Engine::TileType>>& mapState = getMapState();
-    int MapWidth = scene->MapWidth;
-    int MapHeight = scene->MapHeight;
+void Team::UpdateDistance() {
     static const Engine::Point directions[8] = {
         Engine::Point(-1, -1), Engine::Point(0, -1), Engine::Point(1, -1),
         Engine::Point(-1, 0), Engine::Point(1, 0),
         Engine::Point(-1, 1), Engine::Point(0, 1), Engine::Point(1, 1),
     };
+    PlayScene* scene = getPlayScene();
+    std::vector<std::vector<Engine::TileType>>& mapState = getMapState();
+    int MapWidth = scene->MapWidth;
+    int MapHeight = scene->MapHeight;
+
     // Reverse BFS to find path.
     std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
     std::queue<Engine::Point> que;
