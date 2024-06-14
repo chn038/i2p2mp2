@@ -4,23 +4,26 @@
 
 #include "Engine/Sprite.hpp"
 
-class Enemy;
+class Instance;
 class PlayScene;
 class Turret;
-namespace Engine {
-struct Point;
-}  // namespace Engine
+namespace Engine
+{
+	struct Point;
+} // namespace Engine
 
-class Bullet : public Engine::Sprite {
+class Bullet : public Engine::Sprite
+{
 protected:
 	float speed;
 	int damage;
-	Turret* parent;
-	PlayScene* getPlayScene();
-	virtual void OnExplode(Enemy* enemy);
+	Tower *parent;
+	PlayScene *getPlayScene();
+	virtual void OnExplode(Instance *instance);
+
 public:
-	Enemy* Target = nullptr;
-	explicit Bullet(std::string img, float speed, float damage, Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent);
+	Instance *Target = nullptr;
+	explicit Bullet(std::string img, float speed, float damage, Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent);
 	void Update(float deltaTime) override;
 };
 #endif // BULLET_HPP

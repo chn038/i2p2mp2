@@ -4,7 +4,7 @@
 #include "Scene/PlayScene.hpp"
 #include "Team/Team.hpp"
 #include "Enemy/Enemy.hpp"
-#include "Turret/Turret.hpp"
+#include "Tower/Tower.hpp"
 
 Team::~Team() {
     Terminate();
@@ -81,7 +81,7 @@ void Team::SpawnInstances(int type) {
 }
 
 void Team::addTower(int x, int y, int type) {
-    Turret *newTurret;
+    Tower *newTurret;
     // This should add new things to waveData
     switch(type) {
     }
