@@ -7,7 +7,6 @@
 
 #include "Engine/IScene.hpp"
 #include "Engine/Point.hpp"
-#include "Turret/TurretButton.hpp"
 #include "Team/Team.hpp"
 
 class Turret;
@@ -24,23 +23,18 @@ private:
 	void ReadMap();
 	void ReadEnemyWave();
     void SpawnEnemy();
-    void DeleteTurret(int x, int y);
-    void BuildTurret(int x, int y);
 	bool CheckSpaceValid(int x, int y);
-	std::vector<std::vector<int>> CalculateBFSDistance();
 protected:
     int damageOffset;
 	int lives;
 	int money;
 	int SpeedMult;
+    Team *teamA;
+    Team *teamB;
 public:
 	static bool DebugMode;
-	static const std::vector<Engine::Point> directions;
 	static const int MapWidth, MapHeight;
 	static const int BlockSize;
-	static const float DangerTime;
-	static const Engine::Point SpawnGridPoint;
-	static const Engine::Point EndGridPoint;
 	static const std::vector<int> code;
 	int MapId;
 	float ticks;
@@ -49,16 +43,12 @@ public:
 	Group* GroundEffectGroup;
 	Group* DebugIndicatorGroup;
 	Group* BulletGroup;
-	Group* TowerGroup;
-	Group* EnemyGroup;
 	Group* EffectGroup;
 	Group* UIGroup;
 	Engine::Label* UIMoney;
 	Engine::Label* UILives;
 	Engine::Label* UIDamage;
 	Engine::Image* imgTarget;
-    TurretButton* updateButton;
-	Turret* preview;
 	std::vector<std::vector<Engine::TileType>> mapState;
     std::vector<std::vector<Engine::TileType>> originMap;
 	std::vector<std::vector<int>> mapDistance;
@@ -79,6 +69,5 @@ public:
 	void EarnMoney(int money);
 	void ConstructUI();
 	void UIBtnClicked(int id);
-	// void ModifyReadMapTiles();
 };
 #endif // PLAYSCENE_HPP

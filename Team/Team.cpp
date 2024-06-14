@@ -1,6 +1,5 @@
 #include <queue>
 #include "Engine/GameEngine.hpp"
-#include "Engine/LOG.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Team/Team.hpp"
 #include "Enemy/Enemy.hpp"
@@ -28,6 +27,7 @@ void Team::Initialize() {
     waveData.clear();
     waveData.resize(instanceTypes, 0);
     startSpawn = -1;
+    UpdateDistance();
 }
 
 void Team::Terminate() {
@@ -120,6 +120,7 @@ void Team::addTower(int x, int y, int type) {
         default:
             break;
     }
+    UpdateDistance();
     TowerGroup->AddNewObject(static_cast<Engine::IObject*>(newTurret));
 }
 
