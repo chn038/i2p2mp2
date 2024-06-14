@@ -9,7 +9,8 @@ Team::~Team() {
     Terminate();
 }
 
-Team::Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int initLives, int initMoney, int spawnPeriod):
+Team::Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int ID, int initLives, int initMoney, int spawnPeriod):
+    ID(ID),
     opponent(opponent),
     damageOffset(0),
     lives(initLives),
@@ -65,22 +66,22 @@ void Team::SpawnInstances(int type) {
     const Engine::Point SpawnCoordinate = Engine::Point(startPoint.x * BlockSize + BlockSize / 2.0, startPoint.y * BlockSize + BlockSize / 2.0);
     switch (type) {
         case 0:
-            enemy = new Enemy1(SpawnCoordinate.x, SpawnCoordinate.y);
+            enemy = new Enemy1(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 1:
-            enemy = new Enemy2(SpawnCoordinate.x, SpawnCoordinate.y);
+            enemy = new Enemy2(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 2:
-            enemy = new Enemy3(SpawnCoordinate.x, SpawnCoordinate.y);
+            enemy = new Enemy3(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 3:
-            enemy = new Enemy4(SpawnCoordinate.x, SpawnCoordinate.y);
+            enemy = new Enemy4(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 4:
-            enemy = new Enemy5(SpawnCoordinate.x, SpawnCoordinate.y);
+            enemy = new Enemy5(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 5:
-            enemy = new Enemy6(SpawnCoordinate.x, SpawnCoordinate.y);
+            enemy = new Enemy6(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         default:
             break;
@@ -95,25 +96,25 @@ void Team::addTower(int x, int y, int type) {
     // This should add new things to waveData
     switch(type) {
         case 1:
-            newTurret = new Tower1(x, y, opponent->InstanceGroup);
+            newTurret = new Tower1(x, y, opponent->InstanceGroup->GetObjects());
             waveData[0] += 1;
             break;
         case 2:
-            newTurret = new Tower2(x, y, opponent->InstanceGroup);
+            newTurret = new Tower2(x, y, opponent->InstanceGroup->GetObjects());
             waveData[1] += 1;
             break;
         case 3:
-            newTurret = new Tower3(x, y, opponent->InstanceGroup);
+            newTurret = new Tower3(x, y, opponent->InstanceGroup->GetObjects());
             waveData[0] += 1;
             waveData[2] += 1;
             break;
         case 4:
-            newTurret = new Tower4(x, y, opponent->InstanceGroup);
+            newTurret = new Tower4(x, y, opponent->InstanceGroup->GetObjects());
             waveData[1] += 1;
             waveData[3] += 1;
             break;
         case 5:
-            newTurret = new Tower5(x, y, opponent->InstanceGroup);
+            newTurret = new Tower5(x, y, opponent->InstanceGroup->GetObjects());
             waveData[4] += 1;
             waveData[5] += 1;
             break;

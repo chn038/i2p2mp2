@@ -24,6 +24,7 @@ protected:
     int damageOffset;
     int team;
     int type;
+    std::list<std::pair<bool, Engine::IObject*>>& targetList;
 
 public:
     bool Enabled = true;

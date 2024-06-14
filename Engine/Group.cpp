@@ -161,11 +161,11 @@ namespace Engine
 		addObject(false, dynamic_cast<IObject *>(&ctrl));
 		addControl(false, &ctrl);
 	}
-	std::list<std::pair<bool, IObject *>> Group::GetObjects()
+	std::list<std::pair<bool, IObject *>>& Group::GetObjects()
 	{
 		return objects;
 	}
-	std::list<std::pair<bool, IControl *>> Group::GetControls()
+	std::list<std::pair<bool, IControl *>>& Group::GetControls()
 	{
 		return controls;
 	}

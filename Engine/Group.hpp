@@ -190,12 +190,12 @@ namespace Engine {
 		/// Get all objects.
 		/// </summary>
 		/// <returns>A linked-list of all objects contained.</returns>
-		std::list<std::pair<bool, IObject*>> GetObjects();
+		std::list<std::pair<bool, IObject*>>& GetObjects();
 		/// <summary>
 		/// Get all controls.
 		/// </summary>
 		/// <returns>A linked-list of all controls contained.</returns>
-		std::list<std::pair<bool, IControl*>> GetControls();
+		std::list<std::pair<bool, IControl*>>& GetControls();
 	};
 }
 #endif // GROUP_HPP
