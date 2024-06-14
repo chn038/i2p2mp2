@@ -4,18 +4,18 @@
 
 #include "UI/Animation/DirtyEffect.hpp"
 #include "Instance/Instance.hpp"
-#include "Bullet1.hpp"
+#include "Bullet5.hpp"
 #include "Engine/Group.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
 
 class Tower;
 
-Bullet1::Bullet1(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage) : Bullet("play/bullet-1.png", 400, damage, position, forwardDirection, rotation - ALLEGRO_PI / 2, parent)
+Bullet5::Bullet5(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage) : Bullet("play/bullet-1.png", 400, damage, position, forwardDirection, rotation - ALLEGRO_PI / 2, parent)
 {
     // TODO: [CUSTOM-TOOL] You can imitate the 2 files: 'FireBullet.hpp', 'FireBullet.cpp' to create a new bullet.
 }
-void Bullet1::OnExplode(Instance *instance)
+void Bullet5::OnExplode(Instance *instance)
 {
     std::random_device dev;
     std::mt19937 rng(dev());

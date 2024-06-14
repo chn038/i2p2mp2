@@ -9,10 +9,10 @@ namespace Engine
     struct Point;
 } // namespace Engine
 
-class FireBullet : public Bullet
+class Bullet1 : public Bullet
 {
 public:
-    explicit FireBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret *parent, int damage);
+    explicit Bullet1(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage);
     void OnExplode(Instance *instance) override;
 };
-#endif // FIREBULLET_HPP
+#endif // BULLET1_HPP
