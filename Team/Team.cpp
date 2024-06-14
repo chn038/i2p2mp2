@@ -61,6 +61,11 @@ void Team::Update(float deltaTime) {
     if (startSpawn >= instanceTypes) startSpawn = -1;
 }
 
+int Team::getCountDown() {
+    if (startSpawn != -1) return 0;
+    return spawnPeriod - spawnCD;
+}
+
 void Team::SetOpponent(Team *oppo) {
     if (oppo == nullptr) {
         Engine::LOG(Engine::ERROR) << "No opponent in team " << ID;
@@ -193,4 +198,8 @@ void Team::UpdateDistance() {
         }
     }
     mapDistance = std::move(map);
+}
+
+void Team::Hit() {
+    lives -= 1;
 }

@@ -1,9 +1,11 @@
 #include <fstream>
 #include "Scene/PlayScene.hpp"
 #include "Engine/GameEngine.hpp"
+#include "Turret/TurretButton.hpp"
 #include "UI/Component/Image.hpp"
 #include "Engine/Resources.hpp"
 #include "Engine/AudioHelper.hpp"
+#include "Engine/LOG.hpp"
 
 bool PlayScene::DebugMode = false;
 const int PlayScene::BlockSize = 64;
@@ -28,20 +30,89 @@ void PlayScene::Initialize() {
 	AddNewControlObject(UIGroup = new Group());
 	ReadMap();
     // Team initialize
-    AddNewObject(teamA = new Team(spawnPointA, spawnPointB, 0));
-    AddNewObject(teamB = new Team(spawnPointB, spawnPointA, 1));
-    teamA->SetOpponent(teamB);
-    teamB->SetOpponent(teamA);
-	//ReadEnemyWave();
+    AddNewObject(teamPlayer = new Team(spawnPointA, spawnPointB, 0));
+    AddNewObject(teamEnemy = new Team(spawnPointB, spawnPointA, 1));
+    teamPlayer->SetOpponent(teamEnemy);
+    teamEnemy->SetOpponent(teamPlayer);
+	ReadEnemyWave();
 	ConstructUI();
 	imgTarget = new Engine::Image("play/target.png", 0, 0);
 	imgTarget->Visible = false;
 	preview = nullptr;
 	UIGroup->AddNewObject(imgTarget);
-	// Preload Lose Scene
+	// Preload Scene
 	Engine::Resources::GetInstance().GetBitmap("lose/benjamin-happy.png");
+	Engine::Resources::GetInstance().GetBitmap("win/benjamin-sad.png");
 	// Start BGM.
 	bgmId = AudioHelper::PlayBGM("play.ogg");
+}
+
+void PlayScene::Draw() const {
+    IScene::Draw();
+}
+
+void PlayScene::Update(float deltaTime) {
+    IScene::Update(deltaTime);
+
+    if (teamEnemy->lives <= 0) {
+		Engine::GameEngine::GetInstance().ChangeScene("win");
+        return;
+    }
+    if (teamPlayer->lives <= 0) {
+        Engine::GameEngine::GetInstance().ChangeScene("lose");
+        return;
+    }
+
+    if (enemyWave.empty()) return;
+    Wave& current = enemyWave.front();
+    ticks += deltaTime;
+    if (ticks < current.time) return;
+    ticks -= current.time;
+    float objx = current.pos.x * BlockSize + BlockSize / 2.0;
+    float objy = current.pos.y * BlockSize + BlockSize / 2.0;
+    teamEnemy->addTower(objx, objy, current.type);
+    enemyWave.pop();
+}
+
+void PlayScene::Terminate() {
+    AudioHelper::StopBGM(bgmId);
+    IScene::Terminate();
+}
+
+void PlayScene::Hit(int id) {
+    switch(id) {
+        case 0:
+            teamEnemy->Hit();
+            return;
+        case 1:
+            teamPlayer->Hit();
+            // maybe a warning here?
+            return;
+    }
+}
+
+int PlayScene::GetMoney() const {
+    return teamPlayer->money;
+}
+
+void PlayScene::EarnMoney(int val, int ID) {
+    if (ID == 0) 
+        return;
+    teamPlayer->money += val;
+}
+
+void PlayScene::ConstructUI() {
+    int startX = MapWidth * BlockSize;
+    int gap = 20;
+    int size = 40;
+    int SWidth = Engine::GameEngine::GetInstance().GetScreenWidth();
+    int SHeight = Engine::GameEngine::GetInstance().GetScreenHeight();
+    // Background
+    UIGroup->AddNewObject(
+        new Engine::Image("play/sand.png", 
+                          startX, 0, SWidth - startX, SHeight));
+
+
 }
 
 void PlayScene::ReadMap() {
@@ -96,4 +167,20 @@ void PlayScene::ReadMap() {
         }
     }
     mapState = originMap;
+}
+
+void PlayScene::ReadEnemyWave() {
+    std::string filename = std::string("Resource/enemy") + std::to_string(MapId) + ".txt";
+	// Read enemy file.
+    // time type posx posy
+    while (!enemyWave.empty()) {
+        enemyWave.pop();
+    }
+	std::ifstream fin(filename);
+    int time, type, posx, posy;
+	while (fin >> time && fin >> type && fin >> posx && fin >> posy) {
+        enemyWave.emplace(time, type, Engine::Point(posx, posy));
+	}
+    Engine::LOG(Engine::INFO) << "Total wave size " << enemyWave.size();
+	fin.close();
 }

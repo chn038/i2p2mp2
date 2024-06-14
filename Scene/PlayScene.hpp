@@ -3,6 +3,7 @@
 #include <allegro5/allegro_audio.h>
 #include <list>
 #include <vector>
+#include <queue>
 
 #include "Engine/IScene.hpp"
 #include "Engine/Point.hpp"
@@ -18,6 +19,12 @@ namespace Engine {
 
 class PlayScene final : public Engine::IScene {
 private:
+    struct Wave {
+        int time;
+        int type;
+        Engine::Point pos;
+    };
+    std::queue<Wave> enemyWave;
 	void ReadMap();
 	void ReadEnemyWave();
     void SpawnEnemy();
@@ -28,8 +35,8 @@ private:
 protected:
 	ALLEGRO_SAMPLE_ID bgmId;
 	int SpeedMult;
-    Team *teamA;
-    Team *teamB;
+    Team *teamPlayer;
+    Team *teamEnemy;
 	std::list<int> keyStrokes;
 	static const std::vector<int> code;
 	static bool DebugMode;
@@ -62,8 +69,12 @@ public:
 	void OnMouseMove(int mx, int my) override;
 	void OnMouseUp(int button, int mx, int my) override;
 	void OnKeyDown(int keyCode) override;
-	void Hit();
+    /// @param(id) the id of the instance.
+    /// Please be causcious that it is the opponent of the teamID will get hit.
+	void Hit(int id);
 	int GetMoney() const;
+    /// @param(id) the id of the instance.
+    /// Please be causcious that it is the opponent of the teamID will get money.
 	void EarnMoney(int money, int id);
 };
 #endif // PLAYSCENE_HPP
