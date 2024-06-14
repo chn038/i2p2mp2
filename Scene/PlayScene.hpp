@@ -34,6 +34,7 @@ protected:
 	static const std::vector<int> code;
 	static bool DebugMode;
 	float ticks;
+    Engine::Point spawnPointA, spawnPointB;
 public:
 	static const int MapWidth, MapHeight;
 	static const int BlockSize;

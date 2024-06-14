@@ -44,7 +44,8 @@ public:
     void SpawnInstances(int time);
     void addTower(int objx, int objy, int type);
     bool deleteTower(int objx, int objy);
-    Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int ID, int initLives = 10, int initMoney = 500, int spawnPeriod = 10);
+    void SetOpponent(Team *);
+    Team(Engine::Point startPoint, Engine::Point endPoint, int ID, int initLives = 10, int initMoney = 500, int spawnPeriod = 10);
     ~Team();
 };
 
