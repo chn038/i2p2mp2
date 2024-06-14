@@ -26,6 +26,7 @@ class Team final : public Engine::Group {
     void UpdateDistance();
     Team* opponent;
 public:
+    int ID;
     static const int instanceTypes = 15;
     int damageOffset;
     int lives;

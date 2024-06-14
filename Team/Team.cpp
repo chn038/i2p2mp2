@@ -144,10 +144,9 @@ std::vector<std::vector<Engine::TileType>>& Team::getMapState() {
 
 void Team::UpdateDistance() {
     static const Engine::Point directions[4] = { Engine::Point(0, -1), Engine::Point(-1, 0), Engine::Point(1, 0), Engine::Point(0, 1) };
-    PlayScene* scene = getPlayScene();
     std::vector<std::vector<Engine::TileType>>& mapState = getMapState();
-    int MapWidth = scene->MapWidth;
-    int MapHeight = scene->MapHeight;
+    const int MapWidth = getPlayScene()->MapWidth;
+    const int MapHeight = getPlayScene()->MapHeight;
 
     // Reverse BFS to find path.
     std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));

@@ -15,6 +15,7 @@
 #include "PlayScene.hpp"
 #include "Engine/Resources.hpp"
 #include "Team/Team.hpp"
+#include "Tower/Tower.hpp"
 
 bool PlayScene::DebugMode = false;
 const int PlayScene::MapWidth = 20, PlayScene::MapHeight = 13;
@@ -26,6 +27,7 @@ const std::vector<int> PlayScene::code = { ALLEGRO_KEY_UP, ALLEGRO_KEY_UP, ALLEG
 Engine::Point PlayScene::GetClientSize() {
 	return Engine::Point(MapWidth * BlockSize, MapHeight * BlockSize);
 }
+/*
 void PlayScene::Initialize() {
 	// TODO: [HACKATHON-3-BUG] (1/5): There's a bug in this file, which crashes the game when you lose. Try to find it.
 	// TODO: [HACKATHON-3-BUG] (2/5): Find out the cheat code to test.
@@ -34,25 +36,19 @@ void PlayScene::Initialize() {
     originMap.clear();
 	keyStrokes.clear();
 	ticks = 0;
-	lives = 10;
-	money = 150;
 	SpeedMult = 1;
-    damageOffset = 0;
     // set the score to 0
     Engine::GameEngine::GetInstance().GetScore() = 0;
 	// Add groups from bottom to top.
 	AddNewObject(TileMapGroup = new Group());
 	AddNewObject(GroundEffectGroup = new Group());
 	AddNewObject(DebugIndicatorGroup = new Group());
-	AddNewObject(TowerGroup = new Group());
-	AddNewObject(EnemyGroup = new Group());
 	AddNewObject(BulletGroup = new Group());
 	AddNewObject(EffectGroup = new Group());
 	// Should support buttons.
 	AddNewControlObject(UIGroup = new Group());
 	ReadMap();
 	ReadEnemyWave();
-	mapDistance = CalculateBFSDistance();
 	ConstructUI();
 	imgTarget = new Engine::Image("play/target.png", 0, 0);
 	imgTarget->Visible = false;
@@ -160,7 +156,7 @@ void PlayScene::OnKeyDown(int keyCode) {
                 ++it;
             }
             EffectGroup->AddNewObject(new Plane());
-            EarnMoney(10000);
+            //EarnMoney(10000);
         }
     }
     if (keyCode == ALLEGRO_KEY_Q) {
@@ -492,38 +488,4 @@ bool PlayScene::CheckSpaceValid(int x, int y) {
 		dynamic_cast<Enemy*>(it.second)->UpdatePath(mapDistance);
 	return true;
 }
-std::vector<std::vector<int>> PlayScene::CalculateBFSDistance() {
-    // Reverse BFS to find path.
-    std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
-    std::queue<Engine::Point> que;
-    Engine::Point p, np;
-    // Push end point.
-    // BFS from end point.
-    if (mapState[MapHeight - 1][MapWidth - 1] != Engine::TILE_DIRT)
-        return map;
-    que.push(Engine::Point(MapWidth - 1, MapHeight - 1));
-    map[MapHeight - 1][MapWidth - 1] = 0;
-    while (!que.empty()) {
-        p = que.front();
-        que.pop();
-        for (int i = 0; i < 8; ++i) {
-            np = p + directions[i];
-            if (np.x < 0 || np.x >= MapWidth ||
-                np.y < 0 || np.y >= MapHeight)
-                continue;
-            if (mapState[np.y][np.x] != Engine::TILE_DIRT ||
-                map[np.y][np.x] != -1)
-                continue;
-            map[np.y][np.x] = map[p.y][p.x] + 1;
-            que.push(np);
-        }
-    }
-    Engine::LOG(Engine::INFO) << "Map distance";
-    for (int i = 0; i < MapHeight; ++i) {
-        for (int j = 0; j < MapWidth; ++j) {
-            printf("%2d ", map[i][j]);
-        }
-        std::cout << std::endl;
-    }
-    return map;
-}
+*/
