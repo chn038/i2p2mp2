@@ -143,11 +143,7 @@ std::vector<std::vector<Engine::TileType>>& Team::getMapState() {
 }
 
 void Team::UpdateDistance() {
-    static const Engine::Point directions[8] = {
-        Engine::Point(-1, -1), Engine::Point(0, -1), Engine::Point(1, -1),
-        Engine::Point(-1, 0), Engine::Point(1, 0),
-        Engine::Point(-1, 1), Engine::Point(0, 1), Engine::Point(1, 1),
-    };
+    static const Engine::Point directions[4] = { Engine::Point(0, -1), Engine::Point(-1, 0), Engine::Point(1, 0), Engine::Point(0, 1) };
     PlayScene* scene = getPlayScene();
     std::vector<std::vector<Engine::TileType>>& mapState = getMapState();
     int MapWidth = scene->MapWidth;
@@ -168,7 +164,7 @@ void Team::UpdateDistance() {
     while (!que.empty()) {
         p = que.front();
         que.pop();
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 4; ++i) {
             np = p + directions[i];
             if (np.x < 0 || np.x >= MapWidth ||
                 np.y < 0 || np.y >= MapHeight)
