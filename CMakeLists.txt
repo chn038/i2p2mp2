@@ -86,6 +86,8 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Tower/Tower4.hpp
         Tower/Tower5.cpp
         Tower/Tower5.hpp
+        Team/Team.cpp
+        Team/Team.hpp
         Scene/LoseScene.cpp
         Scene/LoseScene.hpp
         Scene/PlayScene.cpp
