@@ -1,16 +1,16 @@
-#include "Engine/GameEngine.hpp"
 #include <queue>
-#include "Engine/LOG.hpp"
+#include "Engine/GameEngine.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Team/Team.hpp"
 #include "Enemy/Enemy.hpp"
-#include "Turret/Turret.hpp"
+#include "Tower/Tower.hpp"
 
 Team::~Team() {
     Terminate();
 }
 
-Team::Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int initLives, int initMoney, int spawnPeriod):
+Team::Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int ID, int initLives, int initMoney, int spawnPeriod):
+    ID(ID),
     opponent(opponent),
     damageOffset(0),
     lives(initLives),
@@ -28,6 +28,7 @@ void Team::Initialize() {
     waveData.clear();
     waveData.resize(instanceTypes, 0);
     startSpawn = -1;
+    UpdateDistance();
 }
 
 void Team::Terminate() {
@@ -43,34 +44,44 @@ void Team::Update(float deltaTime) {
         }
         spawnCD -= spawnPeriod;
         startSpawn = 0;
+        spawnCount = 0;
     }
-    if (spawnCD > shiftSec) {
-        for (int i = 0; i < waveData[startSpawn]; ++i) {
-            SpawnInstances(startSpawn);
-        }
-        spawnCD -= shiftSec;
+
+    if (spawnCD < shiftSec) 
+        return;
+
+    SpawnInstances(startSpawn);
+    spawnCD -= shiftSec;
+    spawnCount += 1;
+    if (spawnCount == waveData[startSpawn]) {
         startSpawn += 1;
-        if (startSpawn >= instanceTypes) startSpawn = -1;
+        spawnCount = 0;
     }
+    if (startSpawn >= instanceTypes) startSpawn = -1;
 }
 
 void Team::SpawnInstances(int type) {
-    if (spawnCD < shiftSec)
-        return;
-    spawnCD -= shiftSec;
     Enemy *enemy;
+    const int BlockSize = getPlayScene()->BlockSize;
+    const Engine::Point SpawnCoordinate = Engine::Point(startPoint.x * BlockSize + BlockSize / 2.0, startPoint.y * BlockSize + BlockSize / 2.0);
     switch (type) {
         case 0:
+            enemy = new Enemy1(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 1:
+            enemy = new Enemy2(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 2:
+            enemy = new Enemy3(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 3:
+            enemy = new Enemy4(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 4:
+            enemy = new Enemy5(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         case 5:
+            enemy = new Enemy6(SpawnCoordinate.x, SpawnCoordinate.y, ID);
             break;
         default:
             break;
@@ -81,10 +92,36 @@ void Team::SpawnInstances(int type) {
 }
 
 void Team::addTower(int x, int y, int type) {
-    Turret *newTurret;
+    Tower *newTurret;
     // This should add new things to waveData
     switch(type) {
+        case 1:
+            newTurret = new Tower1(x, y, opponent->InstanceGroup->GetObjects());
+            waveData[0] += 1;
+            break;
+        case 2:
+            newTurret = new Tower2(x, y, opponent->InstanceGroup->GetObjects());
+            waveData[1] += 1;
+            break;
+        case 3:
+            newTurret = new Tower3(x, y, opponent->InstanceGroup->GetObjects());
+            waveData[0] += 1;
+            waveData[2] += 1;
+            break;
+        case 4:
+            newTurret = new Tower4(x, y, opponent->InstanceGroup->GetObjects());
+            waveData[1] += 1;
+            waveData[3] += 1;
+            break;
+        case 5:
+            newTurret = new Tower5(x, y, opponent->InstanceGroup->GetObjects());
+            waveData[4] += 1;
+            waveData[5] += 1;
+            break;
+        default:
+            break;
     }
+    UpdateDistance();
     TowerGroup->AddNewObject(static_cast<Engine::IObject*>(newTurret));
 }
 
@@ -107,15 +144,10 @@ std::vector<std::vector<Engine::TileType>>& Team::getMapState() {
 }
 
 void Team::UpdateDistance() {
-    static const Engine::Point directions[8] = {
-        Engine::Point(-1, -1), Engine::Point(0, -1), Engine::Point(1, -1),
-        Engine::Point(-1, 0), Engine::Point(1, 0),
-        Engine::Point(-1, 1), Engine::Point(0, 1), Engine::Point(1, 1),
-    };
-    PlayScene* scene = getPlayScene();
+    static const Engine::Point directions[4] = { Engine::Point(0, -1), Engine::Point(-1, 0), Engine::Point(1, 0), Engine::Point(0, 1) };
     std::vector<std::vector<Engine::TileType>>& mapState = getMapState();
-    int MapWidth = scene->MapWidth;
-    int MapHeight = scene->MapHeight;
+    const int MapWidth = getPlayScene()->MapWidth;
+    const int MapHeight = getPlayScene()->MapHeight;
 
     // Reverse BFS to find path.
     std::vector<std::vector<int>> map(MapHeight, std::vector<int>(std::vector<int>(MapWidth, -1)));
@@ -132,7 +164,7 @@ void Team::UpdateDistance() {
     while (!que.empty()) {
         p = que.front();
         que.pop();
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 4; ++i) {
             np = p + directions[i];
             if (np.x < 0 || np.x >= MapWidth ||
                 np.y < 0 || np.y >= MapHeight)
@@ -143,13 +175,6 @@ void Team::UpdateDistance() {
             map[np.y][np.x] = map[p.y][p.x] + 1;
             que.push(np);
         }
-    }
-    Engine::LOG(Engine::INFO) << "Map distance";
-    for (int i = 0; i < MapHeight; ++i) {
-        for (int j = 0; j < MapWidth; ++j) {
-            printf("%2d ", map[i][j]);
-        }
-        std::cout << std::endl;
     }
     mapDistance = std::move(map);
 }

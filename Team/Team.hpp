@@ -19,13 +19,15 @@ class Team final : public Engine::Group {
     PlayScene* getPlayScene();
     std::vector<std::vector<Engine::TileType>>& getMapState();
 	std::vector<std::vector<int>> mapDistance;
-    constexpr static const float shiftSec = 0.2;
+    constexpr static const float shiftSec = 0.5;
     int startSpawn;
     float spawnCD;
+    int spawnCount;
     void UpdateDistance();
     Team* opponent;
 public:
-    static const int instanceTypes = 6;
+    int ID;
+    static const int instanceTypes = 15;
     int damageOffset;
     int lives;
     int money;
@@ -42,7 +44,7 @@ public:
     void SpawnInstances(int time);
     void addTower(int objx, int objy, int type);
     bool deleteTower(int objx, int objy);
-    Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int initLives = 10, int initMoney = 500, int spawnPeriod = 10);
+    Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int ID, int initLives = 10, int initMoney = 500, int spawnPeriod = 10);
     ~Team();
 };
 

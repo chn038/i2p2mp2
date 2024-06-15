@@ -16,6 +16,7 @@ class Instance : public Engine::Tower
 {
 protected:
     std::vector<Engine::Point> path;
+    float max_speed;
     float speed;
     float hp;
     int money;
@@ -23,8 +24,7 @@ protected:
     virtual void OnExplode();
 
 public:
-    float reachEndTime;
-    std::list<Turret *> lockedTurrets;
+    std::list<Tower *> lockedTowers;
     std::list<Bullet *> lockedBullets;
     // <summary>
     // create a new Enemy with given x, y, radius, speed, hp, money
@@ -35,7 +35,7 @@ public:
     // <param name = speed>: movement speed of the enemy</param>
     // <param name = hp>: hp of the enemy </param>
     // <param name = money>: the money drop after the enemy was killed</param>
-    Instance(std::string img, float x, float y, float radius, float speed, float hp, int money);
+    Instance(std::string img, float x, float y, float radius, float speed, float hp, int money, int type, std::list<std::pair<bool, IObject *>> &TargetList);
     void Hit(float damage);
     void UpdatePath(const std::vector<std::vector<int>> &mapDistance);
     void Update(float deltaTime) override;

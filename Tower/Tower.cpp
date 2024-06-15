@@ -16,11 +16,11 @@ PlayScene *Tower::getPlayScene()
 {
     return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
-Tower::Tower(std::string imgBase, std::string imgTower, float x, float y, float radius, int price, float coolDown, int damageOffset, int team) : Sprite(imgTower, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y), damageOffset(damageOffset), team(team), type(type)
+Tower::Tower(std::string imgBase, std::string imgTower, float x, float y, float radius, int price, float coolDown, int damageOffset, int team, std::list<std::pair<bool, IObject *>> &TargetList) : Sprite(imgTower, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y), damageOffset(damageOffset), team(team), type(type), TargetList(TargetList)
 {
     CollisionRadius = radius;
 }
-void Tower::Update(float deltaTime, std::list<std::pair<bool, IObject *>> TargetList)
+void Tower::Update(float deltaTime)
 {
     Sprite::Update(deltaTime);
     PlayScene *scene = getPlayScene();

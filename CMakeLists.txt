@@ -40,14 +40,16 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Engine/Sprite.hpp
         Bullet/Bullet.cpp
         Bullet/Bullet.hpp
-        Bullet/FireBullet.cpp
-        Bullet/FireBullet.hpp
-        Bullet/LaserBullet.cpp
-        Bullet/LaserBullet.hpp
-        Bullet/MissileBullet.cpp
-        Bullet/MissileBullet.hpp
-        Bullet/EmptyBullet.cpp
-        Bullet/EmptyBullet.hpp
+        Bullet/Bullet1.cpp
+        Bullet/Bullet1.hpp
+        Bullet/Bullet2.cpp
+        Bullet/Bullet2.hpp
+        Bullet/Bullet3.cpp
+        Bullet/Bullet3.hpp
+        Bullet/Bullet4.cpp
+        Bullet/Bullet4.hpp
+        Bullet/Bullet5.cpp
+        Bullet/Bullet5.hpp
         UI/Animation/DirtyEffect.cpp
         UI/Animation/DirtyEffect.hpp
         UI/Animation/ExplosionEffect.cpp
@@ -72,20 +74,18 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Enemy/TankEnemy.hpp
         Enemy/RoadRollerEnemy.cpp
         Enemy/RoadRollerEnemy.hpp
-        Turret/LaserTurret.cpp
-        Turret/LaserTurret.hpp
-        Turret/MachineGunTurret.cpp
-        Turret/MachineGunTurret.hpp
-        Turret/MissileTurret.cpp
-        Turret/MissileTurret.hpp
-        Turret/DeleteTurret.cpp
-        Turret/DeleteTurret.hpp
-        Turret/EmptyTurret.hpp
-        Turret/EmptyTurret.cpp
-        Turret/Turret.cpp
-        Turret/Turret.hpp
-        Turret/TurretButton.cpp
-        Turret/TurretButton.hpp
+        Tower/Tower.cpp
+        Tower/Tower.hpp
+        Tower/Tower1.cpp
+        Tower/Tower1.hpp
+        Tower/Tower2.cpp
+        Tower/Tower2.hpp
+        Tower/Tower3.cpp
+        Tower/Tower3.hpp
+        Tower/Tower4.cpp
+        Tower/Tower4.hpp
+        Tower/Tower5.cpp
+        Tower/Tower5.hpp
         Scene/LoseScene.cpp
         Scene/LoseScene.hpp
         Scene/PlayScene.cpp
