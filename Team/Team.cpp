@@ -1,4 +1,5 @@
 #include <queue>
+#include "Engine/LOG.hpp"
 #include "Engine/GameEngine.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Team/Team.hpp"
@@ -9,9 +10,9 @@ Team::~Team() {
     Terminate();
 }
 
-Team::Team(Engine::Point startPoint, Engine::Point endPoint, Team* opponent, int ID, int initLives, int initMoney, int spawnPeriod):
+Team::Team(Engine::Point startPoint, Engine::Point endPoint, int ID, int initLives, int initMoney, int spawnPeriod):
     ID(ID),
-    opponent(opponent),
+    opponent(nullptr),
     damageOffset(0),
     lives(initLives),
     money(initMoney),
@@ -60,6 +61,22 @@ void Team::Update(float deltaTime) {
     if (startSpawn >= instanceTypes) startSpawn = -1;
 }
 
+int Team::getCountDown() {
+    if (startSpawn != -1) return 0;
+    return spawnPeriod - spawnCD;
+}
+
+void Team::SetOpponent(Team *oppo) {
+    if (oppo == nullptr) {
+        Engine::LOG(Engine::ERROR) << "No opponent in team " << ID;
+        return;
+    }
+    if (opponent) {
+        Engine::LOG(Engine::WARN) << "Reassigning opponent of team " << ID;
+    }
+    opponent = oppo;
+}
+
 void Team::SpawnInstances(int type) {
     Enemy *enemy;
     const int BlockSize = getPlayScene()->BlockSize;
@@ -93,6 +110,10 @@ void Team::SpawnInstances(int type) {
 
 void Team::addTower(int x, int y, int type) {
     Tower *newTurret;
+    if (opponent == nullptr) {
+        Engine::LOG(Engine::ERROR) << "No opponent in team " << ID;
+        return;
+    }
     // This should add new things to waveData
     switch(type) {
         case 1:
@@ -177,4 +198,8 @@ void Team::UpdateDistance() {
         }
     }
     mapDistance = std::move(map);
+}
+
+void Team::Hit() {
+    lives -= 1;
 }

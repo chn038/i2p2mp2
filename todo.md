@@ -1,17 +1,14 @@
 [Reminder] after modifying the Resource, one has to run cmake again
 [Reminder] For linux: cmake -S . -B build --fresh -DCMAKE_EXPORT_COMPILE_COMMAND=1 -DCMAKE_BUILD_TYPE=Debug
 
+# Scene/PlayScene.cpp
+- UI need to construct
+- [Pending] Add a warning while calling Hit()
 
-
-# Player/Player.cpp:
-# Player/Player.hpp:
-- Construct a new Type Player that has
-    1. instance Group
-    2. tower Group
-    3. map distance
-    4. hp record
-    5. resource record
-- Put those in CmakeList.txt (Low Priority)
+# Resource/enemy1.txt
+# Resource/enemy2.txt
+- need to reconstruct the file
+    - format: time type posx posy
 
 [Reminder] Post found Bugs here
 # BUGS:
