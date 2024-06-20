@@ -12,7 +12,6 @@
 #include "Instance/Instance1.hpp"
 
 const int Tower1::Price = 50;
-const int Tower1::Type = 1;
 const int Tower1::spawnPeriod = 5;
 
 Tower1::Tower1(float x, float y, Team* team) : 

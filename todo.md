@@ -12,6 +12,11 @@
     - format: time type posx posy
 
 # Bullet/Bullet.cpp
+# Bullet/Bullet1.cpp
+# Bullet/Bullet2.cpp
+# Bullet/Bullet3.cpp
+# Bullet/Bullet4.cpp
+# Bullet/Bullet5.cpp
 # Instance/Instance.cpp
 # Instance/Instance1.cpp
 # Instance/Instance2.cpp
@@ -19,16 +24,15 @@
 # Instance/Instance4.cpp
 # Instance/Instance5.cpp
 # Instance/Instance6.cpp
-# Tower/Tower2.cpp
-# Tower/Tower3.cpp
-# Tower/Tower4.cpp
-# Tower/Tower5.cpp
 
 [Explaination] Post found Bugs here
 # BUGS:
 
 [Explaination] For something that's planning to implement but yet not implemented
 # FEATURE:
+- The art of all things
+    - life bar (instance)
+    - progress bar (tower)
 
 # TURRET DATA
 - TURRET 1:
@@ -90,7 +94,7 @@
     - SPD: 1
     - Money:5
     - Ground
-    - Target: Ground, Sky
+    - Target: Ground, Fly
 
 - Soldier C:
     - RNG: 1
@@ -109,8 +113,8 @@
     - ASD: 0.25
     - SPD: 1
     - Money:10
-    - Sky
-    - Target: Ground, Sky
+    - Fly
+    - Target: Ground, Fly
 
 - Soldier E:
     - RNG: 1
@@ -129,5 +133,5 @@
     - ASD: 2
     - SPD: 0.5
     - Money:20
-    - Sky
-    - Target: Sky
+    - Fly
+    - Target: Fly

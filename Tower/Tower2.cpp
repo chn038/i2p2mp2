@@ -4,7 +4,7 @@
 
 #include "Engine/AudioHelper.hpp"
 #include "Engine/GameEngine.hpp"
-#include "Bullet/Bullet1.hpp"
+#include "Bullet/Bullet2.hpp"
 #include "Engine/Group.hpp"
 #include "Tower/Tower2.hpp"
 #include "Scene/PlayScene.hpp"
@@ -12,7 +12,6 @@
 #include "Instance/Instance2.hpp"
 
 const int Tower2::Price = 50;
-const int Tower2::Type = 1;
 const int Tower2::spawnPeriod = 8;
 
 Tower2::Tower2(float x, float y, Team* team) : 
@@ -25,13 +24,14 @@ Tower2::Tower2(float x, float y, Team* team) :
     // Move center downward, since we the turret head is slightly biased upward.
     Anchor.y += 8.0f / GetBitmapHeight();
 }
+
 void Tower2::CreateBullet()
 {
     Engine::Point diff = Engine::Point(cos(Rotation - ALLEGRO_PI / 2), sin(Rotation - ALLEGRO_PI / 2));
     float rotation = atan2(diff.y, diff.x);
     Engine::Point normalized = diff.Normalize();
     // Change bullet position to the front of the gun barrel.
-    getPlayScene()->BulletGroup->AddNewObject(new Bullet1(Position + normalized * 36, diff, rotation, this, 2 + damageOffset));
+    getPlayScene()->BulletGroup->AddNewObject(new Bullet2(Position + normalized * 36, diff, rotation, this, 1 + damageOffset));
     AudioHelper::PlayAudio("gun.wav");
 }
 

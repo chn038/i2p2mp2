@@ -21,6 +21,7 @@ protected:
     PlayScene *getPlayScene();
     // Reference: Design Patterns - Factory Method.
     virtual void CreateBullet() = 0;
+    virtual void SearchTarget();
     int damageOffset;
     std::list<std::pair<bool, Engine::IObject *>> &FlyTarget;
     std::list<std::pair<bool, Engine::IObject *>> &GroundTarget;
