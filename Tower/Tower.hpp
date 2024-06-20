@@ -6,7 +6,7 @@
 
 #include "Engine/Sprite.hpp"
 
-class Enemy;
+class Instance;
 class PlayScene;
 
 class Tower : public Engine::Sprite
@@ -22,14 +22,14 @@ protected:
     // Reference: Design Patterns - Factory Method.
     virtual void CreateBullet() = 0;
     int damageOffset;
-    int team;
-    std::list<std::pair<bool, Engine::IObject *>> &TargetList;
+    std::list<std::pair<bool, Engine::IObject *>> &FlyTarget;
+    std::list<std::pair<bool, Engine::IObject *>> &GroundTarget;
 
 public:
     bool Enabled = true;
     bool Preview = false;
     bool IsTower = true;
-    Enemy *Target = nullptr;
+    Instance *Target = nullptr;
     Tower(std::string imgBase, 
           std::string imgTower, 
           float x, 
@@ -38,8 +38,8 @@ public:
           int price, 
           float coolDown, 
           int damageOffset, 
-          int team, 
-          std::list<std::pair<bool, IObject *>> &TargetList);
+          std::list<std::pair<bool, IObject *>> &FlyTarget,
+          std::list<std::pair<bool, IObject *>> &GroundTarget);
     void Update(float deltaTime) override;
     void Draw() const override;
     int GetPrice() const;

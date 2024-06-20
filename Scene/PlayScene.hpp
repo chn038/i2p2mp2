@@ -39,10 +39,10 @@ protected:
     Team *teamEnemy;
 	std::list<int> keyStrokes;
 	static const std::vector<int> code;
-	static bool DebugMode;
 	float ticks;
     Engine::Point spawnPointA, spawnPointB;
 public:
+	static bool DebugMode;
 	static const int MapWidth, MapHeight;
 	static const int BlockSize;
 	int MapId;

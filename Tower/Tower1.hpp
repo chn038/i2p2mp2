@@ -3,8 +3,16 @@
 #include "Team/Team.hpp"
 #include "Tower.hpp"
 
+namespace Engine {
+    class Point;
+}
+
 class Tower1 : public Tower
 {
+    int ticks;
+    static const int spawnPeriod;
+    Engine::Point SearchPlace();
+    Team* team;
 public:
     static const int Price;
     static const int Type;

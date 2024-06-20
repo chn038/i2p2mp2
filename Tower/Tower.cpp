@@ -1,13 +1,10 @@
 #include <allegro5/color.h>
 #include <allegro5/allegro_primitives.h>
 #include <cmath>
-// #include <utility>
 
-#include "Enemy/Enemy.hpp"
+#include "Instance/Instance.hpp"
 #include "Engine/GameEngine.hpp"
-#include "Engine/Group.hpp"
 #include "Engine/IObject.hpp"
-// #include "Engine/IScene.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
 #include "Tower.hpp"
@@ -24,15 +21,15 @@ Tower::Tower(std::string imgBase,
              int price,
              float coolDown,
              int damageOffset,
-             int team,
-             std::list<std::pair<bool, IObject *>> &TargetList) 
+             std::list<std::pair<bool, IObject *>> &FlyTarget,
+             std::list<std::pair<bool, IObject *>> &GroundTarget)
     :Sprite(imgTower, x, y),
     price(price),
     coolDown(coolDown),
     imgBase(imgBase, x, y),
     damageOffset(damageOffset),
-    team(team),
-    TargetList(TargetList)
+    FlyTarget(FlyTarget),
+    GroundTarget(GroundTarget)
 {
     CollisionRadius = radius;
 }
@@ -60,12 +57,25 @@ void Tower::Update(float deltaTime)
         // Lock first seen target.
         // Can be improved by Spatial Hash, Quad Tree, ...
         // However simply loop through all enemies is enough for this program.
-        for (auto &it : TargetList)
+        for (auto &it : FlyTarget)
         {
             Engine::Point diff = it.second->Position - Position;
             if (diff.Magnitude() <= CollisionRadius)
             {
-                Target = dynamic_cast<Enemy *>(it.second);
+                Target = dynamic_cast<Instance *>(it.second);
+                Target->lockedTowers.push_back(this);
+                lockedTowerIterator = std::prev(Target->lockedTowers.end());
+                break;
+            }
+        }
+        if (Target) return;
+        
+        for (auto &it : GroundTarget)
+        {
+            Engine::Point diff = it.second->Position - Position;
+            if (diff.Magnitude() <= CollisionRadius)
+            {
+                Target = dynamic_cast<Instance *>(it.second);
                 Target->lockedTowers.push_back(this);
                 lockedTowerIterator = std::prev(Target->lockedTowers.end());
                 break;

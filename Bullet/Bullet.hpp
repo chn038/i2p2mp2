@@ -6,7 +6,7 @@
 
 class Instance;
 class PlayScene;
-class Turret;
+class Tower;
 namespace Engine
 {
 	struct Point;

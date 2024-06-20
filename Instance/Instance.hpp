@@ -5,14 +5,13 @@
 #include <string>
 
 #include "Engine/Point.hpp"
-#include "Engine/Sprite.hpp"
 #include "Tower/Tower.hpp"
 
 class Bullet;
 class PlayScene;
 class Tower;
 
-class Instance : public Engine::Tower
+class Instance : public Tower
 {
 protected:
     std::vector<Engine::Point> path;

@@ -25,6 +25,7 @@
     - ASD: 1
     - Money: 50
     - Soldier : A*1
+    - Time: 5
 
 - TURRET 2:
     - RNG: 2
@@ -32,19 +33,23 @@
     - ASD: 1
     - Money: 50
     - Soldier : B*1
+    - Time: 8
 
 - TURRET 3:
     - RNG: 3
     - ATK: 2
     - ASD: 0.5
     - Money: 100
-    - Soldier : A,C*1 
+    - Soldier : C*1 
+    - Time: 12
+
 - TURRET 4:
     - RNG: 3
     - ATK: 6
     - ASD: 2
     - Money: 100
-    - Soldier : B,D*1 
+    - Soldier : D*1 
+    - Time: 15
 
 - TURRET 5:
     - RNG: X
@@ -52,6 +57,7 @@
     - ASD: X
     - Money: 150
     - Soldier : E,F*1
+    - Time: 50
 
 # SOLDIER DATA
 - Soldier A:
@@ -61,6 +67,8 @@
     - ASD: 1
     - SPD: 1.5
     - Money:5
+    - Ground
+    - Target: Ground
 
 - Soldier B:
     - RNG: 3
@@ -69,6 +77,8 @@
     - ASD: 0.5
     - SPD: 1
     - Money:5
+    - Ground
+    - Target: Ground, Sky
 
 - Soldier C:
     - RNG: 1
@@ -77,6 +87,8 @@
     - ASD: 0.5
     - SPD: 0.5
     - Money:10
+    - Ground
+    - Target: Ground
 
 - Soldier D:
     - RNG: 3
@@ -85,6 +97,8 @@
     - ASD: 0.25
     - SPD: 1
     - Money:10
+    - Sky
+    - Target: Ground, Sky
 
 - Soldier E:
     - RNG: 1
@@ -93,6 +107,8 @@
     - ASD: 1
     - SPD: 1
     - Money:20
+    - Ground
+    - Target: Ground
 
 - Soldier F:
     - RNG: 3
@@ -101,3 +117,5 @@
     - ASD: 2
     - SPD: 0.5
     - Money:20
+    - Sky
+    - Target: Sky

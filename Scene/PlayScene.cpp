@@ -10,7 +10,7 @@
 bool PlayScene::DebugMode = false;
 const int PlayScene::BlockSize = 64;
 const int PlayScene::MapWidth = 20;
-const int PlayScene::MapHeight = 15;
+const int PlayScene::MapHeight = 13;
 
 void PlayScene::Initialize() {
 	mapState.clear();
@@ -119,26 +119,30 @@ void PlayScene::ReadMap() {
     int i = 0, j = 0;
     std::string filename = std::string("Resource/map.txt");
     char c;
-    std::vector<bool> mapData;
+    std::vector<int> mapData;
     std::ifstream fin(filename);
     while (fin >> c) {
         switch (c) {
             case '0':
-                mapData.push_back(false);
+                mapData.push_back(0);
                 j++;
                 break;
             case '1':
-                mapData.push_back(true);
+                mapData.push_back(1);
                 j++;
                 break;
             case '2':
                 spawnPointA = Engine::Point(i, j);
-                mapData.push_back(true);
+                mapData.push_back(1);
                 j++;
                 break;
             case '3':
                 spawnPointB = Engine::Point(i, j);
-                mapData.push_back(true);
+                mapData.push_back(1);
+                j++;
+                break;
+            case '5':
+                mapData.push_back(0);
                 j++;
                 break;
             case '\n':
@@ -158,12 +162,22 @@ void PlayScene::ReadMap() {
     originMap = std::vector<std::vector<Engine::TileType>>(MapHeight, std::vector<Engine::TileType>(MapWidth));
     for (int h = 0; h < MapHeight; ++h) {
         for (int w = 0; w < MapWidth; ++w) {
-            bool type = mapData[h * MapWidth + w];
-            mapState[h][w] = type ? Engine::TILE_FLOOR : Engine::TILE_DIRT;
-			if (type)
-				TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
-			else
-				TileMapGroup->AddNewObject(new Engine::Image("play/dirt.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
+            int type = mapData[h * MapWidth + w];
+            switch (type) {
+                case 0:
+                    mapState[h][w] = Engine::TILE_FLOOR;
+                    TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
+                    break;
+                case 1:
+                    mapState[h][w] = Engine::TILE_DIRT;
+                    TileMapGroup->AddNewObject(new Engine::Image("play/dirt.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
+                    break;
+                case 2:
+                    mapState[h][w] = Engine::TILE_OCCUPIED;
+                    TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
+                    TileMapGroup->AddNewObject(new Engine::Image("play/target-invalid.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
+                    break;
+            };
         }
     }
     mapState = originMap;

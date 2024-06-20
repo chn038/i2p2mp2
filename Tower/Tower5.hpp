@@ -5,11 +5,17 @@
 
 class Tower5 : public Tower
 {
+    int ticks;
+    static const int spawnPeriod;
+    Engine::Point SearchPlace();
+    Team* team;
 public:
     static const int Price;
     static const int Type;
     Tower5(float x, float y, Team* team);
-    void Update(float deltaTime) override;
     void CreateBullet() override;
+    void Update(float deltaTime) override;
+
+
 };
 #endif // TOWER5
