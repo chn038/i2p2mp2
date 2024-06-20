@@ -23,7 +23,6 @@ protected:
     virtual void CreateBullet() = 0;
     int damageOffset;
     int team;
-    int type;
     std::list<std::pair<bool, Engine::IObject *>> &TargetList;
 
 public:
@@ -31,7 +30,16 @@ public:
     bool Preview = false;
     bool IsTower = true;
     Enemy *Target = nullptr;
-    Tower(std::string imgBase, std::string imgTower, float x, float y, float radius, int price, float coolDown, int damageOffset, int team, int type, std::list<std::pair<bool, IObject *>> &TargetList);
+    Tower(std::string imgBase, 
+          std::string imgTower, 
+          float x, 
+          float y, 
+          float radius,
+          int price, 
+          float coolDown, 
+          int damageOffset, 
+          int team, 
+          std::list<std::pair<bool, IObject *>> &TargetList);
     void Update(float deltaTime) override;
     void Draw() const override;
     int GetPrice() const;

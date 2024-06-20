@@ -16,10 +16,27 @@ PlayScene *Tower::getPlayScene()
 {
     return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
-Tower::Tower(std::string imgBase, std::string imgTower, float x, float y, float radius, int price, float coolDown, int damageOffset, int team, std::list<std::pair<bool, IObject *>> &TargetList) : Sprite(imgTower, x, y), price(price), coolDown(coolDown), imgBase(imgBase, x, y), damageOffset(damageOffset), team(team), type(type), TargetList(TargetList)
+Tower::Tower(std::string imgBase, 
+             std::string imgTower, 
+             float x,
+             float y,
+             float radius,
+             int price,
+             float coolDown,
+             int damageOffset,
+             int team,
+             std::list<std::pair<bool, IObject *>> &TargetList) 
+    :Sprite(imgTower, x, y),
+    price(price),
+    coolDown(coolDown),
+    imgBase(imgBase, x, y),
+    damageOffset(damageOffset),
+    team(team),
+    TargetList(TargetList)
 {
     CollisionRadius = radius;
 }
+
 void Tower::Update(float deltaTime)
 {
     Sprite::Update(deltaTime);
@@ -48,7 +65,7 @@ void Tower::Update(float deltaTime)
             Engine::Point diff = it.second->Position - Position;
             if (diff.Magnitude() <= CollisionRadius)
             {
-                Target = dynamic_cast<Instance *>(it.second);
+                Target = dynamic_cast<Enemy *>(it.second);
                 Target->lockedTowers.push_back(this);
                 lockedTowerIterator = std::prev(Target->lockedTowers.end());
                 break;
