@@ -3,6 +3,7 @@
 
 # Scene/PlayScene.cpp
 - UI need to construct
+- Build tower
 - [Pending] Add a warning while calling Hit()
 
 # Resource/enemy1.txt
@@ -10,12 +11,23 @@
 - need to reconstruct the file
     - format: time type posx posy
 
-[Reminder] Post found Bugs here
-# BUGS:
-- segmentation fault when pressing too much key at the same time
-    - a problem about allegro?
+# Bullet/Bullet.cpp
+# Instance/Instance.cpp
+# Instance/Instance1.cpp
+# Instance/Instance2.cpp
+# Instance/Instance3.cpp
+# Instance/Instance4.cpp
+# Instance/Instance5.cpp
+# Instance/Instance6.cpp
+# Tower/Tower2.cpp
+# Tower/Tower3.cpp
+# Tower/Tower4.cpp
+# Tower/Tower5.cpp
 
-[Reminder] For something that's planning to implement but yet not implemented
+[Explaination] Post found Bugs here
+# BUGS:
+
+[Explaination] For something that's planning to implement but yet not implemented
 # FEATURE:
 
 # TURRET DATA

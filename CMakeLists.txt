@@ -64,16 +64,20 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         UI/Animation/Plane.hpp
         UI/Component/Slider.cpp
         UI/Component/Slider.hpp
-        Enemy/Enemy.cpp
-        Enemy/Enemy.hpp
-        Enemy/SoldierEnemy.cpp
-        Enemy/SoldierEnemy.hpp
-        Enemy/PlaneEnemy.cpp
-        Enemy/PlaneEnemy.hpp
-        Enemy/TankEnemy.cpp
-        Enemy/TankEnemy.hpp
-        Enemy/RoadRollerEnemy.cpp
-        Enemy/RoadRollerEnemy.hpp
+        Instance/Instance.cpp
+        Instance/Instance.hpp
+        Instance/Instance1.cpp
+        Instance/Instance1.hpp
+        Instance/Instance2.cpp
+        Instance/Instance2.hpp
+        Instance/Instance3.cpp
+        Instance/Instance3.hpp
+        Instance/Instance4.cpp
+        Instance/Instance4.hpp
+        Instance/Instance5.cpp
+        Instance/Instance5.hpp
+        Instance/Instance6.cpp
+        Instance/Instance6.hpp
         Tower/Tower.cpp
         Tower/Tower.hpp
         Tower/Tower1.cpp
