@@ -9,14 +9,14 @@
 #include "Tower/Tower2.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
-#include "Instance/Instance1.hpp"
+#include "Instance/Instance2.hpp"
 
 const int Tower2::Price = 50;
 const int Tower2::Type = 1;
 const int Tower2::spawnPeriod = 8;
 
 Tower2::Tower2(float x, float y, Team* team) : 
-    Tower("play/tower-base.png", "play/turret-1.png", x, y, 64 + 32, Price, 1, 
+    Tower("play/tower-base.png", "play/turret-1.png", x, y, 64 * 2 + 32, Price, 1, 
           team->damageOffset, 
           team->GetOpponent()->FlyGroup->GetObjects(), 
           team->GetOpponent()->GroundGroup->GetObjects()),
@@ -48,8 +48,8 @@ void Tower2::Update(float deltaTime) {
 
     float objx = (sp.x + 0.5) * blockSize;
     float objy = (sp.y + 0.5) * blockSize;
-    Instance* n = new Instance1(objx, objy, FlyTarget, GroundTarget);
-    n->UpdatePath(team->groundMap);
+    Instance* n = new Instance2(objx, objy, team->ID, FlyTarget, GroundTarget);
+    n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);
 }
 

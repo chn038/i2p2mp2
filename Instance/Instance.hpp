@@ -36,7 +36,7 @@ public:
     // <param name = money>: the money drop after the enemy was killed</param>
     Instance(std::string img, float x, float y, float radius, float speed, float hp, int money, int type, std::list<std::pair<bool, IObject *>> &TargetList);
     void Hit(float damage);
-    void UpdatePath(const std::vector<std::vector<int>> &mapDistance);
+    void UpdatePath(const std::vector<std::vector<int>> &mapDistance, Engine::Point endPoint);
     void Update(float deltaTime) override;
     void Draw() const override;
     // TODO
