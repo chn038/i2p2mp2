@@ -20,6 +20,7 @@ class Team final : public Engine::Group {
     std::vector<std::vector<Engine::TileType>>& getMapState();
     std::vector<std::vector<int>> UpdateDistance(bool isGround);
     Team* opponent;
+    void UpdatePath();
 public:
 	std::vector<std::vector<int>> groundMap;
     std::vector<std::vector<int>> flyMap;
@@ -27,7 +28,6 @@ public:
     int damageOffset;
     int lives;
     int money;
-    int spawnPeriod;
     Engine::Point startPoint;
     Engine::Point endPoint;
     Group* TowerGroup;

@@ -8,6 +8,8 @@
 #include "Engine/IScene.hpp"
 #include "Engine/Point.hpp"
 #include "Team/Team.hpp"
+#include "Tower/TowerButton.hpp"
+#include "Tower/TowerIndicator.hpp"
 
 class Tower;
 namespace Engine {
@@ -27,18 +29,12 @@ private:
     std::queue<Wave> enemyWave;
 	void ReadMap();
 	void ReadEnemyWave();
-    void SpawnEnemy();
-	bool CheckSpaceValid(int x, int y);
 	void UIBtnClicked(int id);
-	static Engine::Point GetClientSize();
 	void ConstructUI();
 protected:
 	ALLEGRO_SAMPLE_ID bgmId;
-	int SpeedMult;
     Team *teamPlayer;
     Team *teamEnemy;
-	std::list<int> keyStrokes;
-	static const std::vector<int> code;
 	float ticks;
     Engine::Point spawnPointA, spawnPointB;
 public:
@@ -49,18 +45,20 @@ public:
 	// Map tiles.
 	Group* TileMapGroup;
 	Group* GroundEffectGroup;
-	Group* DebugIndicatorGroup;
 	Group* BulletGroup;
 	Group* EffectGroup;
 	Group* UIGroup;
-    Tower* preview;
+    TowerIndicator* preview;
+    TowerButton* updateButton;
 	Engine::Label* UIMoney;
-	Engine::Label* UILives;
+	Engine::Label* UIPLives;
+	Engine::Label* UIELives;
 	Engine::Label* UIDamage;
 	Engine::Image* imgTarget;
 	std::vector<std::vector<Engine::TileType>> mapState;
     std::vector<std::vector<Engine::TileType>> originMap;
 	explicit PlayScene() = default;
+	static Engine::Point GetClientSize();
 	void Initialize() override;
 	void Terminate() override;
 	void Update(float deltaTime) override;

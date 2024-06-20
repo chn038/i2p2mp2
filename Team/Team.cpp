@@ -29,8 +29,7 @@ void Team::Initialize() {
     AddNewObject(TowerGroup = new Group());
     AddNewObject(GroundGroup = new Group());
     AddNewObject(FlyGroup = new Group());
-    flyMap = UpdateDistance(0);
-    groundMap = UpdateDistance(1);
+    UpdatePath();
 }
 
 void Team::Terminate() {
@@ -82,8 +81,6 @@ void Team::addTower(int x, int y, int type) {
         default:
             break;
     }
-    flyMap = UpdateDistance(0);
-    groundMap = UpdateDistance(1);
     TowerGroup->AddNewObject(static_cast<Engine::IObject*>(newTurret));
 }
 
@@ -145,4 +142,9 @@ std::vector<std::vector<int>> Team::UpdateDistance(bool isGround) {
 
 void Team::Hit() {
     lives -= 1;
+}
+
+void Team::UpdatePath() {
+    flyMap = UpdateDistance(0);
+    groundMap = UpdateDistance(1);
 }

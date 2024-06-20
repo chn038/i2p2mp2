@@ -29,8 +29,29 @@ Tower::Tower(std::string imgBase,
     imgBase(imgBase, x, y),
     damageOffset(damageOffset),
     FlyTarget(FlyTarget),
-    GroundTarget(GroundTarget) {
+    GroundTarget(GroundTarget),
+    ratio(0) {
     CollisionRadius = radius;
+}
+
+void Tower::UpgradeDamage(int toDamage) {
+    this->damageOffset = toDamage;
+}
+
+void Tower::Draw() const {
+	imgBase.Draw();
+	Sprite::Draw();
+	if (PlayScene::DebugMode)
+	{
+		// Draw target radius.
+		al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(0, 0, 255), 2);
+	}
+    al_draw_filled_rectangle(Position.x, Position.y, Position.x + GetBitmapWidth(), Position.y + 8, al_map_rgb(0, 0, 0));
+    al_draw_filled_rectangle(Position.x, Position.y, Position.x + ratio * GetBitmapWidth(), Position.y + 8, al_map_rgb(255, 255, 255));
+}
+
+int Tower::GetPrice() const {
+    return this->price;
 }
 
 void Tower::SearchTarget() {

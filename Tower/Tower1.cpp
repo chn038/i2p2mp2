@@ -37,6 +37,11 @@ void Tower1::CreateBullet()
 void Tower1::Update(float deltaTime) {
     Tower::Update(deltaTime);
     ticks += deltaTime;
+    if (ticks > spawnPeriod) {
+        ratio = 1;
+    } else {
+        ratio = ticks / spawnPeriod;
+    }
     if (ticks < spawnPeriod) return;
     ticks -= spawnPeriod;
 

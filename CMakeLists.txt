@@ -92,6 +92,8 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Tower/Tower5.hpp
         Tower/TowerButton.cpp
         Tower/TowerButton.hpp
+        Tower/TowerIndicator.cpp
+        Tower/TowerIndicator.hpp
         Team/Team.cpp
         Team/Team.hpp
         Scene/LoseScene.cpp

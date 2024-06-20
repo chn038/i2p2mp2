@@ -15,7 +15,7 @@ const int Tower2::Price = 50;
 const int Tower2::spawnPeriod = 8;
 
 Tower2::Tower2(float x, float y, Team* team) : 
-    Tower("play/tower-base.png", "play/turret-1.png", x, y, 64 * 2 + 32, Price, 1, 
+    Tower("play/tower-base.png", "play/turret-2.png", x, y, 64 * 2 + 32, Price, 1, 
           team->damageOffset, 
           team->GetOpponent()->FlyGroup->GetObjects(), 
           team->GetOpponent()->GroundGroup->GetObjects()),
@@ -38,6 +38,11 @@ void Tower2::CreateBullet()
 void Tower2::Update(float deltaTime) {
     Tower::Update(deltaTime);
     ticks += deltaTime;
+    if (ticks > spawnPeriod) {
+        ratio = 1;
+    } else {
+        ratio = ticks / spawnPeriod;
+    }
     if (ticks < spawnPeriod) return;
     ticks -= spawnPeriod;
 

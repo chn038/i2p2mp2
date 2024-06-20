@@ -1,11 +1,6 @@
 [Reminder] after modifying the Resource, one has to run cmake again
 [Reminder] For linux: cmake -S . -B build --fresh -DCMAKE_EXPORT_COMPILE_COMMAND=1 -DCMAKE_BUILD_TYPE=Debug
 
-# Scene/PlayScene.cpp
-- UI need to construct
-- Build tower
-- [Pending] Add a warning while calling Hit()
-
 # Resource/enemy1.txt
 # Resource/enemy2.txt
 - need to reconstruct the file

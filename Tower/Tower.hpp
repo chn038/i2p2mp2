@@ -13,6 +13,7 @@ class Tower : public Engine::Sprite
 {
 protected:
     int price;
+    float ratio;
     float coolDown;
     float reload = 0;
     float rotateRadian = 2 * ALLEGRO_PI;
@@ -28,8 +29,6 @@ protected:
 
 public:
     bool Enabled = true;
-    bool Preview = false;
-    bool IsTower = true;
     Instance *Target = nullptr;
     Tower(std::string imgBase, 
           std::string imgTower, 
