@@ -1,5 +1,5 @@
-#ifndef BULLET_HPP
-#define BULLET1_HPP
+#ifndef BULLET5_HPP
+#define BULLET5_HPP
 #include "Bullet.hpp"
 
 class Instance;
