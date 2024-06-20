@@ -103,7 +103,7 @@ void Team::SpawnInstances(int type) {
         default:
             break;
     }
-    enemy->UpdatePath(mapDistance);
+    enemy->UpdatePath(mapDistance, endPoint);
     // Maybe update here
     enemy->Update(spawnCD);
 }
