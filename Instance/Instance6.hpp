@@ -7,9 +7,10 @@ class Instance6 final : public Instance
 {
     void OnExplode() override;
     void CreateBullet() override;
+    void SearchTarget() override;
 
 public:
-    Instance6(float x, float y, int team,
+    Instance6(float x, float y, int team, int damageOffset,
               std::list<std::pair<bool, IObject*>>& GroundTarget,
               std::list<std::pair<bool, IObject*>>& SkyTarget);
 };

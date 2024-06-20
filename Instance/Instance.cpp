@@ -1,7 +1,7 @@
-
 #include <allegro5/color.h>
 #include <allegro5/allegro_primitives.h>
 #include <cmath>
+#include <random>
 // #include <utility>
 
 #include "Enemy/Enemy.hpp"
@@ -11,20 +11,30 @@
 // #include "Engine/IScene.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
+#include "Tower/Tower.hpp"
+#include "UI/Animation/DirtyEffect.hpp"
+#include "UI/Animation/ExplosionEffect.hpp"
 #include "Instance.hpp"
 
 PlayScene *Instance::getPlayScene()
 {
     return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
-
-Instance::Instance(std::string img, float x, float y, float radius, float speed, float hp, int money, int type, std::list<std::pair<bool, IObject *>> &TargetList) : Sprite(img, x, y), price(price), coolDown(coolDown), damageOffset(damageOffset), money(moeny), type(type), TargetList(TargetList), max_speed(speed)
-{
+Instance::Instance(std::string img, 
+             float x, float y, 
+             float radius, float speed, 
+             float hp, int money, int type, float coolDown, int damageOffset, 
+             std::list<std::pair<bool, IObject *>> &GroundTarget,
+             std::list<std::pair<bool, IObject *>> &FlyTarget)
+:Tower(img, img, x, y, radius, money, coolDown, damageOffset, FlyTarget, GroundTarget),
+max_speed(speed), speed(speed), hp(hp), max_hp(hp), type(type) {
     CollisionRadius = radius;
 }
 
 void Instance::Update(float deltaTime)
 {
+    ratio = hp / max_hp;
+    Tower::Update(deltaTime);
     // Pre-calculate the velocity.
     float remainSpeed = speed * deltaTime;
     while (remainSpeed != 0)
@@ -33,7 +43,7 @@ void Instance::Update(float deltaTime)
         {
             // Reach end point.
             Hit(hp);
-            getPlayScene()->Hit();
+            getPlayScene()->Hit(type);
             return;
         }
         Engine::Point target = path.back() * PlayScene::BlockSize + Engine::Point(PlayScene::BlockSize / 2.0, PlayScene::BlockSize / 2.0);
@@ -58,71 +68,6 @@ void Instance::Update(float deltaTime)
         }
     }
     Rotation = atan2(Velocity.y, Velocity.x);
-    Sprite::Update(deltaTime);
-    PlayScene *scene = getPlayScene();
-    imgBase.Position = Position;
-    imgBase.Tint = Tint;
-    if (Target)
-    {
-        if (speed != 0)
-            speed = 0;
-        Engine::Point diff = Target->Position - Position;
-        if (diff.Magnitude() > CollisionRadius)
-        {
-            Target->lockedTowers.erase(lockedTowerIterator);
-            Target = nullptr;
-            lockedTowerIterator = std::list<Tower *>::iterator();
-        }
-    }
-    if (!Target)
-    {
-        if (speed == 0)
-            speed = max_speed;
-        // Lock first seen target.
-        // Can be improved by Spatial Hash, Quad Tree, ...
-        // However simply loop through all enemies is enough for this program.
-        for (auto &it : TargetList)
-        {
-            Engine::Point diff = it.second->Position - Position;
-            if (diff.Magnitude() <= CollisionRadius)
-            {
-                Target = dynamic_cast<Instance *>(it.second);
-                Target->lockedTowers.push_back(this);
-                lockedTowerIterator = std::prev(Target->lockedTowers.end());
-                break;
-            }
-        }
-    }
-    if (Target)
-    {
-        if (speed != 0)
-            speed = 0;
-        Engine::Point originRotation = Engine::Point(cos(Rotation - ALLEGRO_PI / 2), sin(Rotation - ALLEGRO_PI / 2));
-        Engine::Point targetRotation = (Target->Position - Position).Normalize();
-        float maxRotateRadian = rotateRadian * deltaTime;
-        float cosTheta = originRotation.Dot(targetRotation);
-        // Might have floating-point precision error.
-        if (cosTheta > 1)
-            cosTheta = 1;
-        else if (cosTheta < -1)
-            cosTheta = -1;
-        float radian = acos(cosTheta);
-        Engine::Point rotation;
-        if (abs(radian) <= maxRotateRadian)
-            rotation = targetRotation;
-        else
-            rotation = ((abs(radian) - maxRotateRadian) * originRotation + maxRotateRadian * targetRotation) / radian;
-        // Add 90 degrees (PI/2 radian), since we assume the image is oriented upward.
-        Rotation = atan2(rotation.y, rotation.x) + ALLEGRO_PI / 2;
-        // Shoot reload.
-        reload -= deltaTime;
-        if (reload <= 0)
-        {
-            // shoot.
-            reload = coolDown;
-            CreateBullet();
-        }
-    }
 }
 
 void Instance::OnExplode()
@@ -150,7 +95,7 @@ void Instance::Hit(float damage)
             it->Target = nullptr;
         for (auto &it : lockedTowers)
             it->Target = nullptr;
-        getPlayScene()->EarnMoney(money, type);
+        getPlayScene()->EarnMoney(price, type);
         getPlayScene()->EnemyGroup->RemoveObject(objectIterator);
         AudioHelper::PlayAudio("explosion.wav");
     }

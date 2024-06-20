@@ -18,9 +18,10 @@ protected:
     float max_speed;
     float speed;
     float hp;
-    int money;
+    float max_hp;
     PlayScene *getPlayScene();
     virtual void OnExplode();
+    int type;
 
 public:
     std::list<Tower *> lockedTowers;
@@ -34,7 +35,12 @@ public:
     // <param name = speed>: movement speed of the enemy</param>
     // <param name = hp>: hp of the enemy </param>
     // <param name = money>: the money drop after the enemy was killed</param>
-    Instance(std::string img, float x, float y, float radius, float speed, float hp, int money, int type, std::list<std::pair<bool, IObject *>> &TargetList);
+    Instance(std::string img, 
+             float x, float y, 
+             float radius, float speed, 
+             float hp, int money, int type, float coolDown, int damageOffset, 
+             std::list<std::pair<bool, IObject *>> &GroundTarget,
+             std::list<std::pair<bool, IObject *>> &FlyTarget);
     void Hit(float damage);
     void UpdatePath(const std::vector<std::vector<int>> &mapDistance, Engine::Point endPoint);
     void Update(float deltaTime) override;
