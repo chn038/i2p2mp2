@@ -30,14 +30,18 @@ namespace Engine
 	{
 		for (auto &it : objects)
 		{
-			if (it.first)
+			if (it.first) {
 				delete it.second;
+                it.second = nullptr;
+            }
 		}
 		objects.clear();
 		for (auto &it : controls)
 		{
-			if (it.first)
+			if (it.first) {
 				delete it.second;
+                it.second = nullptr;
+            }
 		}
 		controls.clear();
 	}

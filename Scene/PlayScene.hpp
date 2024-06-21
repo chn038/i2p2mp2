@@ -25,6 +25,8 @@ private:
         int time;
         int type;
         Engine::Point pos;
+        Wave(int time, int type, Engine::Point pos)
+        :time(time), type(type), pos(pos){}
     };
     std::queue<Wave> enemyWave;
 	void ReadMap();

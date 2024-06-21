@@ -98,6 +98,8 @@ void PlayScene::OnMouseMove(int mx, int my) {
         imgTarget->Visible = false;
         return;
     }
+    if (preview)
+        preview->SetPos(Engine::Point(mx, my));
     imgTarget->Visible = true;
     imgTarget->Position = bp * BlockSize;
 }
@@ -230,7 +232,7 @@ void PlayScene::ConstructUI() {
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/dirt.png", 1522, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-3.png", 1522, 136, 0, 0, 0, 0),
-                          Engine::Label(0, "pirulen.ttf", 8, 1522, 136),
+                          Engine::Label(std::to_string(0), "pirulen.ttf", 8, 1522, 136),
                           1522, 136, 0);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 0));
 	UIGroup->AddNewControlObject(btn);
@@ -415,15 +417,15 @@ void PlayScene::ReadMap() {
             int type = mapData[h * MapWidth + w];
             switch (type) {
                 case 0:
-                    mapState[h][w] = Engine::TILE_FLOOR;
+                    originMap[h][w] = Engine::TILE_FLOOR;
                     TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
                     break;
                 case 1:
-                    mapState[h][w] = Engine::TILE_DIRT;
+                    originMap[h][w] = Engine::TILE_DIRT;
                     TileMapGroup->AddNewObject(new Engine::Image("play/dirt.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
                     break;
                 case 2:
-                    mapState[h][w] = Engine::TILE_OCCUPIED;
+                    originMap[h][w] = Engine::TILE_OCCUPIED;
                     TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
                     TileMapGroup->AddNewObject(new Engine::Image("play/tower-base.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
                     break;
@@ -443,7 +445,7 @@ void PlayScene::ReadEnemyWave() {
 	std::ifstream fin(filename);
     int time, type, posx, posy;
 	while (fin >> time && fin >> type && fin >> posx && fin >> posy) {
-        enemyWave.emplace(time, type, Engine::Point(posx, posy));
+        enemyWave.emplace(Wave(time, type, Engine::Point(posx, posy)));
 	}
     Engine::LOG(Engine::INFO) << "Total wave size " << enemyWave.size();
 	fin.close();

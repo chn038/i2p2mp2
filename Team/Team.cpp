@@ -10,10 +10,6 @@
 #include "Tower/Tower4.hpp"
 #include "Tower/Tower5.hpp"
 
-Team::~Team() {
-    Terminate();
-}
-
 Team::Team(Engine::Point startPoint, Engine::Point endPoint, int ID, int initLives, int initMoney):
     ID(ID),
     opponent(nullptr),
@@ -30,10 +26,6 @@ void Team::Initialize() {
     AddNewObject(GroundGroup = new Group());
     AddNewObject(FlyGroup = new Group());
     UpdatePath();
-}
-
-void Team::Terminate() {
-    Group::Clear();
 }
 
 void Team::Update(float deltaTime) {

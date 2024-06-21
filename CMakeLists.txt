@@ -46,10 +46,6 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Bullet/Bullet2.hpp
         Bullet/Bullet3.cpp
         Bullet/Bullet3.hpp
-        Bullet/Bullet4.cpp
-        Bullet/Bullet4.hpp
-        Bullet/Bullet5.cpp
-        Bullet/Bullet5.hpp
         UI/Animation/DirtyEffect.cpp
         UI/Animation/DirtyEffect.hpp
         UI/Animation/ExplosionEffect.cpp
@@ -60,8 +56,6 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         UI/Component/ImageButton.hpp
         UI/Component/Label.cpp
         UI/Component/Label.hpp
-        UI/Animation/Plane.cpp
-        UI/Animation/Plane.hpp
         UI/Component/Slider.cpp
         UI/Component/Slider.hpp
         Instance/Instance.cpp

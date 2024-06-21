@@ -2,9 +2,9 @@
 #include <cmath>
 #include <string>
 
+#include "Bullet/Bullet3.hpp"
 #include "Engine/AudioHelper.hpp"
 #include "Engine/GameEngine.hpp"
-#include "Bullet/Bullet4.hpp"
 #include "Engine/Group.hpp"
 #include "Tower/Tower4.hpp"
 #include "Scene/PlayScene.hpp"
@@ -30,7 +30,7 @@ void Tower4::CreateBullet()
     float rotation = atan2(diff.y, diff.x);
     Engine::Point normalized = diff.Normalize();
     // Change bullet position to the front of the gun barrel.
-    getPlayScene()->BulletGroup->AddNewObject(new Bullet4(Position + normalized * 36, diff, rotation, this, 6 + damageOffset));
+    getPlayScene()->BulletGroup->AddNewObject(new Bullet3(Position + normalized * 36, diff, rotation, this, 6 + damageOffset, FlyTarget, GroundTarget));
     AudioHelper::PlayAudio("gun.wav");
 }
 
@@ -63,7 +63,7 @@ void Tower4::Update(float deltaTime)
     team->FlyGroup->AddNewObject(n);
 }
 
-PlayScene *getPlayScene()
+static PlayScene *getPlayScene()
 {
     return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }

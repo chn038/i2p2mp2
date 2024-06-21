@@ -62,7 +62,7 @@ void Tower1::Update(float deltaTime)
     team->GroundGroup->AddNewObject(n);
 }
 
-PlayScene *getPlayScene()
+static PlayScene *getPlayScene()
 {
     return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }

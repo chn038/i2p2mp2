@@ -35,7 +35,6 @@ public:
     Group* FlyGroup;
     std::vector<int> waveData;
     void Initialize();
-    void Terminate();
     void Update(float deltaTime) override;
     void Hit();
     void addTower(int objx, int objy, int type);
@@ -44,7 +43,6 @@ public:
     Team* GetOpponent();
     int getCountDown();
     Team(Engine::Point startPoint, Engine::Point endPoint, int ID, int initLives = 10, int initMoney = 500);
-    ~Team();
 };
 
 #endif

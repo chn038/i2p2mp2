@@ -2,6 +2,7 @@
 #include "Engine/AudioHelper.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Bullet/Bullet1.hpp"
+#include <cmath>
 
 Instance6::Instance6(float x, float y, int team, int damageOffset,
                      std::list<std::pair<bool, IObject *>> &GroundTarget,
