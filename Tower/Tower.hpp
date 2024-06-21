@@ -13,7 +13,6 @@ class Tower : public Engine::Sprite
 {
 protected:
     int price;
-    float ratio;
     float coolDown;
     float reload = 0;
     float rotateRadian = 2 * ALLEGRO_PI;
@@ -26,6 +25,8 @@ protected:
     int damageOffset;
     std::list<std::pair<bool, Engine::IObject *>> &FlyTarget;
     std::list<std::pair<bool, Engine::IObject *>> &GroundTarget;
+    float barRatio;
+    ALLEGRO_COLOR barColor;
 
 public:
     bool Enabled = true;
@@ -39,7 +40,8 @@ public:
           float coolDown, 
           int damageOffset, 
           std::list<std::pair<bool, IObject *>> &FlyTarget,
-          std::list<std::pair<bool, IObject *>> &GroundTarget);
+          std::list<std::pair<bool, IObject *>> &GroundTarget,
+          ALLEGRO_COLOR color = al_map_rgb(150, 150, 150));
     void Update(float deltaTime) override;
     void Draw() const override;
     int GetPrice() const;

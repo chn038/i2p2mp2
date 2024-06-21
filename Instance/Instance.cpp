@@ -8,7 +8,9 @@
 #include "Engine/GameEngine.hpp"
 #include "Engine/Group.hpp"
 #include "Engine/IObject.hpp"
+#include "Engine/AudioHelper.hpp"
 // #include "Engine/IScene.hpp"
+#include "Engine/LOG.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
 #include "Tower/Tower.hpp"
@@ -21,20 +23,24 @@ PlayScene *Instance::getPlayScene()
     return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
 Instance::Instance(std::string img, 
-             float x, float y, 
-             float radius, float speed, 
-             float hp, int money, int type, float coolDown, int damageOffset, 
-             std::list<std::pair<bool, IObject *>> &GroundTarget,
-             std::list<std::pair<bool, IObject *>> &FlyTarget)
-:Tower(img, img, x, y, radius, money, coolDown, damageOffset, FlyTarget, GroundTarget),
-max_speed(speed), speed(speed), hp(hp), max_hp(hp), type(type) {
+                   float x, float y, 
+                   float radius, float speed, 
+                   float hp, int money, int type, bool isGround,
+                   float coolDown, int damageOffset, 
+                   std::list<std::pair<bool, IObject *>> &GroundTarget,
+                   std::list<std::pair<bool, IObject *>> &FlyTarget)
+    :Tower(img, img, x, y, radius, money, coolDown, damageOffset, FlyTarget, GroundTarget, al_map_rgb(255, 0, 0)),
+    max_speed(speed), speed(speed),
+    hp(hp), max_hp(hp), type(type), isGround(isGround) {
     CollisionRadius = radius;
 }
 
 void Instance::Update(float deltaTime)
 {
-    ratio = hp / max_hp;
+    barRatio = hp / max_hp;
     Tower::Update(deltaTime);
+    if (Target) speed = 0;
+    else speed = max_speed;
     // Pre-calculate the velocity.
     float remainSpeed = speed * deltaTime;
     while (remainSpeed != 0)
@@ -96,14 +102,14 @@ void Instance::Hit(float damage)
         for (auto &it : lockedTowers)
             it->Target = nullptr;
         getPlayScene()->EarnMoney(price, type);
-        getPlayScene()->EnemyGroup->RemoveObject(objectIterator);
+        getPlayScene()->DeleteInstance(type, isGround, objectIterator);
         AudioHelper::PlayAudio("explosion.wav");
     }
 }
 
 void Instance::UpdatePath(const std::vector<std::vector<int>> &mapDistance, Engine::Point endpoint)
 {
-    static const Engine::Point directions[4] = {Engine::Point(0, -1), Engine::Point(-1, 0), Engine::Point(1, 0), Engine(0, 1)};
+    static const Engine::Point directions[4] = {Engine::Point(0, -1), Engine::Point(-1, 0), Engine::Point(1, 0), Engine::Point(0, 1)};
     int x = static_cast<int>(floor(Position.x / PlayScene::BlockSize));
     int y = static_cast<int>(floor(Position.y / PlayScene::BlockSize));
     if (x < 0)
