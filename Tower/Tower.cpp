@@ -40,13 +40,13 @@ void Tower::UpgradeDamage(int toDamage) {
 }
 
 void Tower::Draw() const {
-	imgBase.Draw();
-	Sprite::Draw();
-	if (PlayScene::DebugMode)
-	{
-		// Draw target radius.
-		al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(0, 0, 255), 2);
-	}
+    imgBase.Draw();
+    Sprite::Draw();
+    if (PlayScene::DebugMode)
+    {
+        // Draw target radius.
+        al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(0, 0, 255), 2);
+    }
     al_draw_filled_rectangle(Position.x, Position.y, Position.x + GetBitmapWidth(), Position.y + 8, al_map_rgb(0, 0, 0));
     al_draw_filled_rectangle(Position.x, Position.y, Position.x + barRatio * GetBitmapWidth(), Position.y + 8, barColor);
 }
@@ -56,29 +56,29 @@ int Tower::GetPrice() const {
 }
 
 void Tower::SearchTarget() {
-        // Lock first seen target.
-        // Can be improved by Spatial Hash, Quad Tree, ...
-        // However simply loop through all enemies is enough for this program.
-        for (auto &it : FlyTarget) {
-            Engine::Point diff = it.second->Position - Position;
-            if (diff.Magnitude() <= CollisionRadius) {
-                Target = dynamic_cast<Instance *>(it.second);
-                Target->lockedTowers.push_back(this);
-                lockedTowerIterator = std::prev(Target->lockedTowers.end());
-                break;
-            }
+    // Lock first seen target.
+    // Can be improved by Spatial Hash, Quad Tree, ...
+    // However simply loop through all enemies is enough for this program.
+    for (auto &it : FlyTarget) {
+        Engine::Point diff = it.second->Position - Position;
+        if (diff.Magnitude() <= CollisionRadius) {
+            Target = dynamic_cast<Instance *>(it.second);
+            Target->lockedTowers.push_back(this);
+            lockedTowerIterator = std::prev(Target->lockedTowers.end());
+            break;
         }
-        if (Target) return;
-        
-        for (auto &it : GroundTarget) {
-            Engine::Point diff = it.second->Position - Position;
-            if (diff.Magnitude() <= CollisionRadius) {
-                Target = dynamic_cast<Instance *>(it.second);
-                Target->lockedTowers.push_back(this);
-                lockedTowerIterator = std::prev(Target->lockedTowers.end());
-                break;
-            }
+    }
+    if (Target) return;
+
+    for (auto &it : GroundTarget) {
+        Engine::Point diff = it.second->Position - Position;
+        if (diff.Magnitude() <= CollisionRadius) {
+            Target = dynamic_cast<Instance *>(it.second);
+            Target->lockedTowers.push_back(this);
+            lockedTowerIterator = std::prev(Target->lockedTowers.end());
+            break;
         }
+    }
 }
 
 void Tower::Update(float deltaTime) {

@@ -104,7 +104,7 @@
 - Soldier D:
     - RNG: 3
     - HP: 20
-    - ATK: 2
+    - ATK: 0.5
     - ASD: 0.25
     - SPD: 1
     - Money:10
@@ -122,8 +122,8 @@
     - Target: Ground
 
 - Soldier F:
-    - RNG: 3
-    - HP: 30
+    - RNG: 5
+    - HP: 50
     - ATK: 10
     - ASD: 2
     - SPD: 0.5
