@@ -18,7 +18,7 @@ Tower1::Tower1(float x, float y, Team *team) : Tower("play/tower-base.png", "pla
                                                      team->damageOffset,
                                                      team->GetOpponent()->FlyGroup->GetObjects(),
                                                      team->GetOpponent()->GroundGroup->GetObjects()),
-                                               team(team)
+                                               team(team), ticks(0)
 {
     // Move center downward, since we the turret head is slightly biased upward.
     Anchor.y += 8.0f / GetBitmapHeight();

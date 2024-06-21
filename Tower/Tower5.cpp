@@ -17,7 +17,7 @@ Tower5::Tower5(float x, float y, Team *team) : Tower("play/tower-base.png", "pla
                                                      team->damageOffset,
                                                      team->GetOpponent()->FlyGroup->GetObjects(),
                                                      team->GetOpponent()->GroundGroup->GetObjects()),
-                                               team(team)
+                                               team(team), ticks(0)
 {
 }
 
