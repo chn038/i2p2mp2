@@ -15,13 +15,14 @@ class Instance : public Tower
 {
 protected:
     std::vector<Engine::Point> path;
-    float max_speed;
+    const float max_speed;
+    const float max_hp;
     float speed;
     float hp;
-    float max_hp;
     PlayScene *getPlayScene();
     virtual void OnExplode();
     int type;
+    bool isGround;
 
 public:
     std::list<Tower *> lockedTowers;
@@ -38,7 +39,8 @@ public:
     Instance(std::string img, 
              float x, float y, 
              float radius, float speed, 
-             float hp, int money, int type, float coolDown, int damageOffset, 
+             float hp, int money, int type, bool isGround,
+             float coolDown, int damageOffset, 
              std::list<std::pair<bool, IObject *>> &GroundTarget,
              std::list<std::pair<bool, IObject *>> &FlyTarget);
     void Hit(float damage);

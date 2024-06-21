@@ -448,3 +448,18 @@ void PlayScene::ReadEnemyWave() {
     Engine::LOG(Engine::INFO) << "Total wave size " << enemyWave.size();
 	fin.close();
 }
+
+void PlayScene::DeleteInstance(int id, bool isGround, 
+                               std::list<std::pair<bool, IObject*>>::iterator const& iter) {
+    if (id == 0) {
+        if (isGround)
+            teamPlayer->GroundGroup->RemoveObject(iter);
+        else
+            teamPlayer->FlyGroup->RemoveObject(iter);
+    } else if (id == 1) {
+        if (isGround)
+            teamEnemy->GroundGroup->RemoveObject(iter);
+        else
+            teamEnemy->FlyGroup->RemoveObject(iter);
+    }
+}

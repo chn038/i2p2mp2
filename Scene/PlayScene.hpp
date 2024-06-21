@@ -72,6 +72,11 @@ public:
 	void Hit(int id);
 	int GetMoney() const;
     /// @param(id) the id of the instance.
+    /// @param(isGround) whether the instance is in ground group.
+    /// @param(iter) the object iterator of the instance.
+    /// Delete the instance from correspond team and the correspond group
+    void DeleteInstance(int id, bool isGround, std::list<std::pair<bool, IObject*>>::iterator const& iter);
+    /// @param(id) the id of the instance.
     /// Please be causcious that it is the opponent of the teamID will get money.
 	void EarnMoney(int money, int id);
 };

@@ -22,7 +22,8 @@ Tower::Tower(std::string imgBase,
              float coolDown,
              int damageOffset,
              std::list<std::pair<bool, IObject *>> &FlyTarget,
-             std::list<std::pair<bool, IObject *>> &GroundTarget)
+             std::list<std::pair<bool, IObject *>> &GroundTarget,
+             ALLEGRO_COLOR color)
     :Sprite(imgTower, x, y),
     price(price),
     coolDown(coolDown),
@@ -30,7 +31,7 @@ Tower::Tower(std::string imgBase,
     damageOffset(damageOffset),
     FlyTarget(FlyTarget),
     GroundTarget(GroundTarget),
-    ratio(0) {
+    barRatio(0), barColor(color) {
     CollisionRadius = radius;
 }
 
@@ -47,7 +48,7 @@ void Tower::Draw() const {
 		al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(0, 0, 255), 2);
 	}
     al_draw_filled_rectangle(Position.x, Position.y, Position.x + GetBitmapWidth(), Position.y + 8, al_map_rgb(0, 0, 0));
-    al_draw_filled_rectangle(Position.x, Position.y, Position.x + ratio * GetBitmapWidth(), Position.y + 8, al_map_rgb(255, 255, 255));
+    al_draw_filled_rectangle(Position.x, Position.y, Position.x + barRatio * GetBitmapWidth(), Position.y + 8, barColor);
 }
 
 int Tower::GetPrice() const {
@@ -81,6 +82,7 @@ void Tower::SearchTarget() {
 }
 
 void Tower::Update(float deltaTime) {
+    // no moving when shooting
     Sprite::Update(deltaTime);
     PlayScene *scene = getPlayScene();
     imgBase.Position = Position;
