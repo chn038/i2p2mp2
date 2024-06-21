@@ -11,7 +11,7 @@
 
 class Tower;
 
-Bullet2::Bullet2(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage) : Bullet("play/bullet-2.png", 400, damage, position, forwardDirection, rotation - ALLEGRO_PI / 2, parent)
+Bullet2::Bullet2(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage, std::list<std::pair<bool, Engine::IObject *>> &GroundTarget) : Bullet("play/bullet-2.png", 400, damage, position, forwardDirection, rotation - ALLEGRO_PI / 2, parent, GroundTarget, GroundTarget)
 {
     // TODO: [CUSTOM-TOOL] You can imitate the 2 files: 'FireBullet.hpp', 'FireBullet.cpp' to create a new bullet.
 }
