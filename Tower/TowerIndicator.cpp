@@ -9,6 +9,9 @@ TowerIndicator::TowerIndicator(
     radius(radius),
     base(Base),
     top(Top) {
+    Anchor = Engine::Point(0.5, 0.5);
+    base.Anchor = Engine::Point(0.5, 0.5);
+    top.Anchor = Engine::Point(0.5, 0.5);
 }
 
 void TowerIndicator::Draw() const {
@@ -18,6 +21,7 @@ void TowerIndicator::Draw() const {
 }
 
 void TowerIndicator::SetPos(Engine::Point pos) {
+    Position = pos;
     base.Position = pos;
     top.Position = pos;
 }

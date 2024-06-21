@@ -11,7 +11,7 @@
 #include "Instance/Instance6.hpp"
 
 const int Tower5::Price = 150;
-const int Tower5::spawnPeriod = 50;
+const int Tower5::spawnPeriod = 12;
 
 Tower5::Tower5(float x, float y, Team *team) : Tower("play/tower-base.png", "play/turret-5.png", x, y, 32, Price, 5,
                                                      team->damageOffset,
@@ -19,8 +19,6 @@ Tower5::Tower5(float x, float y, Team *team) : Tower("play/tower-base.png", "pla
                                                      team->GetOpponent()->GroundGroup->GetObjects()),
                                                team(team)
 {
-    // Move center downward, since we the turret head is slightly biased upward.
-    Anchor.y += 8.0f / GetBitmapHeight();
 }
 
 void Tower5::CreateBullet()
@@ -50,8 +48,8 @@ void Tower5::Update(float deltaTime)
 
     const int blockSize = getPlayScene()->BlockSize;
 
-    float objx = (sp.x + 0.5) * blockSize;
-    float objy = (sp.y + 0.5) * blockSize;
+    float objx = sp.x * blockSize;
+    float objy = sp.y * blockSize;
     Instance *n = new Instance5(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
     n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);

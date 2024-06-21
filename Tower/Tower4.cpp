@@ -20,8 +20,6 @@ Tower4::Tower4(float x, float y, Team *team) : Tower("play/tower-base.png", "pla
                                                      team->GetOpponent()->GroundGroup->GetObjects()),
                                                team(team)
 {
-    // Move center downward, since we the turret head is slightly biased upward.
-    Anchor.y += 8.0f / GetBitmapHeight();
 }
 
 void Tower4::CreateBullet()
@@ -56,8 +54,8 @@ void Tower4::Update(float deltaTime)
 
     const int blockSize = getPlayScene()->BlockSize;
 
-    float objx = (sp.x + 0.5) * blockSize;
-    float objy = (sp.y + 0.5) * blockSize;
+    float objx = sp.x * blockSize;
+    float objy = sp.y * blockSize;
     Instance *n = new Instance4(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
     n->UpdatePath(team->flyMap, team->endPoint);
     team->FlyGroup->AddNewObject(n);

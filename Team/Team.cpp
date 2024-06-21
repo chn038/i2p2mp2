@@ -107,28 +107,39 @@ std::vector<std::vector<int>> Team::UpdateDistance(bool isGround) {
     // Push end point.
     // BFS from end point.
     if (isGround) {
-        if (mapState[endPoint.x][endPoint.y] != Engine::TILE_DIRT) {
+        if (mapState[endPoint.y][endPoint.x] != Engine::TILE_DIRT) {
             return map;
         }
     }
+    std::cout << "Start bfs\n";
     que.push(endPoint);
-    map[endPoint.x][endPoint.y] = 0;
+    map[endPoint.y][endPoint.x] = 0;
     while (!que.empty()) {
         p = que.front();
         que.pop();
         for (int i = 0; i < 4; ++i) {
             np = p + directions[i];
             if (np.x < 0 || np.x >= MapWidth ||
-                np.y < 0 || np.y >= MapHeight)
+                np.y < 0 || np.y >= MapHeight) {
                 continue;
-            if (map[np.y][np.x] != -1)
+            }
+            if (map[np.y][np.x] != -1) {
                 continue;
-            if (isGround && mapState[np.y][np.x] != Engine::TILE_DIRT)
+            }
+            if (isGround && mapState[np.y][np.x] != Engine::TILE_DIRT) {
                 continue;
+            }
             map[np.y][np.x] = map[p.y][p.x] + 1;
             que.push(np);
         }
     }
+    for (int i = 0; i < MapHeight; ++i) {
+        for (int j = 0; j < MapWidth; ++j) {
+            printf("%2d ", map[i][j]);
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "Finish constructing\n";
     return map;
 }
 

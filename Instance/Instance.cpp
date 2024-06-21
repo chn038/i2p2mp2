@@ -29,10 +29,11 @@ Instance::Instance(std::string img,
                    float coolDown, int damageOffset, 
                    std::list<std::pair<bool, IObject *>> &GroundTarget,
                    std::list<std::pair<bool, IObject *>> &FlyTarget)
-    :Tower(img, img, x, y, radius, money, coolDown, damageOffset, FlyTarget, GroundTarget, al_map_rgb(255, 0, 0)),
+    :Tower("play/empty-base.png", img, x, y, radius, money, coolDown, damageOffset, FlyTarget, GroundTarget, al_map_rgb(255, 0, 0)),
     max_speed(speed), speed(speed),
     hp(hp), max_hp(hp), type(type), isGround(isGround) {
     CollisionRadius = radius;
+    Anchor = Engine::Point(0.5, 0.5);
 }
 
 void Instance::Update(float deltaTime)
@@ -152,7 +153,7 @@ void Instance::UpdatePath(const std::vector<std::vector<int>> &mapDistance, Engi
 
 void Instance::Draw() const
 {
-    Sprite::Draw();
+    Tower::Draw();
     if (PlayScene::DebugMode)
     {
         // Draw collision radius.

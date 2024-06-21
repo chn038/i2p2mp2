@@ -47,8 +47,9 @@ void Tower::Draw() const {
         // Draw target radius.
         al_draw_circle(Position.x, Position.y, CollisionRadius, al_map_rgb(0, 0, 255), 2);
     }
-    al_draw_filled_rectangle(Position.x, Position.y, Position.x + GetBitmapWidth(), Position.y + 8, al_map_rgb(0, 0, 0));
-    al_draw_filled_rectangle(Position.x, Position.y, Position.x + barRatio * GetBitmapWidth(), Position.y + 8, barColor);
+    Engine::Point barP = Engine::Point(Position.x - 0.5*GetBitmapWidth(), Position.y - 0.5*GetBitmapHeight());
+    al_draw_filled_rectangle(barP.x, barP.y, barP.x + GetBitmapWidth(), barP.y + 8, al_map_rgb(0, 0, 0));
+    al_draw_filled_rectangle(barP.x, barP.y, barP.x + barRatio * GetBitmapWidth(), barP.y + 8, barColor);
 }
 
 int Tower::GetPrice() const {

@@ -55,8 +55,8 @@ void Tower1::Update(float deltaTime)
 
     const int blockSize = getPlayScene()->BlockSize;
 
-    float objx = (sp.x + 0.5) * blockSize;
-    float objy = (sp.y + 0.5) * blockSize;
+    float objx = sp.x * blockSize;
+    float objy = sp.y * blockSize;
     Instance *n = new Instance1(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
     n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);

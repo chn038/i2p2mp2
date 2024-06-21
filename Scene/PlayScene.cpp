@@ -114,11 +114,12 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 
     if (!preview) return;
 
+    Engine::LOG(Engine::INFO) << preview->type;
     if (preview->type == 0) {
         if (mapState[bp.y][bp.x] != Engine::TILE_OCCUPIED) {
             Engine::Sprite* sprite;
             GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png",
-                                                                     0, objx, objy));
+                                                                     1, objx, objy));
             sprite->Rotation = 0;
             return;
         }
@@ -134,14 +135,15 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
         }
         return;
     } else {
-        if (mapState[bp.y][bp.x] != Engine::TILE_FLOOR) {
+        if (mapState[bp.y][bp.x] != Engine::TILE_FLOOR || teamPlayer->money < preview->price) {
             Engine::Sprite* sprite;
             GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png",
-                                                                     0, objx, objy));
+                                                                     1, objx, objy));
             sprite->Rotation = 0;
             return;
         }
-        EarnMoney(-preview->price, 0);
+        std::cout << bp.y << ' ' << bp.x << std::endl;
+        EarnMoney(-preview->price, 1);
         teamPlayer->addTower(objx, objy, preview->type);
         UIGroup->RemoveObject(preview->GetObjectIterator());
         preview = nullptr;
@@ -231,7 +233,7 @@ void PlayScene::ConstructUI() {
     // Delete Tower
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/dirt.png", 1522, 136, 0, 0, 0, 0),
-                          Engine::Sprite("play/turret-3.png", 1522, 136, 0, 0, 0, 0),
+                          Engine::Sprite("play/target-invalid.png", 1522, 136, 0, 0, 0, 0),
                           Engine::Label(std::to_string(0), "pirulen.ttf", 8, 1522, 136),
                           1522, 136, 0);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 0));
@@ -273,13 +275,13 @@ void PlayScene::ConstructUI() {
                           Engine::Sprite("play/tower-base.png", 1294, 440, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-3.png", 1294, 440, 0, 0, 0, 0),
                           Engine::Label(std::to_string(Tower5::Price), "pirulen.ttf", 8, 1294, 440),
-                          1294, 288, Tower5::Price);
+                          1294, 440, Tower5::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 5));
 	UIGroup->AddNewControlObject(btn);
     // Button 6
     updateButton = new TowerButton("play/target.png", "play/bullet-1.png",
-                                   Engine::Sprite("play/target.png", 0, 0, 0, 0, 0, 0),
-                                   Engine::Sprite("play/bullet-1.png", 0, 0, 0, 0, 0, 0),
+                                   Engine::Sprite("play/target.png", 1522, 212, 0, 0, 0, 0),
+                                   Engine::Sprite("play/bullet-1.png", 1522, 212, 0, 0, 0, 0),
                                    Engine::Label(std::to_string(200), "pirulen.ttf", 8, 1522, 212),
                                    1522, 212, 200);
     updateButton->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 6));
@@ -295,7 +297,7 @@ void PlayScene::UIBtnClicked(int id) {
         case 0:
             preview = new TowerIndicator(
                           Engine::Sprite("play/dirt.png", 1522, 136, 0, 0, 0, 0),
-                          Engine::Sprite("play/turret-3.png", 1522, 136, 0, 0, 0, 0),
+                          Engine::Sprite("play/target-invalid.png", 1522, 136, 0, 0, 0, 0),
                           0, 0, 0, 0, 0);
             break;
         case 1:
@@ -303,7 +305,7 @@ void PlayScene::UIBtnClicked(int id) {
                 preview = new TowerIndicator(
                           Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-1.png", 1294, 136 - 8, 0, 0, 0, 0),
-                          64 + 32, Tower1::Price, 0, 0, 0);
+                          64 + 32, Tower1::Price, 1, 0, 0);
             }
             break;
         case 2:
@@ -311,7 +313,7 @@ void PlayScene::UIBtnClicked(int id) {
                 preview = new TowerIndicator(
                           Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-2.png", 1294, 136 - 8, 0, 0, 0, 0),
-                          64 * 2 + 32, Tower2::Price, 0, 0, 0);
+                          64 * 2 + 32, Tower2::Price, 2, 0, 0);
             }
             break;
         case 3:
@@ -319,7 +321,7 @@ void PlayScene::UIBtnClicked(int id) {
                 preview = new TowerIndicator(
                           Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-3.png", 1294, 136 - 8, 0, 0, 0, 0),
-                          64 * 3 + 32, Tower3::Price, 0, 0, 0);
+                          64 * 3 + 32, Tower3::Price, 3, 0, 0);
             }
             break;
         case 4:
@@ -327,7 +329,7 @@ void PlayScene::UIBtnClicked(int id) {
                 preview = new TowerIndicator(
                           Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-4.png", 1294, 136 - 8, 0, 0, 0, 0),
-                          64 * 4 + 32, Tower4::Price, 0, 0, 0);
+                          64 * 4 + 32, Tower4::Price, 4, 0, 0);
             }
             break;
         case 5:
@@ -335,7 +337,7 @@ void PlayScene::UIBtnClicked(int id) {
                 preview = new TowerIndicator(
                           Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-5.png", 1294, 136 - 8, 0, 0, 0, 0),
-                          0, Tower5::Price, 0, 0, 0);
+                          0, Tower5::Price, 5, 0, 0);
             }
             break;
         case 6:
@@ -373,7 +375,7 @@ void PlayScene::ReadMap() {
     char c;
     std::vector<int> mapData;
     std::ifstream fin(filename);
-    while (fin >> c) {
+    while (c = fin.get(), !fin.eof()) {
         switch (c) {
             case '0':
                 mapData.push_back(0);
@@ -384,17 +386,19 @@ void PlayScene::ReadMap() {
                 j++;
                 break;
             case '2':
-                spawnPointA = Engine::Point(i, j);
+                spawnPointA = Engine::Point(j, i);
+                std::cout << j << ' ' << i;
                 mapData.push_back(1);
                 j++;
                 break;
             case '3':
-                spawnPointB = Engine::Point(i, j);
+                spawnPointB = Engine::Point(j, i);
+                std::cout << j << ' ' << i;
                 mapData.push_back(1);
                 j++;
                 break;
             case '5':
-                mapData.push_back(0);
+                mapData.push_back(2);
                 j++;
                 break;
             case '\n':
@@ -427,10 +431,26 @@ void PlayScene::ReadMap() {
                 case 2:
                     originMap[h][w] = Engine::TILE_OCCUPIED;
                     TileMapGroup->AddNewObject(new Engine::Image("play/floor.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
-                    TileMapGroup->AddNewObject(new Engine::Image("play/tower-base.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
+                    TileMapGroup->AddNewObject(new Engine::Image("play/target-invalid.png", w * BlockSize, h * BlockSize, BlockSize, BlockSize));
                     break;
             };
         }
+    }
+    for (int h = 0; h < MapHeight; ++h) {
+        for (int w = 0; w < MapWidth; ++w) {
+            switch(originMap[h][w]) {
+                case Engine::TILE_FLOOR:
+                    std::cout << 0;
+                    break;
+                case Engine::TILE_DIRT:
+                    std::cout << 1;
+                    break;
+                case Engine::TILE_OCCUPIED:
+                    std::cout << 2;
+                    break;
+            }
+        }
+        std::cout << std::endl;
     }
     mapState = originMap;
 }
