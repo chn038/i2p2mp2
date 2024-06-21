@@ -79,7 +79,7 @@
     - SPD: 1.5
     - Money:5
     - Ground
-    - Target: Ground
+    - Target: Ground (bullet2)
 
 - Soldier B:
     - RNG: 3
@@ -89,7 +89,7 @@
     - SPD: 1
     - Money:5
     - Ground
-    - Target: Ground, Fly
+    - Target: Ground, Fly (bullet3)
 
 - Soldier C:
     - RNG: 1
@@ -99,7 +99,7 @@
     - SPD: 0.5
     - Money:10
     - Ground
-    - Target: Ground
+    - Target: Ground (bullet2)
 
 - Soldier D:
     - RNG: 3
@@ -109,7 +109,7 @@
     - SPD: 1
     - Money:10
     - Fly
-    - Target: Ground, Fly
+    - Target: Ground, Fly (bullet3)
 
 - Soldier E:
     - RNG: 1
@@ -119,7 +119,7 @@
     - SPD: 1
     - Money:20
     - Ground
-    - Target: Ground
+    - Target: Ground (bullet2)
 
 - Soldier F:
     - RNG: 5
@@ -129,4 +129,4 @@
     - SPD: 0.5
     - Money:20
     - Fly
-    - Target: Fly
+    - Target: Fly (bullet1)

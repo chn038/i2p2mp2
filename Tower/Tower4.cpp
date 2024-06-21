@@ -14,12 +14,11 @@
 const int Tower4::Price = 100;
 const int Tower4::spawnPeriod = 15;
 
-Tower4::Tower4(float x, float y, Team* team) : 
-    Tower("play/tower-base.png", "play/turret-4.png", x, y, 64 * 3 + 32, Price, 2, 
-          team->damageOffset, 
-          team->GetOpponent()->FlyGroup->GetObjects(), 
-          team->GetOpponent()->GroundGroup->GetObjects()),
-    team(team)
+Tower4::Tower4(float x, float y, Team *team) : Tower("play/tower-base.png", "play/turret-4.png", x, y, 64 * 3 + 32, Price, 2,
+                                                     team->damageOffset,
+                                                     team->GetOpponent()->FlyGroup->GetObjects(),
+                                                     team->GetOpponent()->GroundGroup->GetObjects()),
+                                               team(team)
 {
     // Move center downward, since we the turret head is slightly biased upward.
     Anchor.y += 8.0f / GetBitmapHeight();
@@ -35,44 +34,54 @@ void Tower4::CreateBullet()
     AudioHelper::PlayAudio("gun.wav");
 }
 
-void Tower4::Update(float deltaTime) {
+void Tower4::Update(float deltaTime)
+{
     Tower::Update(deltaTime);
     ticks += deltaTime;
-    if (ticks > spawnPeriod) {
-        ratio = 1;
-    } else {
-        ratio = ticks / spawnPeriod;
+    if (ticks > spawnPeriod)
+    {
+        barRatio = 1;
     }
-    if (ticks < spawnPeriod) return;
+    else
+    {
+        barRatio = ticks / spawnPeriod;
+    }
+    if (ticks < spawnPeriod)
+        return;
     ticks -= spawnPeriod;
 
     Engine::Point sp = SearchPlace();
-    if (sp.x == -1) return;
+    if (sp.x == -1)
+        return;
 
     const int blockSize = getPlayScene()->BlockSize;
 
     float objx = (sp.x + 0.5) * blockSize;
     float objy = (sp.y + 0.5) * blockSize;
-    Instance* n = new Instance4(objx, objy, team->ID, FlyTarget, GroundTarget);
+    Instance *n = new Instance4(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
     n->UpdatePath(team->flyMap, team->endPoint);
     team->FlyGroup->AddNewObject(n);
 }
 
-PlayScene* getPlayScene() {
-    return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
+PlayScene *getPlayScene()
+{
+    return dynamic_cast<PlayScene *>(Engine::GameEngine::GetInstance().GetActiveScene());
 }
 
-Engine::Point Tower4::SearchPlace() {
-    static const Engine::Point direction[4] = { 
-        Engine::Point(1, 0), Engine::Point(-1, 0), 
+Engine::Point Tower4::SearchPlace()
+{
+    static const Engine::Point direction[4] = {
+        Engine::Point(1, 0), Engine::Point(-1, 0),
         Engine::Point(0, -1), Engine::Point(0, 1)};
 
     const int blockSize = getPlayScene()->BlockSize;
     Engine::Point current = Engine::Point(Position.x / blockSize, Position.y / blockSize);
     Engine::Point np;
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 4; ++i)
+    {
         np = current + direction[i];
-        if (getPlayScene()->mapState[np.y][np.x] == Engine::TILE_DIRT) {
+        if (getPlayScene()->mapState[np.y][np.x] == Engine::TILE_DIRT)
+        {
             return np;
         }
     }

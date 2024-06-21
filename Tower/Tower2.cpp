@@ -30,7 +30,7 @@ void Tower2::CreateBullet()
     float rotation = atan2(diff.y, diff.x);
     Engine::Point normalized = diff.Normalize();
     // Change bullet position to the front of the gun barrel.
-    getPlayScene()->BulletGroup->AddNewObject(new Bullet3(Position + normalized * 36, diff, rotation, this, 1 + damageOffset));
+    getPlayScene()->BulletGroup->AddNewObject(new Bullet3(Position + normalized * 36, diff, rotation, this, 1 + damageOffset, FlyTarget, GroundTarget));
     AudioHelper::PlayAudio("gun.wav");
 }
 
@@ -40,11 +40,11 @@ void Tower2::Update(float deltaTime)
     ticks += deltaTime;
     if (ticks > spawnPeriod)
     {
-        ratio = 1;
+        barRatio = 1;
     }
     else
     {
-        ratio = ticks / spawnPeriod;
+        barRatio = ticks / spawnPeriod;
     }
     if (ticks < spawnPeriod)
         return;
@@ -58,7 +58,7 @@ void Tower2::Update(float deltaTime)
 
     float objx = (sp.x + 0.5) * blockSize;
     float objy = (sp.y + 0.5) * blockSize;
-    Instance *n = new Instance2(objx, objy, team->ID, FlyTarget, GroundTarget);
+    Instance *n = new Instance2(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
     n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);
 }
