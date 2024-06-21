@@ -38,9 +38,9 @@ void Tower1::Update(float deltaTime) {
     Tower::Update(deltaTime);
     ticks += deltaTime;
     if (ticks > spawnPeriod) {
-        ratio = 1;
+        barRatio = 1;
     } else {
-        ratio = ticks / spawnPeriod;
+        barRatio = ticks / spawnPeriod;
     }
     if (ticks < spawnPeriod) return;
     ticks -= spawnPeriod;
@@ -52,7 +52,7 @@ void Tower1::Update(float deltaTime) {
 
     float objx = (sp.x + 0.5) * blockSize;
     float objy = (sp.y + 0.5) * blockSize;
-    Instance* n = new Instance1(objx, objy, team->ID, FlyTarget, GroundTarget);
+    Instance* n = new Instance1(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
     n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);
 }

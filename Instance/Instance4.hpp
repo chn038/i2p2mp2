@@ -5,7 +5,6 @@
 
 class Instance4 final : public Instance 
 {
-    void OnExplode() override;
     void CreateBullet() override;
     void SearchTarget() override;
 
