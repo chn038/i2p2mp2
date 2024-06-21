@@ -27,6 +27,6 @@ public:
 	Instance *Target = nullptr;
 	explicit Bullet(std::string img, float speed, float damage, Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent,
 					std::list<std::pair<bool, Engine::IObject *>> &FlyTarget, std::list<std::pair<bool, Engine::IObject *>> &GroundTarget);
-	void Update(float deltaTime);
+	void Update(float deltaTime) override;
 };
 #endif // BULLET_HPP
