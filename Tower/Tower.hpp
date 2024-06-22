@@ -17,7 +17,6 @@ protected:
     float reload = 0;
     float rotateRadian = 2 * ALLEGRO_PI;
     Sprite imgBase;
-    std::list<Tower *>::iterator lockedTowerIterator;
     PlayScene *getPlayScene();
     // Reference: Design Patterns - Factory Method.
     virtual void CreateBullet() = 0;

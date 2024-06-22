@@ -24,24 +24,24 @@ PlayScene *Instance::getPlayScene()
 }
 Instance::Instance(std::string img, 
                    float x, float y, 
-                   float radius, float speed, 
+                   float radius, float hitRadius, float speed, 
                    float hp, int money, int type, bool isGround,
                    float coolDown, int damageOffset, 
+                   std::list<std::pair<bool, IObject *>> &FlyTarget,
                    std::list<std::pair<bool, IObject *>> &GroundTarget,
-                   std::list<std::pair<bool, IObject *>> &FlyTarget)
+                   ALLEGRO_COLOR teamColor)
     :Tower("play/empty-base.png", img, x, y, radius, money, coolDown, damageOffset, FlyTarget, GroundTarget, al_map_rgb(255, 0, 0)),
     max_speed(speed), speed(speed),
-    hp(hp), max_hp(hp), type(type), isGround(isGround) {
+    hp(hp), max_hp(hp), type(type), isGround(isGround), hitRadius(hitRadius) {
     CollisionRadius = radius;
     Anchor = Engine::Point(0.5, 0.5);
+    barColor = teamColor;
 }
 
 void Instance::Update(float deltaTime)
 {
     barRatio = hp / max_hp;
     Tower::Update(deltaTime);
-    if (Target) speed = 0;
-    else speed = max_speed;
     // Pre-calculate the velocity.
     float remainSpeed = speed * deltaTime;
     while (remainSpeed != 0)
@@ -74,7 +74,14 @@ void Instance::Update(float deltaTime)
             remainSpeed = 0;
         }
     }
-    Rotation = atan2(Velocity.y, Velocity.x);
+    baseRotation = atan2(Velocity.y, Velocity.x);
+    if (Target){
+        Velocity = Engine::Point(0, 0);
+        speed = 0;
+    } else {
+        Rotation = baseRotation;
+        speed = max_speed;
+    }
 }
 
 void Instance::OnExplode()
@@ -97,11 +104,6 @@ void Instance::Hit(float damage)
     if (hp <= 0)
     {
         OnExplode();
-        // Remove all turret's reference to target.
-        for (auto &it : lockedTowers)
-            it->Target = nullptr;
-        for (auto &it : lockedTowers)
-            it->Target = nullptr;
         getPlayScene()->EarnMoney(price, type);
         getPlayScene()->DeleteInstance(type, isGround, objectIterator);
         AudioHelper::PlayAudio("explosion.wav");

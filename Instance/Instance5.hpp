@@ -10,8 +10,9 @@ class Instance5 final : public Instance
 
 public:
     Instance5(float x, float y, int team, int damageOffset,
-              std::list<std::pair<bool, IObject*>>& GroundTarget,
-              std::list<std::pair<bool, IObject*>>& SkyTarget);
+              std::list<std::pair<bool, IObject *>> &FlyTarget,
+              std::list<std::pair<bool, IObject *>> &GroundTarget,
+              ALLEGRO_COLOR teamColor);
 };
 
 #endif

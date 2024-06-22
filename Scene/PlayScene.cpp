@@ -28,22 +28,23 @@ void PlayScene::Initialize() {
 	mapState.clear();
     originMap.clear();
 	ticks = 0;
+    speedMul = 1;
     // set the score to 0
     Engine::GameEngine::GetInstance().GetScore() = 0;
 	// Add groups from bottom to top.
 	AddNewObject(TileMapGroup = new Group());
-	AddNewObject(GroundEffectGroup = new Group());
-	AddNewObject(BulletGroup = new Group());
-	AddNewObject(EffectGroup = new Group());
-	// Should support buttons.
-	AddNewControlObject(UIGroup = new Group());
 	ReadMap();
     // Team initialize
-    AddNewObject(teamPlayer = new Team(spawnPointA, spawnPointB, 0));
-    AddNewObject(teamEnemy = new Team(spawnPointB, spawnPointA, 1));
+	// Should support buttons.
+	AddNewControlObject(UIGroup = new Group());
+    AddNewObject(teamPlayer = new Team(spawnPointA, spawnPointB, 0, al_map_rgb(0, 255, 0)));
+    AddNewObject(teamEnemy = new Team(spawnPointB, spawnPointA, 1, al_map_rgb(255, 0, 0)));
+	AddNewObject(GroundEffectGroup = new Group());
+	AddNewObject(EffectGroup = new Group());
     teamPlayer->SetOpponent(teamEnemy);
     teamEnemy->SetOpponent(teamPlayer);
 	ReadEnemyWave();
+	AddNewObject(BulletGroup = new Group());
 	ConstructUI();
 	imgTarget = new Engine::Image("play/target.png", 0, 0);
 	imgTarget->Visible = false;
@@ -61,26 +62,28 @@ void PlayScene::Draw() const {
 }
 
 void PlayScene::Update(float deltaTime) {
-    IScene::Update(deltaTime);
+    for (int i = 0; i < speedMul; ++i) {
+        IScene::Update(deltaTime);
 
-    if (teamEnemy->lives <= 0) {
-		Engine::GameEngine::GetInstance().ChangeScene("win");
-        return;
-    }
-    if (teamPlayer->lives <= 0) {
-        Engine::GameEngine::GetInstance().ChangeScene("lose");
-        return;
-    }
+        if (teamEnemy->lives <= 0) {
+            Engine::GameEngine::GetInstance().ChangeScene("win");
+            return;
+        }
+        if (teamPlayer->lives <= 0) {
+            Engine::GameEngine::GetInstance().ChangeScene("lose");
+            return;
+        }
 
-    if (enemyWave.empty()) return;
-    Wave& current = enemyWave.front();
-    ticks += deltaTime;
-    if (ticks < current.time) return;
-    ticks -= current.time;
-    float objx = current.pos.x * BlockSize + BlockSize / 2.0;
-    float objy = current.pos.y * BlockSize + BlockSize / 2.0;
-    teamEnemy->addTower(objx, objy, current.type);
-    enemyWave.pop();
+        if (enemyWave.empty()) continue;
+        Wave& current = enemyWave.front();
+        ticks += deltaTime;
+        if (ticks < current.time) continue;
+        ticks -= current.time;
+        float objx = current.pos.x * BlockSize + BlockSize / 2.0;
+        float objy = current.pos.y * BlockSize + BlockSize / 2.0;
+        teamEnemy->addTower(objx, objy, current.type);
+        enemyWave.pop();
+    }
 }
 
 void PlayScene::OnMouseDown(int button, int mx, int my) {
@@ -94,12 +97,14 @@ void PlayScene::OnMouseDown(int button, int mx, int my) {
 void PlayScene::OnMouseMove(int mx, int my) {
     IScene::OnMouseMove(mx, my);
     Engine::Point bp(int(mx / BlockSize), int(my / BlockSize));
+    if (preview) {
+        preview->SetPos(Engine::Point(mx, my));
+        preview->Update(0);
+    }
     if (!preview || bp.x < 0 || bp.x >= MapWidth || bp.y < 0 || bp.y >= MapHeight) {
         imgTarget->Visible = false;
         return;
     }
-    if (preview)
-        preview->SetPos(Engine::Point(mx, my));
     imgTarget->Visible = true;
     imgTarget->Position = bp * BlockSize;
 }
@@ -135,7 +140,9 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
         }
         return;
     } else {
-        if (mapState[bp.y][bp.x] != Engine::TILE_FLOOR || teamPlayer->money < preview->price) {
+        if (mapState[bp.y][bp.x] != Engine::TILE_FLOOR ||
+            teamPlayer->money < preview->price ||
+            bp.x > 10) {
             Engine::Sprite* sprite;
             GroundEffectGroup->AddNewObject(sprite = new DirtyEffect("play/target-invalid.png",
                                                                      1, objx, objy));
@@ -180,6 +187,11 @@ void PlayScene::OnKeyDown(int keyCode) {
             UIBtnClicked(6);
             break;
     }
+    if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
+        // Hotkey for Speed up.
+        speedMul = keyCode - ALLEGRO_KEY_0;
+        Engine::LOG(Engine::INFO) << "SpeedMul : " << speedMul;
+    }
 }
 
 void PlayScene::Terminate() {
@@ -191,11 +203,11 @@ void PlayScene::Hit(int id) {
     switch(id) {
         case 0:
             teamEnemy->Hit();
-            UIELives->Text = std::string("Oppo Live ") + std::to_string(teamEnemy->lives);
+            UIELives->Text = std::string("Oppo HP ") + std::to_string(teamEnemy->lives);
             return;
         case 1:
             teamPlayer->Hit();
-            UIPLives->Text = std::string("Your Live ") + std::to_string(teamPlayer->lives);
+            UIPLives->Text = std::string("Your HP ") + std::to_string(teamPlayer->lives);
             // maybe a warning here?
             return;
     }
@@ -226,15 +238,15 @@ void PlayScene::ConstructUI() {
 	UIGroup->AddNewObject(new Engine::Image("play/sand.png", 1280, 0, 320, 832));
 	// Text
 	UIGroup->AddNewObject(UIMoney = new Engine::Label(std::string("$") + std::to_string(teamPlayer->money), "pirulen.ttf", 24, 1294, 32));
-	UIGroup->AddNewObject(UIPLives = new Engine::Label(std::string("Your Life ") + std::to_string(teamPlayer->lives), "pirulen.ttf", 24, 1294, 48));
-	UIGroup->AddNewObject(UIDamage = new Engine::Label(std::string("Up ") + std::to_string(teamPlayer->damageOffset), "pirulen.ttf", 24, 1446, 48));
-	UIGroup->AddNewObject(UIELives = new Engine::Label(std::string("Oppo Life ") + std::to_string(teamEnemy->lives), "pirulen.ttf", 24, 1294, 88));
+	UIGroup->AddNewObject(UIPLives = new Engine::Label(std::string("Your HP ") + std::to_string(teamPlayer->lives), "pirulen.ttf", 24, 1294, 48));
+	UIGroup->AddNewObject(UIDamage = new Engine::Label(std::to_string(teamPlayer->damageOffset), "pirulen.ttf", 24, 1522, 288));
+	UIGroup->AddNewObject(UIELives = new Engine::Label(std::string("Oppo HP ") + std::to_string(teamEnemy->lives), "pirulen.ttf", 24, 1294, 88));
 	TowerButton* btn;
     // Delete Tower
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/dirt.png", 1522, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/target-invalid.png", 1522, 136, 0, 0, 0, 0),
-                          Engine::Label(std::to_string(0), "pirulen.ttf", 8, 1522, 136),
+                          Engine::Label(std::to_string(0), "pirulen.ttf", 16, 1522, 136),
                           1522, 136, 0);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 0));
 	UIGroup->AddNewControlObject(btn);
@@ -242,7 +254,7 @@ void PlayScene::ConstructUI() {
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/tower-base.png", 1294, 136, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-1.png", 1294, 136 - 8, 0, 0, 0, 0),
-                          Engine::Label(std::to_string(Tower1::Price), "pirulen.ttf", 8, 1294, 136),
+                          Engine::Label(std::to_string(Tower1::Price), "pirulen.ttf", 16, 1294, 136),
                           1294, 136, Tower1::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 1));
 	UIGroup->AddNewControlObject(btn);
@@ -250,7 +262,7 @@ void PlayScene::ConstructUI() {
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/tower-base.png", 1294, 212, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-2.png", 1294, 212 - 8, 0, 0, 0, 0),
-                          Engine::Label(std::to_string(Tower2::Price), "pirulen.ttf", 8, 1294, 212),
+                          Engine::Label(std::to_string(Tower2::Price), "pirulen.ttf", 16, 1294, 212),
                           1294, 212, Tower2::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 2));
 	UIGroup->AddNewControlObject(btn);
@@ -258,7 +270,7 @@ void PlayScene::ConstructUI() {
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/tower-base.png", 1294, 288, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-3.png", 1294, 288, 0, 0, 0, 0),
-                          Engine::Label(std::to_string(Tower3::Price), "pirulen.ttf", 8, 1294, 288),
+                          Engine::Label(std::to_string(Tower3::Price), "pirulen.ttf", 16, 1294, 288),
                           1294, 288, Tower3::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 3));
 	UIGroup->AddNewControlObject(btn);
@@ -266,7 +278,7 @@ void PlayScene::ConstructUI() {
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/tower-base.png", 1294, 364, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-4.png", 1294, 364, 0, 0, 0, 0),
-                          Engine::Label(std::to_string(Tower4::Price), "pirulen.ttf", 8, 1294, 364),
+                          Engine::Label(std::to_string(Tower4::Price), "pirulen.ttf", 16, 1294, 364),
                           1294, 364, Tower4::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 4));
 	UIGroup->AddNewControlObject(btn);
@@ -274,7 +286,7 @@ void PlayScene::ConstructUI() {
     btn = new TowerButton("play/floor.png", "play/dirt.png",
                           Engine::Sprite("play/tower-base.png", 1294, 440, 0, 0, 0, 0),
                           Engine::Sprite("play/turret-3.png", 1294, 440, 0, 0, 0, 0),
-                          Engine::Label(std::to_string(Tower5::Price), "pirulen.ttf", 8, 1294, 440),
+                          Engine::Label(std::to_string(Tower5::Price), "pirulen.ttf", 16, 1294, 440),
                           1294, 440, Tower5::Price);
 	btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 5));
 	UIGroup->AddNewControlObject(btn);
@@ -282,7 +294,7 @@ void PlayScene::ConstructUI() {
     updateButton = new TowerButton("play/target.png", "play/bullet-1.png",
                                    Engine::Sprite("play/target.png", 1522, 212, 0, 0, 0, 0),
                                    Engine::Sprite("play/bullet-1.png", 1522, 212, 0, 0, 0, 0),
-                                   Engine::Label(std::to_string(200), "pirulen.ttf", 8, 1522, 212),
+                                   Engine::Label(std::to_string(200), "pirulen.ttf", 16, 1522, 212),
                                    1522, 212, 200);
     updateButton->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 6));
     UIGroup->AddNewControlObject(updateButton);
@@ -367,6 +379,7 @@ void PlayScene::UIBtnClicked(int id) {
     UIGroup->AddNewObject(preview);
     OnMouseMove(Engine::GameEngine::GetInstance().GetMousePosition().x,
                 Engine::GameEngine::GetInstance().GetMousePosition().y);
+    preview->Update(0);
 }
 
 void PlayScene::ReadMap() {

@@ -39,6 +39,7 @@ protected:
     Team *teamEnemy;
 	float ticks;
     Engine::Point spawnPointA, spawnPointB;
+    int speedMul;
 public:
 	static bool DebugMode;
 	static const int MapWidth, MapHeight;

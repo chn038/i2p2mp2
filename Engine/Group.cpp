@@ -112,14 +112,18 @@ namespace Engine
 	}
 	void Group::RemoveObject(std::list<std::pair<bool, IObject *>>::iterator it)
 	{
-		if (it->first)
+		if (it->first) {
 			delete it->second;
+            it->second = nullptr;
+        }
 		objects.erase(it);
 	}
 	void Group::RemoveControl(std::list<std::pair<bool, IControl *>>::iterator it)
 	{
-		if (it->first)
+		if (it->first) {
 			delete it->second;
+            it->second = nullptr;
+        }
 		controls.erase(it);
 	}
 	void Group::RemoveControlObject(std::list<std::pair<bool, IControl *>>::iterator ctrlIt, std::list<std::pair<bool, IObject *>>::iterator objIt)

@@ -12,7 +12,7 @@
 #include "Instance/Instance4.hpp"
 
 const int Tower4::Price = 100;
-const int Tower4::spawnPeriod = 15;
+const int Tower4::spawnPeriod = 30;
 
 Tower4::Tower4(float x, float y, Team *team) : Tower("play/tower-base.png", "play/turret-4.png", x, y, 64 * 3 + 32, Price, 2,
                                                      team->damageOffset,
@@ -46,7 +46,7 @@ void Tower4::Update(float deltaTime)
     }
     if (ticks < spawnPeriod)
         return;
-    ticks -= spawnPeriod;
+    ticks = 0;
 
     Engine::Point sp = SearchPlace();
     if (sp.x == -1)
@@ -56,7 +56,7 @@ void Tower4::Update(float deltaTime)
 
     float objx = sp.x * blockSize;
     float objy = sp.y * blockSize;
-    Instance *n = new Instance4(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
+    Instance *n = new Instance4(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget, team->teamColor);
     n->UpdatePath(team->flyMap, team->endPoint);
     team->FlyGroup->AddNewObject(n);
 }

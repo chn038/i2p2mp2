@@ -24,38 +24,14 @@ Bullet::Bullet(std::string img, float speed, float damage, Engine::Point positio
 	Rotation = rotation;
 	CollisionRadius = 4;
 }
+
 void Bullet::Update(float deltaTime)
 {
 	Sprite::Update(deltaTime);
 	PlayScene *scene = getPlayScene();
 	// Can be improved by Spatial Hash, Quad Tree, ...
 	// However simply loop through all enemies is enough for this program.
-	for (auto &it : FlyTarget)
-	{
-		Instance *target = dynamic_cast<Instance *>(it.second);
-		if (!target->Visible)
-			continue;
-		if (Engine::Collider::IsCircleOverlap(Position, CollisionRadius, target->Position, target->CollisionRadius))
-		{
-			OnExplode(target);
-			target->Hit(damage);
-			getPlayScene()->BulletGroup->RemoveObject(objectIterator);
-			return;
-		}
-	}
-	for (auto &it : GroundTarget)
-	{
-		Instance *target = dynamic_cast<Instance *>(it.second);
-		if (!target->Visible)
-			continue;
-		if (Engine::Collider::IsCircleOverlap(Position, CollisionRadius, target->Position, target->CollisionRadius))
-		{
-			OnExplode(target);
-			target->Hit(damage);
-			getPlayScene()->BulletGroup->RemoveObject(objectIterator);
-			return;
-		}
-	}
+    CheckCollision();
 	// Check if out of boundary.
 	if (!Engine::Collider::IsRectOverlap(Position - Size / 2, Position + Size / 2, Engine::Point(0, 0), PlayScene::GetClientSize()))
 		getPlayScene()->BulletGroup->RemoveObject(objectIterator);

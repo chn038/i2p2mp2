@@ -11,7 +11,7 @@
 #include "Instance/Instance6.hpp"
 
 const int Tower5::Price = 150;
-const int Tower5::spawnPeriod = 12;
+const int Tower5::spawnPeriod = 60;
 
 Tower5::Tower5(float x, float y, Team *team) : Tower("play/tower-base.png", "play/turret-5.png", x, y, 32, Price, 5,
                                                      team->damageOffset,
@@ -40,7 +40,7 @@ void Tower5::Update(float deltaTime)
     }
     if (ticks < spawnPeriod)
         return;
-    ticks -= spawnPeriod;
+    ticks = 0;
 
     Engine::Point sp = SearchPlace();
     if (sp.x == -1)
@@ -50,10 +50,10 @@ void Tower5::Update(float deltaTime)
 
     float objx = sp.x * blockSize;
     float objy = sp.y * blockSize;
-    Instance *n = new Instance5(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
+    Instance *n = new Instance5(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget, team->teamColor);
     n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);
-    n = new Instance6(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
+    n = new Instance6(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget, team->teamColor);
     n->UpdatePath(team->flyMap, team->endPoint);
     team->FlyGroup->AddNewObject(n);
 }

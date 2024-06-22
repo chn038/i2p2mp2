@@ -40,5 +40,5 @@ void WinScene::Update(float deltaTime) {
 void WinScene::BackOnClick(int stage) {
 	// Change to select scene.
     Engine::GameEngine::GetInstance().GetAssignNew() = true;
-	Engine::GameEngine::GetInstance().ChangeScene("scoreboard-scene");
+	Engine::GameEngine::GetInstance().ChangeScene("stage-select");
 }
