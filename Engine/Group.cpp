@@ -64,50 +64,44 @@ namespace Engine
 	}
 	void Group::OnKeyDown(int keyCode)
 	{
-		for (auto it = controls.begin(); it != controls.end();)
+		for (auto it : controls)
 		{
-			auto preIt = it++;
-			preIt->second->OnKeyDown(keyCode);
+			it.second->OnKeyDown(keyCode);
 		}
 	}
 	void Group::OnKeyUp(int keyCode)
 	{
-		for (auto it = controls.begin(); it != controls.end();)
+		for (auto it : controls)
 		{
-			auto preIt = it++;
-			preIt->second->OnKeyUp(keyCode);
+			it.second->OnKeyUp(keyCode);
 		}
 	}
 	void Group::OnMouseDown(int button, int mx, int my)
 	{
-		for (auto it = controls.begin(); it != controls.end();)
+		for (auto it : controls)
 		{
-			auto preIt = it++;
-			preIt->second->OnMouseDown(button, mx, my);
+			it.second->OnMouseDown(button, mx, my);
 		}
 	}
 	void Group::OnMouseUp(int button, int mx, int my)
 	{
-		for (auto it = controls.begin(); it != controls.end();)
+		for (auto it : controls)
 		{
-			auto preIt = it++;
-			preIt->second->OnMouseUp(button, mx, my);
+			it.second->OnMouseUp(button, mx, my);
 		}
 	}
 	void Group::OnMouseMove(int mx, int my)
 	{
-		for (auto it = controls.begin(); it != controls.end();)
+		for (auto it : controls)
 		{
-			auto preIt = it++;
-			preIt->second->OnMouseMove(mx, my);
+			it.second->OnMouseMove(mx, my);
 		}
 	}
 	void Group::OnMouseScroll(int mx, int my, int delta)
 	{
-		for (auto it = controls.begin(); it != controls.end();)
+		for (auto it : controls)
 		{
-			auto preIt = it++;
-			preIt->second->OnMouseScroll(mx, my, delta);
+			it.second->OnMouseScroll(mx, my, delta);
 		}
 	}
 	void Group::RemoveObject(std::list<std::pair<bool, IObject *>>::iterator it)

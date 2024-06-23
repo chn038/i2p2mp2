@@ -38,9 +38,9 @@ void PlayScene::Initialize() {
 	// Should support buttons.
 	AddNewControlObject(UIGroup = new Group());
 	AddNewObject(GroundEffectGroup = new Group());
-	AddNewObject(EffectGroup = new Group());
     AddNewObject(teamPlayer = new Team(spawnPointA, spawnPointB, 0, al_map_rgb(0, 255, 0)));
     AddNewObject(teamEnemy = new Team(spawnPointB, spawnPointA, 1, al_map_rgb(255, 0, 0)));
+	AddNewObject(EffectGroup = new Group());
 	AddNewObject(BulletGroup = new Group());
     teamPlayer->SetOpponent(teamEnemy);
     teamEnemy->SetOpponent(teamPlayer);
