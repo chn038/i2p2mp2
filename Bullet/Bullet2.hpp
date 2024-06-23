@@ -11,8 +11,11 @@ namespace Engine
 
 class Bullet2 : public Bullet
 {
+    void CheckCollision() override;
 public:
-    explicit Bullet2(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage, std::list<std::pair<bool, Engine::IObject *>> &GroundTarget);
+    explicit Bullet2(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage,
+                     std::list<std::pair<bool, Engine::IObject *>> &FlyTarget,
+                     std::list<std::pair<bool, Engine::IObject *>> &GroundTarget);
     void OnExplode(Instance *instance) override;
 };
 #endif // BULLET2_HPP

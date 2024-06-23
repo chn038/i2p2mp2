@@ -6,6 +6,7 @@
 #include "Instance/Instance.hpp"
 #include "Bullet3.hpp"
 #include "Engine/Group.hpp"
+#include "Engine/Collider.hpp"
 #include "Scene/PlayScene.hpp"
 #include "Engine/Point.hpp"
 
@@ -14,6 +15,35 @@ class Tower;
 Bullet3::Bullet3(Engine::Point position, Engine::Point forwardDirection, float rotation, Tower *parent, int damage, std::list<std::pair<bool, Engine::IObject *>> &FlyTarget, std::list<std::pair<bool, Engine::IObject *>> &GroundTarget) : Bullet("play/bullet-1.png", 400, damage, position, forwardDirection, rotation - ALLEGRO_PI / 2, parent, FlyTarget, GroundTarget)
 {
     // TODO: [CUSTOM-TOOL] You can imitate the 2 files: 'FireBullet.hpp', 'FireBullet.cpp' to create a new bullet.
+}
+
+void Bullet3::CheckCollision() {
+	for (auto &it : FlyTarget)
+	{
+		Instance *target = dynamic_cast<Instance *>(it.second);
+		if (!target->Visible)
+			continue;
+		if (Engine::Collider::IsCircleOverlap(Position, CollisionRadius, target->Position, target->hitRadius))
+		{
+			OnExplode(target);
+			target->Hit(damage);
+			getPlayScene()->BulletGroup->RemoveObject(objectIterator);
+			return;
+		}
+	}
+	for (auto &it : GroundTarget)
+	{
+		Instance *target = dynamic_cast<Instance *>(it.second);
+		if (!target->Visible)
+			continue;
+		if (Engine::Collider::IsCircleOverlap(Position, CollisionRadius, target->Position, target->hitRadius))
+		{
+			OnExplode(target);
+			target->Hit(damage);
+			getPlayScene()->BulletGroup->RemoveObject(objectIterator);
+			return;
+		}
+	}
 }
 void Bullet3::OnExplode(Instance *instance)
 {

@@ -1,6 +1,7 @@
 #ifndef __PLAYERHPP__
 #define __PLAYERHPP__
 
+#include <allegro5/color.h>
 #include <vector>
 #include "Engine/Group.hpp"
 
@@ -22,6 +23,7 @@ class Team final : public Engine::Group {
     Team* opponent;
     void UpdatePath();
 public:
+    ALLEGRO_COLOR teamColor;
 	std::vector<std::vector<int>> groundMap;
     std::vector<std::vector<int>> flyMap;
     int ID;
@@ -42,7 +44,7 @@ public:
     void SetOpponent(Team *);
     Team* GetOpponent();
     int getCountDown();
-    Team(Engine::Point startPoint, Engine::Point endPoint, int ID, int initLives = 10, int initMoney = 500);
+    Team(Engine::Point startPoint, Engine::Point endPoint, int ID, ALLEGRO_COLOR teamColor, int initLives = 10, int initMoney = 500);
 };
 
 #endif

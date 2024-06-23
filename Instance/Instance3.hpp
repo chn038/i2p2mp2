@@ -11,8 +11,9 @@ class Instance3 final : public Instance
 
 public:
     Instance3(float x, float y, int team, int damageOffset,
+              std::list<std::pair<bool, IObject *>> &FlyTarget,
               std::list<std::pair<bool, IObject *>> &GroundTarget,
-              std::list<std::pair<bool, IObject *>> &SkyTarget);
+              ALLEGRO_COLOR teamColor);
 };
 
 #endif

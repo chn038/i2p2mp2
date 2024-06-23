@@ -60,12 +60,11 @@ void Tower::SearchTarget() {
     // Lock first seen target.
     // Can be improved by Spatial Hash, Quad Tree, ...
     // However simply loop through all enemies is enough for this program.
+    Target = nullptr;
     for (auto &it : FlyTarget) {
         Engine::Point diff = it.second->Position - Position;
         if (diff.Magnitude() <= CollisionRadius) {
             Target = dynamic_cast<Instance *>(it.second);
-            Target->lockedTowers.push_back(this);
-            lockedTowerIterator = std::prev(Target->lockedTowers.end());
             break;
         }
     }
@@ -75,8 +74,6 @@ void Tower::SearchTarget() {
         Engine::Point diff = it.second->Position - Position;
         if (diff.Magnitude() <= CollisionRadius) {
             Target = dynamic_cast<Instance *>(it.second);
-            Target->lockedTowers.push_back(this);
-            lockedTowerIterator = std::prev(Target->lockedTowers.end());
             break;
         }
     }
@@ -90,42 +87,35 @@ void Tower::Update(float deltaTime) {
     imgBase.Tint = Tint;
     if (!Enabled)
         return;
-    if (Target) {
-        Engine::Point diff = Target->Position - Position;
-        if (diff.Magnitude() > CollisionRadius)
-        {
-            Target->lockedTowers.erase(lockedTowerIterator);
-            Target = nullptr;
-            lockedTowerIterator = std::list<Tower *>::iterator();
-        }
-    }
-    if (!Target) {
+    // Shoot reload.
+    if (reload <= 0) {
         SearchTarget();
-    }
-    if (Target) {
-        Engine::Point originRotation = Engine::Point(cos(Rotation - ALLEGRO_PI / 2), sin(Rotation - ALLEGRO_PI / 2));
-        Engine::Point targetRotation = (Target->Position - Position).Normalize();
-        float maxRotateRadian = rotateRadian * deltaTime;
-        float cosTheta = originRotation.Dot(targetRotation);
-        // Might have floating-point precision error.
-        if (cosTheta > 1)
-            cosTheta = 1;
-        else if (cosTheta < -1)
-            cosTheta = -1;
-        float radian = acos(cosTheta);
-        Engine::Point rotation;
-        if (abs(radian) <= maxRotateRadian)
-            rotation = targetRotation;
-        else
-            rotation = ((abs(radian) - maxRotateRadian) * originRotation + maxRotateRadian * targetRotation) / radian;
-        // Add 90 degrees (PI/2 radian), since we assume the image is oriented upward.
-        Rotation = atan2(rotation.y, rotation.x) + ALLEGRO_PI / 2;
-        // Shoot reload.
-        reload -= deltaTime;
-        if (reload <= 0) {
+        if (Target) {
+            Engine::Point targetRotation = (Target->Position - Position).Normalize();
+            /*
+            Engine::Point originRotation = Engine::Point(cos(Rotation - ALLEGRO_PI / 2), sin(Rotation - ALLEGRO_PI / 2));
+            float maxRotateRadian = rotateRadian * deltaTime;
+            float cosTheta = originRotation.Dot(targetRotation);
+            // Might have floating-point precision error.
+            if (cosTheta > 1)
+                cosTheta = 1;
+            else if (cosTheta < -1)
+                cosTheta = -1;
+            float radian = acos(cosTheta);
+            Engine::Point rotation;
+            if (abs(radian) <= maxRotateRadian)
+                rotation = targetRotation;
+            else
+                rotation = ((abs(radian) - maxRotateRadian) * originRotation + maxRotateRadian * targetRotation) / radian;
+            // Add 90 degrees (PI/2 radian), since we assume the image is oriented upward.
+            Rotation = atan2(rotation.y, rotation.x) + ALLEGRO_PI / 2;
+            */
+            Rotation = atan2(targetRotation.y, targetRotation.x) + ALLEGRO_PI/2;
             // shoot.
             reload = coolDown;
             CreateBullet();
         }
+    } else {
+        reload -= deltaTime;
     }
 }

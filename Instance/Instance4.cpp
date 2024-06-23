@@ -1,13 +1,14 @@
 #include "Instance4.hpp"
 #include "Engine/AudioHelper.hpp"
 #include "Scene/PlayScene.hpp"
-#include "Bullet/Bullet3.hpp"
+#include "Bullet/Bullet2.hpp"
 #include <cmath>
 
 Instance4::Instance4(float x, float y, int team, int damageOffset,
+                     std::list<std::pair<bool, IObject *>> &FlyTarget,
                      std::list<std::pair<bool, IObject *>> &GroundTarget,
-                     std::list<std::pair<bool, IObject *>> &SkyTarget)
-    : Instance("play/enemy-2.png", x, y, 64 * 3 + 32, 1, 20, 10, team, false, 0.25, damageOffset, GroundTarget, SkyTarget)
+                     ALLEGRO_COLOR teamColor)
+    : Instance("instance/instance4.png", x, y, 64 * 3 + 32, 32, 20, 50, 10, team, false, 1, damageOffset, FlyTarget, GroundTarget, teamColor)
 {
 }
 
@@ -17,7 +18,7 @@ void Instance4::CreateBullet()
     float rotation = atan2(diff.y, diff.x);
     Engine::Point normalized = diff.Normalize();
     // Change bullet position to the front of the gun barrel.
-    getPlayScene()->BulletGroup->AddNewObject(new Bullet3(Position + normalized * 36, diff, rotation, this, 2 + damageOffset, FlyTarget, GroundTarget));
+    getPlayScene()->BulletGroup->AddNewObject(new Bullet2(Position, diff, rotation, this, 2 + damageOffset, FlyTarget, GroundTarget));
     AudioHelper::PlayAudio("gun.wav");
 }
 
@@ -26,29 +27,13 @@ void Instance4::SearchTarget()
     // Lock first seen target.
     // Can be improved by Spatial Hash, Quad Tree, ...
     // However simply loop through all enemies is enough for this program.
-    for (auto &it : FlyTarget)
-    {
-        Engine::Point diff = it.second->Position - Position;
-        if (diff.Magnitude() <= CollisionRadius)
-        {
-            Target = dynamic_cast<Instance *>(it.second);
-            Target->lockedTowers.push_back(this);
-            lockedTowerIterator = std::prev(Target->lockedTowers.end());
-            break;
-        }
-    }
-
-    if (Target)
-        return;
-
+    Target = nullptr;
     for (auto &it : GroundTarget)
     {
         Engine::Point diff = it.second->Position - Position;
         if (diff.Magnitude() <= CollisionRadius)
         {
             Target = dynamic_cast<Instance *>(it.second);
-            Target->lockedTowers.push_back(this);
-            lockedTowerIterator = std::prev(Target->lockedTowers.end());
             break;
         }
     }

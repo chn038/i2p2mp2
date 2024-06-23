@@ -10,7 +10,8 @@
 #include "Tower/Tower4.hpp"
 #include "Tower/Tower5.hpp"
 
-Team::Team(Engine::Point startPoint, Engine::Point endPoint, int ID, int initLives, int initMoney):
+Team::Team(Engine::Point startPoint, Engine::Point endPoint, int ID, ALLEGRO_COLOR teamColor, int initLives, int initMoney):
+    teamColor(teamColor),
     ID(ID),
     opponent(nullptr),
     damageOffset(0),

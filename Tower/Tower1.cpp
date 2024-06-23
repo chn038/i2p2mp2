@@ -47,7 +47,7 @@ void Tower1::Update(float deltaTime)
     }
     if (ticks < spawnPeriod)
         return;
-    ticks -= spawnPeriod;
+    ticks = 0;
 
     Engine::Point sp = SearchPlace();
     if (sp.x == -1)
@@ -57,7 +57,7 @@ void Tower1::Update(float deltaTime)
 
     float objx = sp.x * blockSize;
     float objy = sp.y * blockSize;
-    Instance *n = new Instance1(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget);
+    Instance *n = new Instance1(objx, objy, team->ID, team->damageOffset, FlyTarget, GroundTarget, team->teamColor);
     n->UpdatePath(team->groundMap, team->endPoint);
     team->GroundGroup->AddNewObject(n);
 }

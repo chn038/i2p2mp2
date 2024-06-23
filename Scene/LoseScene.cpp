@@ -33,5 +33,5 @@ void LoseScene::Terminate() {
 void LoseScene::BackOnClick(int stage) {
 	// Change to select scene.
     Engine::GameEngine::GetInstance().GetAssignNew() = false;
-    Engine::GameEngine::GetInstance().ChangeScene("scoreboard-scene");
+    Engine::GameEngine::GetInstance().ChangeScene("stage-select");
 }
