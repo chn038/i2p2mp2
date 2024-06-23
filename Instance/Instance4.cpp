@@ -8,7 +8,7 @@ Instance4::Instance4(float x, float y, int team, int damageOffset,
                      std::list<std::pair<bool, IObject *>> &FlyTarget,
                      std::list<std::pair<bool, IObject *>> &GroundTarget,
                      ALLEGRO_COLOR teamColor)
-    : Instance("instance/instance4.png", x, y, 64 * 3 + 32, 32, 20, 50, 10, team, false, 1, damageOffset, FlyTarget, GroundTarget, teamColor)
+    : Instance("instance/instance4.png", x, y, 64 * 3 + 32, 32, 20, 50, 10, team, false, 0.5, damageOffset, FlyTarget, GroundTarget, teamColor)
 {
 }
 

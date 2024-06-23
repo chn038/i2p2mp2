@@ -87,12 +87,10 @@ void Tower::Update(float deltaTime) {
     imgBase.Tint = Tint;
     if (!Enabled)
         return;
-    // Shoot reload.
-    if (reload <= 0) {
-        SearchTarget();
-        if (Target) {
-            Engine::Point targetRotation = (Target->Position - Position).Normalize();
-            /*
+    SearchTarget();
+    if (Target) {
+        Engine::Point targetRotation = (Target->Position - Position).Normalize();
+        /*
             Engine::Point originRotation = Engine::Point(cos(Rotation - ALLEGRO_PI / 2), sin(Rotation - ALLEGRO_PI / 2));
             float maxRotateRadian = rotateRadian * deltaTime;
             float cosTheta = originRotation.Dot(targetRotation);
@@ -110,7 +108,11 @@ void Tower::Update(float deltaTime) {
             // Add 90 degrees (PI/2 radian), since we assume the image is oriented upward.
             Rotation = atan2(rotation.y, rotation.x) + ALLEGRO_PI / 2;
             */
-            Rotation = atan2(targetRotation.y, targetRotation.x) + ALLEGRO_PI/2;
+        Rotation = atan2(targetRotation.y, targetRotation.x) + ALLEGRO_PI/2;
+    }
+    // Shoot reload.
+    if (reload <= 0) {
+        if (Target) {
             // shoot.
             reload = coolDown;
             CreateBullet();

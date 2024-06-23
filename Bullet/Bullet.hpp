@@ -15,6 +15,7 @@ namespace Engine
 class Bullet : public Engine::Sprite
 {
 protected:
+    bool pendingToDelete = false;
 	float speed;
 	int damage;
 	Tower *parent;

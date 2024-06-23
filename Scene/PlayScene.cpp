@@ -37,14 +37,14 @@ void PlayScene::Initialize() {
     // Team initialize
 	// Should support buttons.
 	AddNewControlObject(UIGroup = new Group());
-    AddNewObject(teamPlayer = new Team(spawnPointA, spawnPointB, 0, al_map_rgb(0, 255, 0)));
-    AddNewObject(teamEnemy = new Team(spawnPointB, spawnPointA, 1, al_map_rgb(255, 0, 0)));
 	AddNewObject(GroundEffectGroup = new Group());
 	AddNewObject(EffectGroup = new Group());
+    AddNewObject(teamPlayer = new Team(spawnPointA, spawnPointB, 0, al_map_rgb(0, 255, 0)));
+    AddNewObject(teamEnemy = new Team(spawnPointB, spawnPointA, 1, al_map_rgb(255, 0, 0)));
+	AddNewObject(BulletGroup = new Group());
     teamPlayer->SetOpponent(teamEnemy);
     teamEnemy->SetOpponent(teamPlayer);
 	ReadEnemyWave();
-	AddNewObject(BulletGroup = new Group());
 	ConstructUI();
 	imgTarget = new Engine::Image("play/target.png", 0, 0);
 	imgTarget->Visible = false;

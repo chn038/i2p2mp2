@@ -27,7 +27,7 @@ void Bullet2::CheckCollision() {
 		{
 			OnExplode(target);
 			target->Hit(damage);
-			getPlayScene()->BulletGroup->RemoveObject(objectIterator);
+            pendingToDelete = true;
 			return;
 		}
 	}
