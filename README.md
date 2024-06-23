@@ -28,5 +28,5 @@
 # Work distribution
 
 陳宜和：PlayScene, Team, Tower
-廖德駿：Instance, Bullet, Art design
+廖得竣：Instance, Bullet, Art design
 
