@@ -81,7 +81,20 @@ void PlayScene::Update(float deltaTime) {
         ticks -= current.time;
         float objx = current.pos.x * BlockSize + BlockSize / 2.0;
         float objy = current.pos.y * BlockSize + BlockSize / 2.0;
-        teamEnemy->addTower(objx, objy, current.type);
+        if (current.type != 6) {
+            teamEnemy->addTower(objx, objy, current.type);
+        } else if (current.type == 6) {
+            teamEnemy->damageOffset += 1;
+            for (auto &it : teamEnemy->TowerGroup->GetObjects()) {
+                dynamic_cast<Tower*>(it.second)->UpgradeDamage(teamEnemy->damageOffset);
+            }
+            for (auto &it : teamEnemy->FlyGroup->GetObjects()) {
+                dynamic_cast<Tower*>(it.second)->UpgradeDamage(teamEnemy->damageOffset);
+            }
+            for (auto &it : teamEnemy->GroundGroup->GetObjects()) {
+                dynamic_cast<Tower*>(it.second)->UpgradeDamage(teamEnemy->damageOffset);
+            }
+        }
         enemyWave.pop();
     }
 }
